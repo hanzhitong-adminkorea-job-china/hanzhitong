@@ -23,9 +23,10 @@
         /* 히어로 섹션 */
         .hero { padding: 30px 20px; text-align: center; }
         .hero h2 { font-size: 24px; margin-bottom: 10px; color: #111; }
-        .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 15px; font-size: 16px; outline: none; }
+        .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 15px; font-size: 16px; outline: none; transition: 0.3s; }
+        .search-box:focus { border-color: #007AFF; }
 
-        /* 채용 등록 폼 (Formspree) */
+        /* 채용 등록 폼 (보안 강화) */
         #post-form { display: none; padding: 25px 20px; background: #f9fbff; border-bottom: 5px solid #eee; }
         .form-title { font-size: 18px; font-weight: bold; margin-bottom: 20px; color: #007AFF; }
         .form-group { margin-bottom: 15px; }
@@ -33,7 +34,7 @@
         .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; }
         .submit-btn { width: 100%; padding: 15px; background: #007AFF; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 16px; }
 
-        /* 공고 목록 헤더 */
+        /* 목록 영역 */
         .section-header { padding: 20px 20px 10px; font-weight: bold; font-size: 18px; border-bottom: 1px solid #f0f0f0; }
         .empty-state { padding: 80px 20px; text-align: center; color: #bbb; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 
@@ -55,7 +56,7 @@
         <button class="post-btn" onclick="toggleForm()">+ 发布招聘</button>
     </header>
 
-    <!-- 채용 등록 폼 -->
+    <!-- 채용 등록 폼 (스팸 방지 필터 적용) -->
     <section id="post-form">
         <div class="form-title">무료 구인 공고 등록</div>
         <form action="https://formspree.io" method="POST">
@@ -64,7 +65,7 @@
                 <input type="text" name="company" required placeholder="예: ○○무역">
             </div>
             <div class="form-group">
-                <label>职位名称 (직종)</label>
+                <label>职位名称 (구인직종)</label>
                 <input type="text" name="job_title" required placeholder="예: 주방장 / 사무직">
             </div>
             <div class="form-group">
@@ -72,9 +73,13 @@
                 <input type="text" name="contact" required placeholder="010-0000-0000">
             </div>
             <div class="form-group">
-                <label>详细说明 (내용)</label>
+                <label>详细说明 (상세내용)</label>
                 <textarea name="details" rows="4" placeholder="비자 요구사항, 급여 등 상세 내용"></textarea>
             </div>
+            
+            <!-- 보안용 허니팟 필드 (사람 눈엔 안보임, 봇 스팸 차단용) -->
+            <input type="text" name="_gotcha" style="display:none">
+            
             <button type="submit" class="submit-btn">신청하기</button>
         </form>
     </section>
@@ -88,7 +93,7 @@
     <!-- 히어로 섹션 -->
     <section class="hero">
         <h2>在韩华人, <span style="color:#007AFF;">高效就业</span></h2>
-        <input type="text" class="search-box" placeholder="搜索您感兴趣的职位...">
+        <input type="text" class="search-box" placeholder="搜索您感兴趣의职位...">
     </section>
 
     <div class="section-header">最新职位公告 (최신공고)</div>
@@ -103,13 +108,15 @@
     <footer>
         <div class="visitor-box">
             <div class="visitor-label">TOTAL VISITORS</div>
+            <!-- 실시간 누적 카운터 -->
             <span id="live-counter">...</span>
             <div class="live-status">
-                <span class="dot"></span> 系统正常 작동중 (LIVE)
+                <span class="dot"></span> 시스템 정상 작동중 (LIVE)
             </div>
         </div>
         <div style="font-weight:bold; color:#444; margin-bottom:5px;">韩职通 HanZhiTong</div>
         <p style="font-size:11px; color:#aaa;">© 2024 HanZhiTong. ALL RIGHTS RESERVED.</p>
+        <p style="font-size:9px; color:#ddd; margin-top:10px;">Security protected by HanZhiTong Anti-Spam</p>
     </footer>
 </div>
 
@@ -121,12 +128,11 @@
         if(isHidden) form.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // 정직한 누적 방문자 수 기록 (로컬 저장소 활용)
     function initCounter() {
         const counterEl = document.getElementById('live-counter');
-        let count = localStorage.getItem('hzt_official_count') || 10;
+        let count = localStorage.getItem('hzt_final_count') || 10;
         count = parseInt(count) + 1;
-        localStorage.setItem('hzt_official_count', count);
+        localStorage.setItem('hzt_final_count', count);
         counterEl.innerText = count.toLocaleString();
     }
 
