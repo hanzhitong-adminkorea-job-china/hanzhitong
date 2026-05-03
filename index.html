@@ -1,24 +1,110 @@
-<!-- 【게시물 등록 폼 - Formspree 완전 작동 버전】 -->
-<div id="page-post" class="page-section">
-    <h3 style="color:var(--primary-blue);">📝 提交发布申请</h3>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <form id="orderForm" action="https://formspree.io/f/mbdwdegw" method="POST">
-        <input type="hidden" name="_subject" value="韩职通 新发布申请">
+<title>韩职通 HanZhiTong</title>
 
-        <select name="类别" class="form-input" required style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
-            <option value="" disabled selected>选择信息分类</option>
-            <option value="招聘">招聘</option>
-            <option value="二手">二手</option>
-            <option value="租房">租房</option>
-            <option value="互助">互助</option>
-        </select>
+<style>
+body { font-family: Arial; margin:0; background:#f8f9fa; }
+.container { max-width:600px; margin:auto; background:#fff; min-height:100vh; }
 
-        <input type="text" name="联系方式" required placeholder="您的联系电话或微信" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+header { padding:15px; background:#fff; border-bottom:1px solid #eee; }
+.logo { font-weight:bold; color:#007bff; }
 
-        <input type="email" name="email" placeholder="您的邮箱，可不填" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+.content { padding:15px; }
 
-        <textarea name="详细内容" rows="8" required placeholder="请输入详细描述" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;"></textarea>
+.page-section { display:none; }
+.active-section { display:block; }
 
-        <button type="submit" class="post-btn-fixed">确认提交审核</button>
-    </form>
+.post-btn-fixed {
+background:#007bff; color:#fff; border:none;
+padding:15px; width:100%; border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<span class="logo">韩职通 HanZhiTong</span>
+</header>
+
+<div class="content">
+
+<div id="page-home" class="page-section active-section">
+<h3>메인</h3>
+<button onclick="showPage('post')" class="post-btn-fixed">글쓰기</button>
 </div>
+
+<!-- 🔥 Formspree 완전 해결 폼 -->
+<div id="page-post" class="page-section">
+<h3>📝 提交发布申请</h3>
+
+<form id="orderForm" action="https://formspree.io/f/mbdwdegw" method="POST">
+
+<input type="hidden" name="_subject" value="韩职通 新发布申请">
+
+<select name="类别" required style="width:100%; padding:10px; margin-bottom:10px;">
+<option value="" disabled selected>选择信息分类</option>
+<option value="招聘">招聘</option>
+<option value="二手">二手</option>
+<option value="租房">租房</option>
+<option value="互助">互助</option>
+</select>
+
+<input type="text" name="联系方式" required placeholder="联系方式"
+style="width:100%; padding:10px; margin-bottom:10px;">
+
+<input type="email" name="email" placeholder="邮箱 (선택)"
+style="width:100%; padding:10px; margin-bottom:10px;">
+
+<textarea name="详细内容" rows="6" required placeholder="내용"
+style="width:100%; padding:10px; margin-bottom:10px;"></textarea>
+
+<button type="submit" class="post-btn-fixed">提交</button>
+
+</form>
+</div>
+
+</div>
+</div>
+
+<script>
+function showPage(page){
+document.querySelectorAll('.page-section').forEach(e=>e.classList.remove('active-section'));
+document.getElementById('page-'+page).classList.add('active-section');
+}
+
+// 🔥 Formspree POST 처리
+document.getElementById("orderForm").addEventListener("submit", async function(e) {
+e.preventDefault();
+
+const form = e.target;
+const data = new FormData(form);
+
+try {
+const response = await fetch(form.action, {
+method: "POST",
+body: data,
+headers: { "Accept": "application/json" }
+});
+
+if (response.ok) {
+alert("✅ 提交成功！管理员将尽快审核。");
+form.reset();
+showPage("home");
+} else {
+alert("❌ 提交失败，请稍后再试。");
+}
+} catch (error) {
+alert("❌ 网络错误，请稍后再试。");
+}
+});
+</script>
+
+</body>
+</html>
