@@ -15,32 +15,32 @@
 
         .content { padding: 15px; }
 
-        /* 分类菜单 */
+        /* 관리자 연락처 */
+        .admin-contact { background: #f0f7ff; border: 1px solid #cce3ff; border-radius: 15px; padding: 15px; margin-bottom: 20px; text-align: center; }
+        .admin-email { color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 14px; display: block; margin-top: 5px; }
+
+        /* 카테고리 메뉴 */
         .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 25px; }
         .category-item { text-align: center; cursor: pointer; }
         .category-icon { width: 50px; height: 50px; background: #eef5ff; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; transition: 0.2s; }
         .category-item:hover .category-icon { background: var(--primary-blue); color: white; transform: translateY(-3px); }
         .category-text { font-size: 12px; font-weight: bold; }
 
-        /* 自动滚动贴士 */
+        /* 롤링 팁 */
         .tips-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 15px; margin-bottom: 20px; border-left: 5px solid var(--primary-blue); }
         #tip-content { font-size: 13.5px; color: #444; line-height: 1.6; min-height: 45px; transition: opacity 0.5s; }
         .kor-txt { color: #d32f2f; font-weight: bold; }
 
-        /* 管理员联系方式 (新添加) */
-        .admin-contact { background: #f0f7ff; border: 1px solid #cce3ff; border-radius: 15px; padding: 15px; margin-bottom: 20px; text-align: center; }
-        .admin-email { color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 14px; display: block; margin-top: 5px; }
-
-        /* 推广横幅 */
+        /* 홍보 배너 */
         .promo-banner { background: linear-gradient(135deg, #fffde7 0%, #fff59d 100%); border: 1px solid #fbc02d; border-radius: 12px; padding: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
         .promo-info h4 { margin: 0 0 5px; color: #f57f17; font-size: 15px; }
         .promo-info p { margin: 0; font-size: 12px; color: #7f6d00; }
 
-        /* 投稿表单 */
+        /* 게시 폼 */
         #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .form-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
 
-        /* 最新动态区 */
+        /* 최신 동태 구역 */
         .section-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px; margin-bottom: 20px; }
         .section-title { font-size: 16px; font-weight: bold; color: #222; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 8px; }
 
@@ -56,13 +56,13 @@
     </header>
 
     <div class="content">
-        <!-- 管理员联系方式 -->
+        <!-- 관리자 연락처 -->
         <div class="admin-contact">
             <span style="font-size: 13px; color: #666;">如有疑问或商务合作，请联络管理员：</span>
             <a href="mailto:davidguksung@gmail.com" class="admin-email">✉ davidguksung@gmail.com</a>
         </div>
 
-        <!-- 分类菜单 -->
+        <!-- 카테고리 -->
         <div class="category-grid">
             <div class="category-item" onclick="toggleForm()">
                 <div class="category-icon">💼</div><div class="category-text">招聘求职</div>
@@ -78,12 +78,12 @@
             </div>
         </div>
 
-        <!-- 自动滚动贴士 -->
+        <!-- 롤링 팁 -->
         <div class="tips-card">
             <div id="tip-content">正在为您加载生活小贴士...</div>
         </div>
 
-        <!-- 推广横幅 -->
+        <!-- 홍보 배너 -->
         <div class="promo-banner" onclick="toggleForm()">
             <div style="font-size: 30px;">🎁</div>
             <div class="promo-info">
@@ -92,10 +92,11 @@
             </div>
         </div>
 
-        <!-- 发布表单 -->
+        <!-- 게시 폼 (제출 후 다시 내 사이트로 돌아오게 설정) -->
         <div id="postForm">
             <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 提交发布申请</h3>
             <form action="https://formspree.io" method="POST">
+                <input type="hidden" name="_next" value="https://vercel.app"> <!-- 성공 시 돌아올 주소 -->
                 <select name="类别" class="form-input" required>
                     <option value="" disabled selected>选择信息分类</option>
                     <option value="招聘">💼 招聘求职</option>
@@ -109,13 +110,13 @@
             </form>
         </div>
 
-        <!-- 最新动态区 -->
+        <!-- 최신 동태 구역 -->
         <div class="section-card">
             <div class="section-title">✨ 最新动态</div>
             <div style="text-align:center; padding:30px; color:#ccc; font-size:14px;">目前还没有发布的信息<br>审核通过后将在此显示</div>
         </div>
 
-        <!-- 工具 -->
+        <!-- 도구 -->
         <div class="section-card">
             <div class="section-title">🔔 实用工具</div>
             <a href="https://naver.com" target="_blank" style="display:flex; justify-content:space-between; padding:12px 0; text-decoration:none; color:#444; font-size:14px; border-bottom:1px solid #f9f9f9;">
@@ -131,12 +132,24 @@
 </div>
 
 <script>
+    // 폼 토글
     function toggleForm() {
         var form = document.getElementById('postForm');
         form.style.display = (form.style.display === 'block') ? 'none' : 'block';
         if(form.style.display === 'block') form.scrollIntoView({behavior: "smooth"});
     }
 
+    // ★ 제출 성공 후 돌아왔을 때 알림창 띄우기
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('thanks') === 'true') {
+            alert('✅ 提交成功！管理员将尽快进行审核。感谢您的发布！');
+            // 알림창 확인 후 URL에서 파라미터 제거 (깔끔하게)
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    }
+
+    // 롤링 팁
     const tips = [
         "💡 租房必看：签约前务必确认 <span class='kor-txt'>등기부등본</span> (登记簿副本)，检查房东身份和房屋债务。",
         "💡 换钱安全：建议通过官方银行APP换钱，避免私人交易导致 <span class='kor-txt'>계좌정지</span> (账户冻结) 风险。",
