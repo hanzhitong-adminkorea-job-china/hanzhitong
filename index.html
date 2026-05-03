@@ -1,18 +1,21 @@
-<!-- 【게시물 등록 폼 - Locked ID: mbdwdegw】 -->
+<!-- 【게시물 등록 폼 - Formspree 작동 완료 버전】 -->
 <div id="page-post" class="page-section">
     <h3 style="color:var(--primary-blue);">📝 提交发布申请</h3>
 
-    <!-- ✅ 여기만 수정됨 -->
-    <form action="https://formspree.io/f/mbdwdegw" method="POST">
+    <!--
+        ✅ Formspree 사용방법
+        1. action 주소는 반드시 https://formspree.io/f/mbdwdegw 로 해야 함
+        2. 사이트에서 처음 1번 테스트 제출
+        3. Formspree 가입 이메일로 온 인증/Activate 메일 확인
+        4. Activate 클릭 후부터 주문이 메일로 들어옴
+        5. Vercel에 올린 뒤 테스트해야 가장 안정적임
+    -->
 
-        <!-- ✅ 추가된 부분 -->
+    <form action="https://formspree.io/f/mbdwdegw" method="POST">
         <input type="hidden" name="_subject" value="韩职通 新发布申请">
         <input type="hidden" name="_captcha" value="false">
 
-        <!-- 기존 유지 -->
-        <input type="hidden" name="_next" value="https://vercel.app">
-
-        <select name="类别" class="form-input" required style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+        <select name="category" class="form-input" required style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
             <option value="" disabled selected>选择信息分类</option>
             <option value="招聘">招聘</option>
             <option value="二手">二手</option>
@@ -20,11 +23,14 @@
             <option value="互助">互助</option>
         </select>
 
-        <input type="text" name="联系方式" required placeholder="您的联系电话或微信"
-        style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+        <input type="text" name="contact" required placeholder="您的联系电话或微信"
+            style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
 
-        <textarea name="详细内容" rows="8" required placeholder="请输入详细描述"
-        style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;"></textarea>
+        <input type="email" name="email" placeholder="您的邮箱 / 이메일，可不填"
+            style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+
+        <textarea name="message" rows="8" required placeholder="请输入详细描述"
+            style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;"></textarea>
 
         <button type="submit" class="post-btn-fixed">确认提交审核</button>
     </form>
