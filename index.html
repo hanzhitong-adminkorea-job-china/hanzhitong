@@ -46,6 +46,7 @@
     </header>
 
     <div class="content">
+
         <div id="page-home" class="page-section active-section">
             <div class="headline-news">
                 <span class="headline-tag">公告</span>
@@ -80,6 +81,12 @@
                 <p style="font-size:13px; margin:6px 0;">招聘、租房、店铺宣传可申请首页展示。</p>
                 <button onclick="showPage('post')" class="post-btn-fixed">申请置顶 / 发布信息</button>
             </div>
+
+            <div style="margin-top:15px;">
+                <button onclick="showPage('contact')" class="post-btn-fixed" style="background:#495057;">
+                    📩 联系管理员 / 广告咨询
+                </button>
+            </div>
         </div>
 
         <div id="page-job" class="page-section">
@@ -100,7 +107,7 @@
             <div style="text-align:center; padding:50px; color:#ccc;">暂无房源</div>
             <button class="post-btn-fixed" onclick="showPage('post')" style="background:#4caf50;">+ 发布房源</button>
         </div>
-        
+
         <div id="page-help" class="page-section">
             <h2>💬 生活互助列表</h2>
             <div style="text-align:center; padding:50px; color:#ccc;">有问题，大家帮。</div>
@@ -135,6 +142,26 @@
             </form>
         </div>
 
+        <div id="page-contact" class="page-section">
+            <h3 style="color:var(--primary-blue);">📩 联系管理员 / 广告咨询</h3>
+
+            <form id="contactForm" action="https://formspree.io/f/mbdwdegw" method="POST">
+                <input type="hidden" name="_subject" value="韩职通 管理员咨询 / 广告咨询">
+                <input type="hidden" name="_next" value="https://hanzhitong.vercel.app/?thanks=true">
+                <input type="text" name="_gotcha" style="display:none">
+
+                <input type="text" name="姓名" required placeholder="您的姓名" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+
+                <input type="text" name="联系方式" required placeholder="电话 / 微信 / 邮箱" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+
+                <textarea id="contactContent" name="咨询内容" rows="6" required placeholder="请输入咨询内容，例如广告合作、信息修改、举报等" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;"></textarea>
+
+                <input type="text" id="contactVerify" name="验证问题" required placeholder="防垃圾信息：请输入 123" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+
+                <button type="submit" class="post-btn-fixed">发送咨询</button>
+            </form>
+        </div>
+
         <div id="live-stats" class="stats-panel">
             <div><div id="stat-total" class="stat-num">2,387</div><div class="stat-desc">累计服务</div></div>
             <div style="border-left: 1px solid #eee; border-right: 1px solid #eee;"><div id="stat-active" class="stat-num">174</div><div class="stat-desc">在线人数</div></div>
@@ -150,6 +177,7 @@
 
 <script>
     let lastSubmitTime = 0;
+    let lastContactTime = 0;
 
     function toggleMore() {
         const more = document.getElementById('more-categories');
@@ -193,10 +221,9 @@
 
         history.replaceState({page: 'home'}, null, "");
 
-        const form = document.getElementById('postForm');
-
-        if (form) {
-            form.addEventListener('submit', function(e) {
+        const postForm = document.getElementById('postForm');
+        if (postForm) {
+            postForm.addEventListener('submit', function(e) {
                 const now = Date.now();
                 const verifyValue = document.getElementById('verifyInput').value.trim();
                 const contentValue = document.getElementById('contentInput').value.trim();
@@ -220,6 +247,35 @@
                 }
 
                 lastSubmitTime = now;
+            });
+        }
+
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                const now = Date.now();
+                const verifyValue = document.getElementById('contactVerify').value.trim();
+                const contentValue = document.getElementById('contactContent').value.trim();
+
+                if (now - lastContactTime < 5000) {
+                    alert('提交太快，请稍等再试');
+                    e.preventDefault();
+                    return false;
+                }
+
+                if (verifyValue !== '123') {
+                    alert('验证问题错误，请输入 123');
+                    e.preventDefault();
+                    return false;
+                }
+
+                if (contentValue.length < 5) {
+                    alert('咨询内容太短，请补充说明');
+                    e.preventDefault();
+                    return false;
+                }
+
+                lastContactTime = now;
             });
         }
     };
