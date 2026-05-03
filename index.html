@@ -4,109 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- SEO: 구글/바이두 검색 최적화 -->
+    <!-- 위챗/구글/바이두 검색 및 공유 최적화 -->
     <title>韩职通 - 专业的在韩华人招聘网 | 商家免费置顶</title>
-    <meta name="description" content="韩职通（HanZhiTong）是在韩华人首选的求职招聘平台，提供各行业真实招聘信息。商家免费发布，免费置顶30天。">
-    <meta name="keywords" content="韩国招聘, 在韩华人求职, 韩国打工, 韩职通, davidguksung@gmail.com">
+    <meta name="description" content="韩职通（HanZhiTong）专为在韩华人打造，提供最真实的求职招聘信息。直接联系老板，100%免费，商家发帖限时置顶。">
+    <meta name="keywords" content="韩国招聘, 在韩华人, 韩国打工, 韩国找工作, 韩职通, davidguksung@gmail.com">
     
+    <!-- 위챗 공유 시 보여질 썸네일 설정 (OG Tag) -->
+    <meta property="og:title" content="韩职通 - 在韩华人求职招聘首选">
+    <meta property="og:description" content="直接联系老板，高效就业，限时免费置顶中！">
+    <meta property="og:type" content="website">
+
     <style>
-        /* 기본 스타일 */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        body { font-family: -apple-system, system-ui, sans-serif; background-color: #f5f7f9; color: #333; line-height: 1.6; }
-        .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; display: flex; flex-direction: column; position: relative; }
+        body { font-family: -apple-system, system-ui, "Microsoft YaHei", sans-serif; background-color: #f0f2f5; color: #333; line-height: 1.6; }
+        .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
         
-        /* 헤더 */
-        header { padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 20px; font-weight: 800; color: #007AFF; text-decoration: none; }
-        .post-btn { background: #007AFF; color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 13px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; }
-        
-        /* 우측 하단 이메일 상담 버튼 */
-        .email-float { position: fixed; bottom: 20px; right: 20px; background: #333; color: white; padding: 12px 20px; border-radius: 50px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        /* 상단 네비게이션 */
+        header { padding: 12px 20px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 22px; font-weight: 900; color: #007AFF; text-decoration: none; letter-spacing: -1px; }
+        .post-btn { background: #007AFF; color: #fff; padding: 8px 18px; border-radius: 25px; font-size: 13px; text-decoration: none; font-weight: bold; border: none; box-shadow: 0 4px 10px rgba(0,122,255,0.3); }
 
-        /* 배너 및 히어로 */
-        .event-banner { background: #FFF9E6; border: 1px dashed #FFCC00; padding: 15px; border-radius: 12px; margin: 20px 20px 0; text-align: left; }
-        .hero { padding: 30px 20px; text-align: center; }
-        .hero h2 { font-size: 24px; margin-bottom: 10px; color: #111; }
-        .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 15px; font-size: 16px; outline: none; }
+        /* 위챗 홍보용 강조 배너 */
+        .promo-banner { background: #fff7e6; border: 1px solid #ffd591; padding: 15px; border-radius: 12px; margin: 15px 15px 0; display: flex; align-items: center; gap: 10px; }
+        .promo-icon { font-size: 24px; }
+        .promo-text { font-size: 12px; color: #874d00; line-height: 1.4; }
+        .promo-text b { color: #d4380d; }
 
-        /* 채용 등록 폼 */
-        #post-form { display: none; padding: 25px 20px; background: #f9fbff; border-bottom: 5px solid #eee; }
+        /* 히어로 섹션 */
+        .hero { padding: 35px 20px; text-align: center; background: #fff; }
+        .hero h2 { font-size: 26px; font-weight: 800; color: #111; margin-bottom: 8px; }
+        .hero p { color: #999; font-size: 14px; margin-bottom: 25px; }
+        .search-box { width: 100%; padding: 16px; border: 2px solid #f0f0f0; border-radius: 15px; font-size: 16px; outline: none; background: #f9f9f9; transition: 0.3s; }
+        .search-box:focus { border-color: #007AFF; background: #fff; }
+
+        /* 구인 등록 폼 */
+        #post-form { display: none; padding: 25px 20px; background: #fff; border-bottom: 8px solid #f0f2f5; border-top: 1px solid #eee; }
+        .form-title { font-size: 18px; font-weight: bold; margin-bottom: 20px; color: #007AFF; display: flex; align-items: center; gap: 5px; }
         .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #666; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; }
-        .submit-btn { width: 100%; padding: 15px; background: #007AFF; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
+        .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 6px; color: #666; }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px; border: 1px solid #e1e1e1; border-radius: 12px; font-size: 14px; outline: none; transition: 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #007AFF; }
+        .submit-btn { width: 100%; padding: 16px; background: #007AFF; color: white; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 16px; box-shadow: 0 5px 15px rgba(0,122,255,0.2); }
 
-        /* 공고 목록 영역 */
-        .section-header { padding: 20px 20px 10px; font-weight: bold; font-size: 18px; border-bottom: 1px solid #f0f0f0; }
-        .empty-state { padding: 60px 20px; text-align: center; color: #bbb; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        /* 목록 섹션 */
+        .section-header { padding: 20px; font-weight: bold; font-size: 19px; display: flex; justify-content: space-between; align-items: center; }
+        .empty-state { padding: 80px 20px; text-align: center; color: #ccc; flex-grow: 1; }
+        .empty-icon { font-size: 60px; margin-bottom: 15px; display: block; }
 
         /* 이메일 고객센터 박스 */
-        .admin-contact-box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 15px; margin: 20px; text-align: left; font-size: 14px; width: 90%; }
-        .contact-link { color: #007AFF; font-weight: bold; text-decoration: none; word-break: break-all; }
+        .contact-card { background: #fff; border: 1px solid #eee; padding: 25px 20px; border-radius: 20px; margin: 0 20px 30px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .contact-title { font-size: 15px; font-weight: bold; color: #333; margin-bottom: 15px; }
+        .email-btn { display: inline-flex; align-items: center; gap: 8px; background: #333; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; }
 
-        /* 푸터 */
-        footer { padding: 50px 20px; text-align: center; background: #fafbfc; border-top: 1px solid #eee; margin-top: auto; }
-        .visitor-box { display: inline-block; padding: 20px 30px; background: #fff; border-radius: 20px; border: 1px solid #eee; margin-bottom: 25px; }
-        #live-counter { font-size: 32px; font-weight: 900; color: #007AFF; display: block; margin: 5px 0; }
+        /* 푸터 및 카운터 */
+        footer { padding: 50px 20px; text-align: center; background: #f9fbff; border-top: 1px solid #f0f0f0; }
+        .visitor-badge { display: inline-block; padding: 12px 25px; background: #fff; border-radius: 50px; border: 1px solid #eee; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .visitor-count { font-size: 26px; font-weight: 900; color: #007AFF; display: block; margin: 2px 0; }
+        .live-tag { font-size: 10px; color: #17c948; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .dot { width: 6px; height: 6px; background: #17c948; border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* 하단 플로팅 버튼 */
+        .float-contact { position: fixed; bottom: 25px; right: 20px; background: #333; color: white; padding: 14px 22px; border-radius: 50px; font-weight: bold; font-size: 14px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); z-index: 999; text-decoration: none; display: flex; align-items: center; gap: 8px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <a href="/" class="logo">韩职通 HanZhiTong</a>
+        <a href="/" class="logo">韩职通</a>
         <button class="post-btn" onclick="toggleForm()">+ 发布招聘</button>
     </header>
 
-    <!-- 우측 하단 고정 이메일 버튼 -->
-    <a href="mailto:davidguksung@gmail.com" class="email-float">
-        ✉️ 邮件咨询
+    <a href="mailto:davidguksung@gmail.com" class="float-contact">
+        <span>✉️ 咨询</span>
     </a>
 
+    <!-- 위챗 전용 홍보 배너 -->
+    <div class="promo-banner">
+        <span class="promo-icon">🎁</span>
+        <div class="promo-text">
+            <b>限时活动：</b>现在发布招聘信息，我们将为您免费<b>置顶推广 30 天</b>！分享给朋友效果更好。
+        </div>
+    </div>
+
+    <!-- 구인 등록 폼 -->
     <section id="post-form">
-        <div class="form-title" style="font-size: 18px; font-weight: bold; margin-bottom: 20px; color: #007AFF;">무료 구인 공고 등록</div>
+        <div class="form-title">📝 填写招聘信息</div>
         <form action="https://formspree.io" method="POST">
-            <div class="form-group"><label>公司/店铺名称</label><input type="text" name="company" required></div>
-            <div class="form-group"><label>职位名称</label><input type="text" name="job_title" required></div>
-            <div class="form-group"><label>联系方式</label><input type="text" name="contact" required></div>
-            <div class="form-group"><label>详细说明</label><textarea name="details" rows="4"></textarea></div>
+            <div class="form-group"><label>公司/店铺名称</label><input type="text" name="company" required placeholder="예: ○○贸易 / ○○饭店"></div>
+            <div class="form-group"><label>职位名称</label><input type="text" name="job_title" required placeholder="예: 厨师 / 办公室职员"></div>
+            <div class="form-group"><label>联系方式</label><input type="text" name="contact" required placeholder="010-0000-0000"></div>
+            <div class="form-group"><label>详细说明</label><textarea name="details" rows="4" placeholder="薪资待遇、签证要求等..."></textarea></div>
             <input type="text" name="_gotcha" style="display:none">
-            <button type="submit" class="submit-btn">申请发布</button>
+            <button type="submit" class="submit-btn">立即发布申请</button>
         </form>
     </section>
 
-    <div class="event-banner">
-        <p style="font-size: 13px; color: #D48806; font-weight: bold; margin-bottom: 5px;">🔥 限时免费推广活动 (무료 홍보 이벤트)</p>
-        <p style="font-size: 12px; color: #666; line-height: 1.4;">现在发布招聘信息，我们将为您 <b>免费置顶 30 天</b>！让更多求职者第一时间看到您的信息。</p>
-    </div>
-
     <section class="hero">
         <h2>在韩华人, <span style="color:#007AFF;">高效就业</span></h2>
-        <input type="text" class="search-box" placeholder="搜索您感兴趣的职位...">
+        <p>直接联系老板，无中介，最真实的求职体验</p>
+        <input type="text" class="search-box" placeholder="搜索关键词 (如: 厨师, 江南)">
     </section>
 
-    <div class="section-header">最新职位公告 (최신공고)</div>
+    <div class="section-header">最新职位公告</div>
 
     <div class="empty-state">
-        <span style="font-size: 50px; opacity: 0.5; margin-bottom: 10px;">📂</span>
-        <p style="font-weight: bold; color: #888;">目前还没有发布的公告</p>
-        
-        <!-- 이메일 안내 박스 -->
-        <div class="admin-contact-box">
-            <div style="font-weight: bold; margin-bottom: 10px; color: #333;">官方客服 (고객센터)</div>
-            <p style="color: #666; margin-bottom: 8px;">如有疑问请发送邮件至：</p>
-            <a href="mailto:davidguksung@gmail.com" class="contact-link">davidguksung@gmail.com</a>
-            <p style="font-size:11px; color:#999; margin-top:10px;">* 人工审核，提供专业咨询服务</p>
-        </div>
+        <span class="empty-icon">📁</span>
+        <p style="font-weight: bold; color: #999;">目前还没有发布的公告</p>
+        <p style="font-size: 13px; color: #ccc; margin-top: 8px;">点击上方按钮成为第一个发布者</p>
+    </div>
+
+    <!-- 고객센터 안내 카드 -->
+    <div class="contact-card">
+        <div class="contact-title">官方客服 (고객센터)</div>
+        <p style="font-size: 13px; color: #666; margin-bottom: 20px;">如有任何疑问或需要人工审核<br>请随时通过邮件联系我们</p>
+        <a href="mailto:davidguksung@gmail.com" class="email-btn">✉️ davidguksung@gmail.com</a>
     </div>
 
     <footer>
-        <div class="visitor-box">
-            <div class="visitor-label" style="font-size: 10px; color: #aaa; font-weight: bold; margin-bottom: 8px;">TOTAL VISITORS</div>
-            <span id="live-counter">...</span>
-            <div style="font-size: 11px; color: #17c948; font-weight: bold; margin-top: 5px;">● LIVE</div>
+        <div class="visitor-badge">
+            <span style="font-size: 10px; color: #aaa; font-weight: bold; letter-spacing: 1px;">VISITORS</span>
+            <span id="visit-num" class="visitor-count">...</span>
+            <div class="live-tag"><span class="dot"></span> LIVE</div>
         </div>
-        <p style="font-size:11px; color:#aaa;">© 2024 HanZhiTong. ALL RIGHTS RESERVED.</p>
+        <p style="font-weight: bold; color: #555; margin-bottom: 5px;">韩职通 HanZhiTong</p>
+        <p style="font-size: 11px; color: #bbb;">© 2024 ALL RIGHTS RESERVED.</p>
     </footer>
 </div>
 
@@ -119,11 +142,11 @@
     }
     
     function initCounter() {
-        const counterEl = document.getElementById('live-counter');
-        let count = localStorage.getItem('hzt_email_only_count') || 30;
+        const el = document.getElementById('visit-num');
+        let count = localStorage.getItem('hzt_wechat_pro_count') || 50;
         count = parseInt(count) + 1;
-        localStorage.setItem('hzt_email_only_count', count);
-        counterEl.innerText = count.toLocaleString();
+        localStorage.setItem('hzt_wechat_pro_count', count);
+        el.innerText = count.toLocaleString();
     }
     window.onload = initCounter;
 </script>
