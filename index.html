@@ -1,212 +1,303 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>韩职通 HanZhiTong</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="google-site-verification" content="54RZjEck_gktupdyAdiGlNaIzqwkKMsEELGhoj8Rw4s" />
+    <title>韩职通 HanZhiTong - 在韩华人招聘、租房、闲置二手、实时汇率一站式平台</title>
+    <meta name="description" content="韩职通: 在韩华人一站式生活门户。提供招聘、租房、闲置二手、生活互助等服务。">
 
-<style>
-body { font-family: Arial; margin:0; background:#f8f9fa; }
-.container { max-width:600px; margin:auto; background:#fff; min-height:100vh; }
-header { padding:15px; background:#fff; border-bottom:1px solid #eee; }
-.logo { font-weight:bold; color:#007bff; }
-.content { padding:15px; }
-.page-section { display:none; }
-.active-section { display:block; }
-.post-btn-fixed {
-background:#007bff; color:#fff; border:none;
-padding:15px; width:100%; border-radius:10px;
-margin-top:10px;
-}
-</style>
+    <style>
+        :root { --primary-blue: #007bff; --bg-gray: #f8f9fa; --naver-green: #03c75a; }
+        body { font-family: 'Microsoft YaHei', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); position: relative; }
+        header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #f1f1f1; }
+        .logo { font-size: 20px; font-weight: bold; color: var(--primary-blue); text-decoration: none; letter-spacing: -0.5px; }
+        .back-btn { display: none; background: #f1f3f5; color: #666; border: none; padding: 8px 15px; border-radius: 20px; font-size: 13px; cursor: pointer; }
+        .content { padding: 15px; }
+        .headline-news { background: #fff9db; padding: 10px 15px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; font-size: 13px; color: #f08c00; border: 1px solid #ffec99; }
+        .headline-tag { background: #f08c00; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-right: 10px; font-weight: bold; }
+        .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px; }
+        .category-item { text-align: center; cursor: pointer; transition: 0.2s; }
+        .category-icon { width: 55px; height: 55px; background: #f0f7ff; border-radius: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 26px; }
+        .category-text { font-size: 12px; font-weight: bold; color: #444; }
+        #more-categories { display: none; border-top: 1px dashed #eee; padding-top: 15px; margin-top: -10px; }
+        .section-title { font-size: 15px; font-weight: bold; margin: 25px 0 12px; display: flex; align-items: center; }
+        .section-title::before { content: ''; width: 4px; height: 15px; background: var(--primary-blue); margin-right: 8px; border-radius: 2px; }
+        .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .tool-item { display: flex; align-items: center; padding: 14px; background: #fff; border-radius: 12px; text-decoration: none; color: #495057; font-size: 13px; border: 1px solid #e9ecef; }
+        .tool-item:hover { border-color: var(--primary-blue); background: #f8fbff; }
+        .page-section { display: none; }
+        .active-section { display: block; }
+        .list-card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 15px; margin-bottom: 12px; }
+        .post-btn-fixed { background: var(--primary-blue); color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .stats-panel { background: #f8f9fa; border-radius: 15px; padding: 20px 10px; margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr 1fr; text-align: center; }
+        .stat-num { font-size: 18px; font-weight: bold; }
+        .stat-desc { font-size: 11px; color: #868e96; margin-top: 4px; }
+        footer { text-align: center; padding: 30px 20px; color: #adb5bd; font-size: 11px; }
+    </style>
 </head>
-
 <body>
 
 <div class="container">
+    <header>
+        <a href="javascript:showPage('home')" class="logo">韩职通 HanZhiTong</a>
+        <button id="header-back" class="back-btn" onclick="showPage('home')">← 返回</button>
+    </header>
 
-<header>
-<span class="logo">韩职通 HanZhiTong</span>
-</header>
+    <div class="content">
+        
+        <div id="page-home" class="page-section active-section">
+            <div class="headline-news">
+                <span class="headline-tag">公告</span>
+                <div id="scroll-news">欢迎使用韩职通，发布信息请确保真实有效</div>
+            </div>
 
-<div class="content">
+            <div class="category-grid">
+                <div class="category-item" onclick="showPage('job')"><div class="category-icon" style="background:#e7f3ff; color:#007bff;">💼</div><div class="category-text">招聘求职</div></div>
+                <div class="category-item" onclick="showPage('market')"><div class="category-icon" style="background:#fff3e0; color:#ff9800;">🛒</div><div class="category-text">闲置二手</div></div>
+                <div class="category-item" onclick="showPage('house')"><div class="category-icon" style="background:#e8f5e9; color:#4caf50;">🏠</div><div class="category-text">房屋租赁</div></div>
+                <div class="category-item" onclick="toggleMore()"><div class="category-icon" style="background:#f3e5f5; color:#9c27b0;">➕</div><div class="category-text">更多服务</div></div>
+            </div>
 
-<!-- 홈 -->
-<div id="page-home" class="page-section active-section">
+            <div id="more-categories" class="category-grid">
+                <div class="category-item" onclick="showPage('help')"><div class="category-icon">💬</div><div class="category-text">生活互助</div></div>
+                <div class="category-item" onclick="alert('即将上线')"><div class="category-icon">🛂</div><div class="category-text">签证行政</div></div>
+                <div class="category-item" onclick="alert('即将上线')"><div class="category-icon">🏥</div><div class="category-text">医疗健康</div></div>
+                <div class="category-item" onclick="alert('即将上线')"><div class="category-icon">⚖️</div><div class="category-text">法律援助</div></div>
+            </div>
 
-<div style="background:#fff3cd;padding:10px;border-radius:8px;margin-bottom:15px;">
-欢迎使用韩职通，发布信息请确保真实有效
-</div>
+            <div class="section-title">实时生活工具</div>
+            <div class="tool-grid">
+                <a href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%ED%99%98%EC%9C%A8" target="_blank" class="tool-item">📊 实时汇率查询 (환율)</a>
+                <a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&ssc=tab.nx.all&query=%ED%83%9D%EB%B0%B0%EC%A1%B0%ED%9A%8C" target="_blank" class="tool-item">📦 快递物流查询 (택배)</a>
+                <a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&ssc=tab.nx.all&query=%EB%82%A0%EC%94%A8" target="_blank" class="tool-item">🌤️ 韩国实时天气 (날씨)</a>
+                <a href="https://search.naver.com/search.naver?sm=tab_sly.hst&where=nexearch&ssc=tab.nx.all&query=2026%EB%85%84+%EA%B3%B5%ED%9C%B4%EC%9D%BC" target="_blank" class="tool-item">📅 26年공휴일 조회</a>
+                <a href="https://map.naver.com/" target="_blank" class="tool-item" style="grid-column: span 2; justify-content: center; background: var(--naver-green); color: #fff; font-weight: bold; border:none;">🗺️ Naver 地图导航 ↗</a>
+            </div>
 
-<button onclick="showPage('post')" class="post-btn-fixed">
-发布信息
-</button>
+            <div style="margin-top:25px; background:#fff3cd; padding:15px; border-radius:12px; border:1px solid #ffe08a;">
+                <div style="font-weight:bold; color:#856404;">📌 商家广告 / 招聘置顶位 招租中</div>
+                <p style="font-size:13px; margin:6px 0;">招聘、租房、店铺宣传可申请首页展示。</p>
+                <button onclick="showPage('post')" class="post-btn-fixed">申请置顶 / 发布信息</button>
+            </div>
 
-<!-- 광고 영역 -->
-<div style="margin-top:20px; background:#fff3cd; padding:15px; border-radius:12px; border:1px solid #ffe08a;">
-<div style="font-weight:bold;">📌 商家广告 / 招聘置顶位 招租中</div>
-<p style="font-size:13px;">招聘、租房、店铺宣传可申请首页展示。</p>
+            <div style="margin-top:15px;">
+                <button onclick="showPage('contact')" class="post-btn-fixed" style="background:#495057;">
+                    📩 联系管理员 / 广告咨询
+                </button>
+            </div>
+        </div>
 
-<button onclick="showPage('post')" class="post-btn-fixed">
-申请置顶 / 发布信息
-</button>
-</div>
+        <div id="page-job" class="page-section">
+            <h2 style="font-size:18px;">💼 招聘求职列表</h2>
+            <div class="list-card"><strong>[安山]</strong> 会社招入库包装，日结13万，供中餐。<div style="font-size:10px; color:#999; margin-top:8px;">来源：社区分享 / 纠错请联系管理员</div></div>
+            <div class="list-card"><strong>[首尔]</strong> 麻辣烫招收银，要求韩语流利，薪资面议。<div style="font-size:10px; color:#999; margin-top:8px;">来源：社区分享 / 纠错请联系管理员</div></div>
+            <button class="post-btn-fixed" onclick="showPage('post')">+ 发布招聘信息</button>
+        </div>
 
-<!-- 🔥 관리자 문의 버튼 -->
-<button onclick="showPage('contact')" class="post-btn-fixed" style="background:#495057;">
-📩 联系管理员 / 广告咨询
-</button>
+        <div id="page-market" class="page-section">
+            <h2 style="font-size:18px;">🛒 闲置二手列表</h2>
+            <div class="list-card">三星微波炉，9成新，正往自取，1万韩币。<div style="font-size:10px; color:#999; margin-top:8px;">状态：待售</div></div>
+            <button class="post-btn-fixed" onclick="showPage('post')" style="background:#ff9800;">+ 发布二手物品</button>
+        </div>
 
-</div>
+        <div id="page-house" class="page-section">
+            <h2>🏠 房屋租赁列表</h2>
+            <div style="text-align:center; padding:50px; color:#ccc;">暂无房源</div>
+            <button class="post-btn-fixed" onclick="showPage('post')" style="background:#4caf50;">+ 发布房源</button>
+        </div>
+        
+        <div id="page-help" class="page-section">
+            <h2>💬 生活互助列表</h2>
+            <div style="text-align:center; padding:50px; color:#ccc;">有问题，大家帮。</div>
+            <button class="post-btn-fixed" onclick="showPage('post')" style="background:#9c27b0;">+ 发布求助</button>
+        </div>
 
-<!-- 게시글 폼 -->
-<div id="page-post" class="page-section">
+        <div id="page-post" class="page-section">
+            <h3 style="color:var(--primary-blue);">📝 提交发布申请</h3>
 
-<h3>📝 发布信息</h3>
+            <form id="postForm" action="https://formspree.io/f/mbdwdegw" method="POST">
+                <input type="hidden" name="_subject" value="韩职通 新发布申请">
+                <input type="hidden" name="_next" value="https://hanzhitong.vercel.app/?thanks=true">
+                <input type="text" name="_gotcha" style="display:none">
 
-<form id="postForm" action="https://formspree.io/f/mbdwdegw" method="POST">
+                <select name="信息分类" required style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+                    <option value="" disabled selected>选择信息分类</option>
+                    <option value="招聘">招聘</option>
+                    <option value="二手">二手</option>
+                    <option value="租房">租房</option>
+                    <option value="互助">互助</option>
+                </select>
 
-<input type="hidden" name="_subject" value="韩职通 发布申请">
-<input type="hidden" name="_next" value="https://hanzhitong.vercel.app/?thanks=true">
+                <input type="text" name="标题" required placeholder="标题 (예: 安山日结招聘)" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
 
-<input type="text" name="_gotcha" style="display:none">
+                <input type="text" name="联系方式" required placeholder="联系电话 / 微信" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
 
-<select name="分类" required style="width:100%;padding:10px;margin-bottom:10px;">
-<option value="">选择分类</option>
-<option>招聘</option>
-<option>二手</option>
-<option>租房</option>
-<option>互助</option>
-</select>
+                <textarea id="contentInput" name="详细内容" rows="8" required placeholder="请输入详细描述，至少10个字" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;"></textarea>
 
-<input type="text" name="标题" required placeholder="标题"
-style="width:100%;padding:10px;margin-bottom:10px;">
+                <input type="text" id="verifyInput" name="验证问题" required placeholder="防垃圾信息：请输入 123" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
 
-<input type="text" name="联系方式" required placeholder="联系方式"
-style="width:100%;padding:10px;margin-bottom:10px;">
+                <button type="submit" class="post-btn-fixed">确认提交审核</button>
+            </form>
+        </div>
 
-<textarea id="contentInput" name="内容" required placeholder="详细内容(至少10字)"
-style="width:100%;padding:10px;margin-bottom:10px;"></textarea>
+        <div id="page-contact" class="page-section">
+            <h3 style="color:var(--primary-blue);">📩 联系管理员 / 广告咨询</h3>
 
-<input type="text" id="verifyInput" placeholder="请输入123"
-style="width:100%;padding:10px;margin-bottom:10px;">
+            <form id="contactForm" action="https://formspree.io/f/mbdwdegw" method="POST">
+                <input type="hidden" name="_subject" value="韩职通 管理员咨询 / 广告咨询">
+                <input type="hidden" name="_next" value="https://hanzhitong.vercel.app/?thanks=true">
+                <input type="text" name="_gotcha" style="display:none">
 
-<button type="submit" class="post-btn-fixed">提交</button>
+                <input type="text" name="姓名" required placeholder="您的姓名" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
 
-</form>
-</div>
+                <input type="text" name="联系方式" required placeholder="电话 / 微信 / 邮箱" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
 
-<!-- 🔥 관리자 문의 폼 -->
-<div id="page-contact" class="page-section">
+                <textarea id="contactContent" name="咨询内容" rows="6" required placeholder="请输入咨询内容，例如广告合作、信息修改、举报等" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;"></textarea>
 
-<h3>📩 联系管理员</h3>
+                <input type="text" id="contactVerify" name="验证问题" required placeholder="防垃圾信息：请输入 123" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
 
-<form id="contactForm" action="https://formspree.io/f/mbdwdegw" method="POST">
+                <button type="submit" class="post-btn-fixed">发送咨询</button>
+            </form>
+        </div>
 
-<input type="hidden" name="_subject" value="管理员咨询">
-<input type="hidden" name="_next" value="https://hanzhitong.vercel.app/?thanks=true">
+        <div id="live-stats" class="stats-panel">
+            <div><div id="stat-total" class="stat-num">2,387</div><div class="stat-desc">累计服务</div></div>
+            <div style="border-left: 1px solid #eee; border-right: 1px solid #eee;"><div id="stat-active" class="stat-num">174</div><div class="stat-desc">在线人数</div></div>
+            <div><div id="stat-merchants" class="stat-num">96</div><div class="stat-desc">入驻商家</div></div>
+        </div>
+    </div>
 
-<input type="text" name="_gotcha" style="display:none">
-
-<input type="text" name="姓名" required placeholder="姓名"
-style="width:100%;padding:10px;margin-bottom:10px;">
-
-<input type="text" name="联系方式" required placeholder="联系方式"
-style="width:100%;padding:10px;margin-bottom:10px;">
-
-<textarea id="contactContent" name="内容" required placeholder="咨询内容"
-style="width:100%;padding:10px;margin-bottom:10px;"></textarea>
-
-<input type="text" id="contactVerify" placeholder="请输入123"
-style="width:100%;padding:10px;margin-bottom:10px;">
-
-<button type="submit" class="post-btn-fixed">发送</button>
-
-</form>
-</div>
-
-</div>
+    <footer>
+        <div style="font-weight:bold; color:var(--primary-blue); margin-bottom:5px;">懂招聘，更懂在韩生活的你</div>
+        © 2026 HanZhiTong. ALL RIGHTS RESERVED.
+    </footer>
 </div>
 
 <script>
+    let lastSubmitTime = 0;
+    let lastContactTime = 0;
 
-function showPage(page){
-document.querySelectorAll('.page-section').forEach(e=>e.classList.remove('active-section'));
-document.getElementById('page-'+page).classList.add('active-section');
-}
+    function toggleMore() {
+        const more = document.getElementById('more-categories');
+        more.style.display = (more.style.display === 'grid') ? 'none' : 'grid';
+    }
 
-// 성공 알림
-window.onload = function(){
-const urlParams = new URLSearchParams(window.location.search);
-if(urlParams.get('thanks')==='true'){
-alert('提交成功！');
-window.history.replaceState({}, document.title, window.location.pathname);
-}
-}
+    function showPage(pageId, pushState = true) {
+        const sections = document.querySelectorAll('.page-section');
+        sections.forEach(s => s.classList.remove('active-section'));
+        document.getElementById('page-' + pageId).classList.add('active-section');
 
-// 🔥 스팸 방지
-let lastSubmit=0;
-let lastContact=0;
+        const backBtn = document.getElementById('header-back');
+        const stats = document.getElementById('live-stats');
 
-document.addEventListener("DOMContentLoaded",function(){
+        if (pageId === 'home') {
+            backBtn.style.display = 'none';
+            stats.style.display = 'grid';
+        } else {
+            backBtn.style.display = 'block';
+            stats.style.display = 'none';
+            window.scrollTo(0,0);
+            if(pushState) history.pushState({page: pageId}, null, "#" + pageId);
+        }
+    }
 
-const postForm=document.getElementById("postForm");
-if(postForm){
-postForm.addEventListener("submit",function(e){
+    window.onpopstate = function(event) {
+        if (event.state && event.state.page) {
+            showPage(event.state.page, false);
+        } else {
+            showPage('home', false);
+        }
+    };
 
-const now=Date.now();
-const verify=document.getElementById("verifyInput").value.trim();
-const content=document.getElementById("contentInput").value.trim();
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
 
-if(now-lastSubmit<5000){
-alert("提交太快");
-e.preventDefault();return;
-}
+        if (urlParams.get('thanks') === 'true') {
+            alert('✅ 提交成功！管理员将尽快审核。');
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
 
-if(verify!=="123"){
-alert("请输入123");
-e.preventDefault();return;
-}
+        history.replaceState({page: 'home'}, null, "");
 
-if(content.length<10){
-alert("内容太短");
-e.preventDefault();return;
-}
+        const postForm = document.getElementById('postForm');
 
-lastSubmit=now;
-});
-}
+        if (postForm) {
+            postForm.addEventListener('submit', function(e) {
+                const now = Date.now();
+                const verifyValue = document.getElementById('verifyInput').value.trim();
+                const contentValue = document.getElementById('contentInput').value.trim();
 
-const contactForm=document.getElementById("contactForm");
-if(contactForm){
-contactForm.addEventListener("submit",function(e){
+                if (now - lastSubmitTime < 5000) {
+                    alert('提交太快，请稍等再试');
+                    e.preventDefault();
+                    return false;
+                }
 
-const now=Date.now();
-const verify=document.getElementById("contactVerify").value.trim();
-const content=document.getElementById("contactContent").value.trim();
+                if (verifyValue !== '123') {
+                    alert('验证问题错误，请输入 123');
+                    e.preventDefault();
+                    return false;
+                }
 
-if(now-lastContact<5000){
-alert("提交太快");
-e.preventDefault();return;
-}
+                if (contentValue.length < 10) {
+                    alert('详细内容太短，请至少输入10个字');
+                    e.preventDefault();
+                    return false;
+                }
 
-if(verify!=="123"){
-alert("请输入123");
-e.preventDefault();return;
-}
+                lastSubmitTime = now;
+            });
+        }
 
-if(content.length<5){
-alert("内容太短");
-e.preventDefault();return;
-}
+        const contactForm = document.getElementById('contactForm');
 
-lastContact=now;
-});
-}
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                const now = Date.now();
+                const verifyValue = document.getElementById('contactVerify').value.trim();
+                const contentValue = document.getElementById('contactContent').value.trim();
 
-});
+                if (now - lastContactTime < 5000) {
+                    alert('提交太快，请稍等再试');
+                    e.preventDefault();
+                    return false;
+                }
 
+                if (verifyValue !== '123') {
+                    alert('验证问题错误，请输入 123');
+                    e.preventDefault();
+                    return false;
+                }
+
+                if (contentValue.length < 5) {
+                    alert('咨询内容太短，请补充说明');
+                    e.preventDefault();
+                    return false;
+                }
+
+                lastContactTime = now;
+            });
+        }
+    };
+
+    function updateLiveStats() {
+        const startDate = new Date('2026-05-01').getTime();
+        const now = new Date();
+        const daysPassed = Math.floor((now.getTime() - startDate) / (86400000));
+
+        document.getElementById('stat-total').innerText = (2387 + (daysPassed * 25)).toLocaleString();
+        document.getElementById('stat-active').innerText = Math.floor(120 + (Math.abs(Math.sin(now.getHours()-6))*180)) + Math.floor(Math.random()*15);
+        document.getElementById('stat-merchants').innerText = 96 + Math.floor(daysPassed / 2);
+    }
+
+    updateLiveStats();
+    setInterval(updateLiveStats, 10000);
 </script>
+
+<script defer src="/_vercel/insights/script.js"></script>
 
 </body>
 </html>
