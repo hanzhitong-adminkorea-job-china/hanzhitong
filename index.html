@@ -4,112 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>韩职通 - 专业的在韩华人招聘网</title>
-    <!-- 디자인 엔진 (Tailwind CSS) -->
-    <script src="https://tailwindcss.com"></script>
-    <link href="https://cloudflare.com" rel="stylesheet">
     <style>
-        @import url('https://googleapis.com');
-        body { font-family: 'Noto Sans SC', sans-serif; background-color: #f0f2f5; }
-        .gradient-bg { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
-        .job-card { transition: transform 0.2s; border: 1px solid #e5e7eb; }
-        .job-card:hover { transform: translateY(-3px); border-color: #3b82f6; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        /* 눈이 편한 기본 스타일 설정 */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: #f5f7f9; 
+            color: #333; 
+            line-height: 1.6;
+        }
+        .container { max-width: 480px; margin: 0 auto; background: #fff; min-h: 100vh; overflow: hidden; shadow: 0 0 20px rgba(0,0,0,0.05); }
+        
+        /* 헤더 스타일 */
+        header { padding: 25px 20px; background: #fff; border-bottom: 1px solid #eee; }
+        .logo { font-size: 22px; font-weight: 800; color: #007AFF; letter-spacing: -1px; }
+        .post-btn { float: right; background: #007AFF; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; text-decoration: none; font-weight: bold; }
+        
+        /* 히어로 섹션 */
+        .hero { padding: 30px 20px; background: #f9fbff; }
+        .hero h2 { font-size: 24px; margin-bottom: 8px; color: #111; }
+        .hero p { font-size: 14px; color: #666; margin-bottom: 20px; }
+        .search-box { width: 100%; padding: 15px; border: 2px solid #e1e4e8; border-radius: 12px; font-size: 16px; transition: 0.3s; }
+        .search-box:focus { border-color: #007AFF; outline: none; }
+
+        /* 채용 카드 스타일 */
+        .section-title { padding: 20px; font-size: 18px; font-weight: bold; border-bottom: 1px solid #f0f0f0; }
+        .job-card { padding: 20px; border-bottom: 8px solid #f5f7f9; position: relative; }
+        .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-bottom: 10px; }
+        .badge-blue { background: #eef5ff; color: #007AFF; }
+        .badge-green { background: #e8f9ee; color: #17c948; }
+        .job-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1a1a1a; }
+        .job-info { font-size: 14px; color: #555; margin-bottom: 15px; }
+        .contact-btn { display: block; width: 100%; padding: 12px; text-align: center; background: #f0f2f5; color: #333; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 14px; }
+        .contact-btn:hover { background: #e4e6e9; }
+
+        /* 푸터 및 방문자 카운터 */
+        footer { padding: 40px 20px; text-align: center; background: #f9fbff; color: #888; }
+        .visitor-box { background: white; padding: 15px; border-radius: 15px; border: 1px solid #eee; display: inline-block; margin-bottom: 20px; }
+        .visitor-label { font-size: 11px; color: #aaa; text-transform: uppercase; margin-bottom: 5px; font-weight: bold; }
+        .live-dot { display: inline-block; width: 8px; height: 8px; background: #17c948; border-radius: 50%; margin-right: 5px; box-shadow: 0 0 5px #17c948; }
+        .footer-logo { font-weight: bold; color: #444; margin-bottom: 5px; }
     </style>
 </head>
-<body class="max-w-md mx-auto bg-white min-h-screen shadow-xl">
+<body>
 
-    <!-- 상단 헤더 -->
-    <header class="gradient-bg text-white p-6 rounded-b-3xl shadow-lg">
-        <div class="flex justify-between items-center mb-4">
-            <h1 class="text-2xl font-black tracking-tighter">韩职通 <span class="text-xs font-light opacity-80 italic">HanZhiTong</span></h1>
-            <button class="bg-white text-blue-600 text-xs font-bold px-4 py-2 rounded-full shadow-md active:scale-95 transition">
-                + 发布招聘
-            </button>
-        </div>
-        <div class="mt-8 mb-2">
-            <h2 class="text-2xl font-bold">在韩华人, <span class="text-yellow-300">高效就业</span></h2>
-            <p class="text-blue-100 text-sm mt-1">直接联系，无需等待，最快的求职体验</p>
-        </div>
-        <!-- 검색창 -->
-        <div class="relative mt-6">
-            <input type="text" placeholder="搜索您心仪的职位..." class="w-full p-4 rounded-2xl text-gray-800 shadow-inner focus:outline-none pr-12">
-            <i class="fa-solid fa-magnifying-glass absolute right-4 top-4 text-blue-500 text-xl"></i>
-        </div>
+<div class="container">
+    <header>
+        <a href="#" class="post-btn">+ 发布招聘</a>
+        <div class="logo">韩职通 <span style="font-size:12px; font-weight:normal; color:#999;">Jobs</span></div>
     </header>
 
-    <!-- 실시간 현황 -->
-    <div class="flex gap-2 p-4 overflow-x-auto text-xs whitespace-nowrap">
-        <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full font-bold"># E-7 签证</span>
-        <span class="bg-green-50 text-green-600 px-3 py-1 rounded-full font-bold"># 留学生 D-2</span>
-        <span class="bg-orange-50 text-orange-600 px-3 py-1 rounded-full font-bold"># 免税店</span>
-        <span class="bg-purple-50 text-purple-600 px-3 py-1 rounded-full font-bold"># 江南区</span>
+    <section class="hero">
+        <h2>在韩华人, <span style="color:#007AFF;">高效就业</span></h2>
+        <p>直接联系，无需等待，最快的求职体验</p>
+        <input type="text" class="search-box" placeholder="搜索您心仪的职位...">
+    </section>
+
+    <div class="section-title">最新职位公告</div>
+
+    <!-- 카드 1 -->
+    <div class="job-card">
+        <span class="badge badge-blue">E-7 支援 · 今日新</span>
+        <div class="job-title">贸易公司 - 中文海外市场运营专员</div>
+        <div class="job-info">
+            📍 首尔 江남区 <br>
+            💰 月薪 300万 - 400万 <br>
+            📄 F-4, F-5, F-6 优先
+        </div>
+        <a href="tel:010-1234-5678" class="contact-btn">📞 立即联系 (金经理)</a>
     </div>
 
-    <!-- 채용 공고 섹션 -->
-    <main class="p-4">
-        <div class="flex justify-between items-end mb-4">
-            <h3 class="text-lg font-bold text-gray-800"><i class="fa-solid fa-fire text-red-500 mr-1"></i> 最新职位公告</h3>
-            <span class="text-xs text-gray-400">实时更新 05:31 PM</span>
+    <!-- 카드 2 -->
+    <div class="job-card">
+        <span class="badge badge-green">留学生欢迎 D-2</span>
+        <div class="job-title">明洞免税店 - 化妆品柜台中文导购</div>
+        <div class="job-info">
+            📍 首尔 中区 (明洞) <br>
+            💰 时薪 11,500韩元
         </div>
+        <a href="#" class="contact-btn" onclick="alert('WeChat ID: korea_job_114 已复制')">💬 复制微信号</a>
+    </div>
 
-        <!-- 공고 1 -->
-        <div class="job-card bg-white p-5 rounded-2xl mb-4 relative overflow-hidden">
-            <div class="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-3 py-1 rounded-bl-xl font-bold italic">HOT</div>
-            <div class="flex items-center gap-2 mb-2">
-                <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-bold uppercase">E-7 支援</span>
-                <span class="text-[10px] text-gray-400">今日新</span>
-            </div>
-            <h4 class="font-bold text-gray-800 text-lg leading-tight mb-2">贸易公司 - 中文海外市场运营专员</h4>
-            <div class="space-y-1 mb-4">
-                <p class="text-sm text-gray-600"><i class="fa-solid fa-location-dot w-4 text-blue-400"></i> 首尔 江南区</p>
-                <p class="text-sm text-blue-600 font-bold"><i class="fa-solid fa-won-sign w-4"></i> 月薪 300万 - 400만</p>
-                <p class="text-xs text-gray-500">要求: F-4, F-5, F-6 优先</p>
-            </div>
-            <a href="tel:010-1234-5678" class="block w-full bg-blue-50 text-blue-600 text-center py-3 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition">
-                <i class="fa-solid fa-phone mr-1"></i> 立即联系 (金经理)
-            </a>
-        </div>
-
-        <!-- 공고 2 -->
-        <div class="job-card bg-white p-5 rounded-2xl mb-4">
-            <div class="flex items-center gap-2 mb-2">
-                <span class="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded font-bold">留学生欢迎 D-2</span>
-            </div>
-            <h4 class="font-bold text-gray-800 text-lg leading-tight mb-2">明洞免税店 - 化妆品柜台中文导购</h4>
-            <div class="space-y-1 mb-4">
-                <p class="text-sm text-gray-600"><i class="fa-solid fa-location-dot w-4 text-green-400"></i> 首尔 中区 (明洞)</p>
-                <p class="text-sm text-green-600 font-bold"><i class="fa-solid fa-clock w-4"></i> 时薪 11,500韩元</p>
-            </div>
-            <div class="flex gap-2">
-                <button onclick="alert('WeChat ID: korea_job_114 已复制')" class="flex-1 bg-green-50 text-green-600 text-sm py-3 rounded-xl font-bold border border-green-200">
-                    <i class="fa-brands fa-weixin mr-1"></i> 复制微信号
-                </button>
+    <footer>
+        <div class="visitor-box">
+            <div class="visitor-label">Total Visitors</div>
+            <!-- 방문자수 이미지 (인코딩 수정 완료) -->
+            <img src="https://seeyoufarm.com" alt="Visitors" style="height:20px; vertical-align:middle;">
+            <div style="font-size:11px; margin-top:8px;">
+                <span class="live-dot"></span> 系统正在运行中 (LIVE)
             </div>
         </div>
-    </main>
-
-    <!-- 푸터 및 방문자 카운터 -->
-    <footer class="mt-10 pb-20 px-6 text-center border-t border-gray-100 pt-8">
-        <!-- 방문자 카운터 (중요!) -->
-        <div class="mb-6 inline-block bg-gray-50 px-6 py-4 rounded-3xl border border-gray-100 shadow-inner">
-            <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-2 font-bold">Total Visitors</p>
-            <div class="flex items-center justify-center gap-2">
-                <!-- 이미지 깨짐 방지를 위해 가장 안정적인 테마로 교체 -->
-                <img src="https://seeyoufarm.com" 
-                     alt="방문자 카운터"
-                     class="h-6">
-            </div>
-            <div class="flex items-center justify-center mt-2 gap-1.5">
-                <span class="flex h-2 w-2 relative">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <span class="text-[10px] text-gray-500 font-medium">系统正在运行中 (LIVE)</span>
-            </div>
-        </div>
-
-        <div class="text-gray-800 font-black text-lg">韩职通 HanZhiTong</div>
-        <p class="text-[10px] text-gray-400 mt-2 italic">© 2024 HanZhiTong Platform. ALL RIGHTS RESERVED.</p>
+        <div class="footer-logo">韩职通 HanZhiTong</div>
+        <div style="font-size:11px;">© 2024 HanZhiTong. ALL RIGHTS RESERVED.</div>
     </footer>
+</div>
 
 </body>
 </html>
