@@ -3,129 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한직통 HanZhiTong</title>
+    <title>한직통 HanZhiTong - 실기능 버전</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root { --primary-blue: #007bff; --bg-gray: #f4f7f6; }
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-        
-        /* 헤더 섹션 */
-        header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
-        .logo { font-size: 22px; font-weight: bold; color: var(--primary-blue); }
-        .post-btn { background: var(--primary-blue); color: white; border: none; padding: 8px 15px; border-radius: 20px; font-size: 13px; cursor: pointer; text-decoration: none; }
-
-        /* 실시간 환율 바 (네이버 연동) */
-        .exchange-banner { background: #333; color: white; padding: 10px 20px; font-size: 14px; display: flex; justify-content: space-between; cursor: pointer; }
-        .exchange-banner span { color: #52e052; font-weight: bold; }
-
-        /* 메인 컨텐츠 영역 */
-        .content { padding: 20px; }
-
-        /* 네이버 통합 검색창 */
-        .search-section { margin-bottom: 25px; }
-        .search-box { display: flex; border: 2px solid var(--primary-blue); border-radius: 8px; overflow: hidden; }
-        .search-box input { flex: 1; border: none; padding: 12px; outline: none; font-size: 15px; }
-        .search-box button { background: var(--primary-blue); color: white; border: none; padding: 0 20px; font-weight: bold; cursor: pointer; }
-
-        /* 정보 카드 스타일 (꿀팁, 공지 등) */
-        .card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .card-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        
-        /* 퀵 메뉴 (날씨/환율 버튼) */
-        .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-        .quick-btn { text-decoration: none; background: #f9f9f9; padding: 15px; border-radius: 10px; text-align: center; color: #333; border: 1px solid #eee; transition: 0.2s; }
-        .quick-btn:hover { background: #f0f0f0; border-color: #ddd; }
-        .quick-btn .icon { font-size: 24px; display: block; margin-bottom: 5px; }
-
-        /* 리스트 스타일 (최신 소식 등) */
-        .info-item { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px dotted #eee; text-decoration: none; color: #444; font-size: 14px; }
-        .badge { background: #e7f3ff; color: var(--primary-blue); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
-
-        /* 푸터 */
-        footer { text-align: center; padding: 40px 20px; color: #aaa; font-size: 12px; border-top: 1px solid #eee; }
-    </style>
+        .active-tab { border-bottom: 2px solid #2563eb; color: #2563eb; }
+        .card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+    </script>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-900">
 
-<div class="container">
-    <!-- 헤더 -->
-    <header>
-        <div class="logo">韩职通 HanZhiTong</div>
-        <a href="#" class="post-btn">+ 发布招聘</a>
-    </header>
-
-    <!-- 실시간 환율 (클릭 시 네이버 이동) -->
-    <div class="exchange-banner" onclick="window.open('https://naver.com', '_blank')">
-        <div>📊 实时汇率: 1,000 KRW = <span>5.21 CNY</span></div>
-        <div>서울 ...°C ></div>
-    </div>
-
-    <div class="content">
-        <!-- [추가된 기능] 네이버 통합 검색창 -->
-        <div class="search-section">
-            <form action="https://naver.com" method="get" target="_blank" class="search-box">
-                <input type="text" name="query" placeholder="날씨, 환율, 비자 정보를 검색하세요">
-                <button type="submit">搜索</button>
-            </form>
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <h1 class="text-2xl font-bold text-blue-600 cursor-pointer" onclick="location.reload()">한직통</h1>
+            <div class="space-x-6 hidden md:flex">
+                <a href="#" class="hover:text-blue-500 transition">구인정보</a>
+                <a href="#" class="hover:text-blue-500 transition">커뮤니티</a>
+                <a href="#" class="hover:text-blue-500 transition">고객센터</a>
+            </div>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition" onclick="alert('로그인 페이지로 이동합니다.')">로그인</button>
         </div>
+    </nav>
 
-        <!-- 꿀팁 섹션 -->
-        <div class="card">
-            <div class="card-title">💡 每日生活小贴士 (오늘의 꿀팁)</div>
-            <p style="font-size: 13px; color: #666; margin: 0;">建议通过正规银行APP ( 如新韩Sol Global ) 换钱，避免账号被冻结风险。</p>
-        </div>
-
-        <!-- [개선된 부분] 날씨 및 환율 퀵 버튼 -->
-        <div class="quick-grid">
-            <a href="https://naver.com?query=날씨" target="_blank" class="quick-btn">
-                <span class="icon">🌤️</span>
-                <strong>本周天气</strong>
-                <div style="font-size: 11px; color: #999; margin-top: 5px;">네이버 실시간 날씨</div>
-            </a>
-            <a href="https://naver.com?query=네이버+환율" target="_blank" class="quick-btn">
-                <span class="icon">📈</span>
-                <strong>实时汇率</strong>
-                <div style="font-size: 11px; color: #999; margin-top: 5px;">상세 환율 차트</div>
-            </a>
-        </div>
-
-        <!-- 홍보 배너 -->
-        <div style="background: #fffbe6; border: 1px solid #ffe58f; padding: 10px; border-radius: 8px; font-size: 13px; color: #856404; margin-bottom: 20px;">
-            🔥 限时活动：商家发帖免费置顶 30 天！
-        </div>
-
-        <!-- 최신 소식 -->
-        <div class="card">
-            <div class="card-title">🔔 最新资讯 (최신 소식)</div>
-            <a href="#" class="info-item">
-                <span class="badge">签证</span> 2026年最新签证政策及 F-4 解读
-            </a>
-            <a href="https://naver.com?query=네이버+환율" target="_blank" class="info-item">
-                <span class="badge">汇率</span> 查看NAVER实时汇率详细图表
-            </a>
-        </div>
-
-        <!-- 최신 공지 -->
-        <div class="card">
-            <div class="card-title">最新职位公告 (오늘 업데이트)</div>
-            <div style="text-align: center; padding: 30px 0; color: #999; font-size: 14px;">
-                目前还没有发布的公告<br>
-                <span style="font-size: 12px;">点击上方“发布招聘”提交今日第一条公告</span>
+    <header class="py-12 bg-white border-b">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-extrabold mb-6">당신에게 맞는 직업을 찾아보세요</h2>
+            <div class="relative flex items-center">
+                <input type="text" id="searchInput" placeholder="직무, 지역, 회사명으로 검색" 
+                       class="w-full p-4 border-2 border-gray-200 rounded-full focus:border-blue-500 outline-none transition shadow-lg text-lg">
+                <button onclick="handleSearch()" class="absolute right-2 bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700">검색</button>
             </div>
         </div>
+    </header>
 
-        <!-- 방문자 수 -->
-        <div style="text-align: center; margin-top: 30px;">
-            <div style="font-size: 10px; color: #ccc;">TOTAL VISITORS</div>
-            <div style="font-size: 32px; font-weight: bold; color: var(--primary-blue);">923</div>
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="flex space-x-4 mb-8 overflow-x-auto pb-2" id="filterBar">
+            <button class="filter-btn active-tab px-4 py-2 font-medium" onclick="filterContent('전체')">전체</button>
+            <button class="filter-btn px-4 py-2 font-medium text-gray-500" onclick="filterContent('기술직')">기술직</button>
+            <button class="filter-btn px-4 py-2 font-medium text-gray-500" onclick="filterContent('서비스직')">서비스직</button>
+            <button class="filter-btn px-4 py-2 font-medium text-gray-500" onclick="filterContent('사무직')">사무직</button>
         </div>
-    </div>
 
-    <!-- 푸터 -->
-    <footer>
-        © 2026 HanZhiTong. ALL RIGHTS RESERVED.
-    </footer>
-</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="jobGrid">
+            </div>
+    </main>
 
+    <script>
+        // 실제 데이터 예시
+        const jobData = [
+            { id: 1, title: "웹 퍼블리셔 채용", company: "한직통 테크", loc: "서울", type: "기술직", salary: "3500~" },
+            { id: 2, title: "카페 매니저 모집", company: "블루커피", loc: "부산", type: "서비스직", salary: "2800~" },
+            { id: 3, title: "회계 경리 사원", company: "그린회계", loc: "인천", type: "사무직", salary: "3000~" },
+            { id: 4, title: "전기 설비 기사", company: "파워솔루션", loc: "대구", type: "기술직", salary: "4000~" },
+        ];
+
+        // 카드 렌더링 함수
+        function renderJobs(data) {
+            const grid = document.getElementById('jobGrid');
+            grid.innerHTML = data.map(job => `
+                <div class="card bg-white p-6 rounded-xl shadow-md border border-gray-100 cursor-pointer" onclick="viewDetail(${job.id})">
+                    <span class="text-xs font-bold text-blue-500 uppercase">${job.type}</span>
+                    <h3 class="text-xl font-bold mt-2">${job.title}</h3>
+                    <p class="text-gray-600 mt-1">${job.company} · ${job.loc}</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-sm text-gray-500">연봉 ${job.salary}</span>
+                        <button class="text-blue-600 font-semibold hover:underline">상세보기 →</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 검색 기능
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = jobData.filter(job => 
+                job.title.toLowerCase().includes(query) || 
+                job.company.toLowerCase().includes(query)
+            );
+            renderJobs(filtered);
+        }
+
+        // 필터 기능
+        function filterContent(category) {
+            // 버튼 스타일 변경
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active-tab');
+                btn.classList.add('text-gray-500');
+            });
+            event.target.classList.add('active-tab');
+
+            // 데이터 필터링
+            if(category === '전체') {
+                renderJobs(jobData);
+            } else {
+                const filtered = jobData.filter(job => job.type === category);
+                renderJobs(filtered);
+            }
+        }
+
+        // 상세 페이지 이동 시뮬레이션
+        function viewDetail(id) {
+            alert(`ID ${id}번 공고의 상세 페이지로 이동합니다.`);
+            // location.href = `/detail.html?id=${id}`; // 실제 구현 시 사용
+        }
+
+        // 초기 실행
+        renderJobs(jobData);
+
+        // 엔터키 검색 지원
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') handleSearch();
+        });
+    </script>
 </body>
 </html>
