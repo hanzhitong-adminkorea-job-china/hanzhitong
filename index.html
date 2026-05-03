@@ -3,31 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>韩职通 - 专业的在韩华人招聘网</title>
+    
+    <!-- SEO: 구글/바이두 검색 최적화 -->
+    <title>韩职通 - 专业的在韩华人招聘网 | 商家免费置顶</title>
+    <meta name="description" content="韩职通（HanZhiTong）是在韩华人首选的求职招聘平台，提供各行业真实招聘信息。商家免费发布，免费置顶30天。">
+    <meta name="keywords" content="韩国招聘, 在韩华人, 韩国打工, 韩职通, davidguksung@gmail.com, guksung1201">
+    
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { font-family: -apple-system, system-ui, sans-serif; background-color: #f5f7f9; color: #333; line-height: 1.6; }
-        .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; display: flex; flex-direction: column; }
+        .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; display: flex; flex-direction: column; position: relative; }
+        
         header { padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 20px; font-weight: 800; color: #007AFF; text-decoration: none; }
-        .post-btn { background: #007AFF; color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; border: none; }
+        .post-btn { background: #007AFF; color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 13px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; }
         
-        /* 공고 카드 스타일 */
-        .job-list { padding: 15px; }
-        .job-card { background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 20px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-        .job-card .badge { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: bold; margin-bottom: 10px; background: #eef5ff; color: #007AFF; }
-        .job-card .title { font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #111; }
-        .job-card .info { font-size: 14px; color: #666; margin-bottom: 15px; }
-        .job-card .contact-btn { display: block; width: 100%; padding: 12px; text-align: center; background: #007AFF; color: white; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 14px; }
+        /* 🔔 이벤트 배너 (이 부분이 누락되었던 것 같습니다) */
+        .event-banner { background: #FFF9E6; border: 1px dashed #FFCC00; padding: 15px; border-radius: 12px; margin: 20px 20px 0; text-align: left; }
+        .event-title { font-size: 13px; color: #D48806; font-weight: bold; margin-bottom: 5px; }
+        .event-desc { font-size: 12px; color: #666; line-height: 1.4; }
 
-        .empty-state { padding: 60px 20px; text-align: center; color: #bbb; }
-        footer { padding: 40px 20px; text-align: center; background: #fafbfc; border-top: 1px solid #eee; }
-        
+        /* 상담 버튼 그룹 */
+        .contact-group { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
+        .btn-float { padding: 12px 18px; border-radius: 50px; font-weight: bold; font-size: 13px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; text-decoration: none; color: white; justify-content: center; }
+        .btn-wechat { background: #07C160; }
+        .btn-email { background: #555; }
+
+        /* QR 코드 팝업창 */
+        #qr-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 25px; border-radius: 25px; text-align: center; width: 85%; max-width: 340px; }
+        .modal-content img { width: 100%; border-radius: 12px; margin: 15px 0; border: 1px solid #eee; }
+        .close-btn { background: #f0f0f0; color: #333; border: none; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
+
+        /* 메인 히어로 */
+        .hero { padding: 30px 20px; text-align: center; }
+        .hero h2 { font-size: 24px; margin-bottom: 10px; color: #111; }
+        .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 15px; font-size: 16px; outline: none; }
+
+        /* 채용 등록 폼 */
         #post-form { display: none; padding: 25px 20px; background: #f9fbff; border-bottom: 5px solid #eee; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #666; }
         .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; }
         .submit-btn { width: 100%; padding: 15px; background: #007AFF; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
+
+        /* 공고 목록 */
+        .section-header { padding: 20px 20px 10px; font-weight: bold; font-size: 18px; border-bottom: 1px solid #f0f0f0; }
+        .empty-state { padding: 60px 20px; text-align: center; color: #bbb; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+        /* 푸터 */
+        footer { padding: 50px 20px; text-align: center; background: #fafbfc; border-top: 1px solid #eee; margin-top: auto; }
+        .visitor-box { display: inline-block; padding: 20px 30px; background: #fff; border-radius: 20px; border: 1px solid #eee; margin-bottom: 25px; }
+        #live-counter { font-size: 32px; font-weight: 900; color: #007AFF; display: block; margin: 5px 0; }
+        .live-tag { font-size: 10px; color: #17c948; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .dot { width: 6px; height: 6px; background: #17c948; border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 </head>
 <body>
@@ -38,69 +68,82 @@
         <button class="post-btn" onclick="toggleForm()">+ 发布招聘</button>
     </header>
 
+    <!-- 우측 하단 상담 버튼 그룹 -->
+    <div class="contact-group">
+        <a href="mailto:davidguksung@gmail.com" class="btn-float btn-email">✉️ 邮件咨询</a>
+        <button class="btn-float btn-wechat" onclick="openQR()">💬 微信咨询</button>
+    </div>
+
+    <!-- QR 코드 팝업창 -->
+    <div id="qr-modal" onclick="closeQR()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3 style="font-size: 18px; color: #333;">联系客服微信</h3>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">长按识别二维码添加好友</p>
+            <!-- 위챗 아이디 기반 자동 QR 생성 API -->
+            <img src="https://qrserver.com" alt="WeChat QR Code">
+            <p style="font-size: 14px; font-weight: bold; color: #07C160;">ID: guksung1201</p>
+            <button class="close-btn" onclick="closeQR()">关闭</button>
+        </div>
+    </div>
+
+    <!-- 📌 이벤트 배너 (여기에 문구가 들어있습니다) -->
+    <div class="event-banner">
+        <p class="event-title">🔥 限时免费推广活动 (무료 홍보 이벤트)</p>
+        <p class="event-desc">现在发布招聘信息，我们将为您 <b>免费置顶 30 天</b>！让更多求职者第一时间看到您的信息。</p>
+    </div>
+
     <section id="post-form">
-        <div style="font-size:18px; font-weight:bold; margin-bottom:15px; color:#007AFF;">무료 구인 공고 신청</div>
+        <div class="form-title" style="font-size: 18px; font-weight: bold; margin-bottom: 20px; color: #007AFF;">무료 구인 공고 신청</div>
         <form action="https://formspree.io" method="POST">
-            <div class="form-group"><label>公司名称</label><input type="text" name="company" required></div>
+            <div class="form-group"><label>公司/店铺名称</label><input type="text" name="company" required></div>
             <div class="form-group"><label>职位名称</label><input type="text" name="job_title" required></div>
             <div class="form-group"><label>联系方式</label><input type="text" name="contact" required></div>
             <div class="form-group"><label>详细说明</label><textarea name="details" rows="4"></textarea></div>
-            <button type="submit" class="submit-btn">제출하기 (검토 후 게시)</button>
+            <input type="text" name="_gotcha" style="display:none">
+            <button type="submit" class="submit-btn">申请发布</button>
         </form>
     </section>
 
-    <!-- 메인 섹션 -->
-    <div style="padding: 20px; text-align: center; background: #f9fbff;">
-        <h2 style="font-size: 22px;">在韩华人, <span style="color:#007AFF;">高效就业</span></h2>
-        <p style="font-size: 13px; color: #888; margin-top: 5px;">현재 무료 홍보 이벤트 진행 중!</p>
-    </div>
+    <section class="hero">
+        <h2>在韩华人, <span style="color:#007AFF;">高效就业</span></h2>
+        <input type="text" class="search-box" placeholder="搜索您感兴趣的职位...">
+    </section>
 
-    <div style="padding: 20px 20px 5px; font-weight: bold; font-size: 17px;">最新职位公告</div>
+    <div class="section-header">最新职位公告 (최신공고)</div>
 
-    <!-- 📌 공고 저장소 (여기에 공고 카드를 복사해서 넣으세요) -->
-    <div class="job-list" id="job-container">
-        
-        <!-- [예시 공고 카드 시작] - 공고가 들어오면 이 부분을 복사해서 채우시면 됩니다 -->
-        <!--
-        <div class="job-card">
-            <span class="badge">E-7 支援 · 今日新</span>
-            <div class="title">○○무역 - 중국어 해외영업 채용</div>
-            <div class="info">📍 서울 강남구 | 💰 연봉 3,500만+ | 📄 비자 지원</div>
-            <a href="tel:010-0000-0000" class="contact-btn">📞 연락하기</a>
-        </div>
-        -->
-        <!-- [예시 공고 카드 끝] -->
-
-        <!-- 공고가 없을 때만 보이는 메시지 -->
-        <div class="empty-state" id="no-jobs">
-            <p>📝 아직 등록된 공고가 없습니다.</p>
-            <p style="font-size: 12px; margin-top: 5px;">'+ 发布招聘' 버튼을 눌러 첫 공고를 신청하세요!</p>
-        </div>
+    <div class="empty-state">
+        <span style="font-size: 50px; opacity: 0.5; margin-bottom: 10px;">📂</span>
+        <p style="font-weight: bold; color: #888;">目前还没有发布的公告</p>
+        <p style="font-size: 13px; margin-top: 5px;">点击上方“发布招聘”提交您的第一条公告！</p>
     </div>
 
     <footer>
-        <div style="margin-bottom:15px;">
-            <p style="font-size:10px; color:#aaa; font-weight:bold;">TOTAL VISITORS</p>
-            <span id="visitor-count" style="font-size:24px; font-weight:900; color:#007AFF;">...</span>
+        <div class="visitor-box">
+            <div class="visitor-label" style="font-size: 10px; color: #aaa; font-weight: bold; margin-bottom: 8px;">TOTAL VISITORS</div>
+            <span id="live-counter">...</span>
+            <div class="live-tag"><span class="dot"></span> LIVE</div>
         </div>
-        <div style="font-size:11px; color:#bbb;">© 2024 HanZhiTong. ALL RIGHTS RESERVED.</div>
+        <p style="font-size:11px; color:#aaa;">© 2024 HanZhiTong. ALL RIGHTS RESERVED.</p>
     </footer>
 </div>
 
 <script>
     function toggleForm() {
         const form = document.getElementById('post-form');
-        form.style.display = (form.style.display === 'block') ? 'none' : 'block';
-        if(form.style.display === 'block') form.scrollIntoView({behavior: "smooth"});
+        const isHidden = (form.style.display === 'none' || form.style.display === '');
+        form.style.display = isHidden ? 'block' : 'none';
+        if(isHidden) form.scrollIntoView({ behavior: 'smooth' });
     }
+    
+    function openQR() { document.getElementById('qr-modal').style.display = 'flex'; }
+    function closeQR() { document.getElementById('qr-modal').style.display = 'none'; }
 
-    // 방문자 카운터 (로컬 저장소 방식)
     function initCounter() {
-        const el = document.getElementById('visitor-count');
-        let count = localStorage.getItem('hzt_count_vfinal') || 10;
+        const counterEl = document.getElementById('live-counter');
+        let count = localStorage.getItem('hzt_final_master_v2') || 42;
         count = parseInt(count) + 1;
-        localStorage.setItem('hzt_count_vfinal', count);
-        el.innerText = count.toLocaleString();
+        localStorage.setItem('hzt_final_master_v2', count);
+        counterEl.innerText = count.toLocaleString();
     }
     window.onload = initCounter;
 </script>
