@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>韩职通 HanZhiTong - 综合生活平台</title>
     <style>
-        :root { --primary-blue: #007bff; --bg-gray: #f4f7f6; --text-light: #999; }
+        :root { --primary-blue: #007bff; --bg-gray: #f4f7f6; --naver-green: #03c75a; }
         body { font-family: 'Microsoft YaHei', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
         .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
         
@@ -15,48 +15,44 @@
 
         .content { padding: 15px; }
 
-        /* 1. 极简搜索框 (回归) */
+        /* 管理员联系方式 */
+        .admin-contact { background: #fff; border: 1px dotted #ccc; border-radius: 10px; padding: 10px; margin-bottom: 20px; text-align: center; font-size: 12px; color: #888; }
+
+        /* 顶部搜索框 */
         .top-search { margin-bottom: 20px; }
         .search-inner { display: flex; background: #f1f3f5; border-radius: 12px; padding: 5px 15px; align-items: center; }
         .search-inner input { flex: 1; border: none; background: none; padding: 10px; outline: none; font-size: 14px; }
         .search-inner button { border: none; background: none; cursor: pointer; font-size: 18px; }
 
-        /* 2. 分类金刚区 */
+        /* 分类菜单 */
         .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 25px; }
         .category-item { text-align: center; cursor: pointer; text-decoration: none; color: inherit; }
         .category-icon { width: 50px; height: 50px; background: #eef5ff; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; transition: 0.2s; }
         .category-item:hover .category-icon { background: var(--primary-blue); color: white; transform: translateY(-3px); }
         .category-text { font-size: 12px; font-weight: bold; }
 
-        /* 3. 滚动贴士 */
+        /* 自动滚动贴士 */
         .tips-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 15px; margin-bottom: 20px; border-left: 5px solid var(--primary-blue); min-height: 50px; }
         #tip-content { font-size: 13.5px; color: #444; line-height: 1.6; transition: opacity 0.5s; }
         .kor-txt { color: #d32f2f; font-weight: bold; }
 
-        /* 4. 推广横幅 */
+        /* 推广横幅 */
         .promo-banner { background: linear-gradient(135deg, #fffde7 0%, #fff59d 100%); border: 1px solid #fbc02d; border-radius: 12px; padding: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
         .promo-info h4 { margin: 0 0 5px; color: #f57f17; font-size: 15px; }
         .promo-info p { margin: 0; font-size: 12px; color: #7f6d00; }
 
-        /* 5. 信息展示区 */
-        .section-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px; margin-bottom: 20px; }
-        .section-title { font-size: 16px; font-weight: bold; color: #222; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 8px; }
-        .empty-state { text-align: center; padding: 40px 20px; color: #ccc; font-size: 13px; line-height: 1.6; }
-
-        /* 6. 实用工具 (进阶版) */
+        /* 实用工具 */
         .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
         .tool-item { display: flex; align-items: center; padding: 12px; background: #fafafa; border-radius: 10px; text-decoration: none; color: #555; font-size: 13px; border: 1px solid #f1f1f1; }
         .tool-item:hover { background: #f0f7ff; border-color: var(--primary-blue); }
 
-        /* 投稿表单 */
-        #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* 发布表单 */
+        #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; }
         .form-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
 
-        /* 页脚 (增强版) */
+        /* 页脚 */
         footer { text-align: center; padding: 40px 20px; background: #fafafa; color: #bbb; font-size: 11px; border-top: 1px solid #eee; }
         .footer-slogan { color: var(--primary-blue); font-weight: bold; margin-bottom: 5px; font-size: 12px; }
-
-        .admin-contact { background: #fff; border: 1px dotted #ccc; border-radius: 10px; padding: 10px; margin-bottom: 20px; text-align: center; font-size: 12px; color: #888; }
     </style>
 </head>
 <body>
@@ -68,13 +64,12 @@
     </header>
 
     <div class="content">
-        <!-- 管理员信息 -->
         <div class="admin-contact">
             如有疑问或商务合作，请联络管理员：<br>
             <a href="mailto:davidguksung@gmail.com" style="color:var(--primary-blue); text-decoration:none; font-weight:bold;">✉ davidguksung@gmail.com</a>
         </div>
 
-        <!-- 1. 顶部搜索 -->
+        <!-- 顶部搜索 -->
         <div class="top-search">
             <form action="https://naver.com" method="get" target="_blank" class="search-inner">
                 <button type="submit">🔍</button>
@@ -82,7 +77,7 @@
             </form>
         </div>
 
-        <!-- 2. 分类菜单 -->
+        <!-- 分类菜单 -->
         <div class="category-grid">
             <div class="category-item" onclick="toggleForm()">
                 <div class="category-icon">💼</div><div class="category-text">招聘求职</div>
@@ -98,12 +93,12 @@
             </div>
         </div>
 
-        <!-- 3. 滚动贴士 -->
+        <!-- 滚动贴士 -->
         <div class="tips-card">
             <div id="tip-content">正在为您加载生活小贴士...</div>
         </div>
 
-        <!-- 4. 推广横幅 -->
+        <!-- 推广横幅 -->
         <div class="promo-banner" onclick="toggleForm()">
             <div style="font-size: 30px;">🎁</div>
             <div class="promo-info">
@@ -112,7 +107,7 @@
             </div>
         </div>
 
-        <!-- 发布表单 -->
+        <!-- 投稿表单 -->
         <div id="postForm">
             <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 提交发布申请</h3>
             <form action="https://formspree.io" method="POST">
@@ -130,25 +125,16 @@
             </form>
         </div>
 
-        <!-- 5. 最新动态 -->
-        <div class="section-card">
-            <div class="section-title">✨ 最新动态</div>
-            <div class="empty-state">
-                <div style="font-size: 40px; margin-bottom: 10px;">📝</div>
-                目前还没有发布的信息<br>
-                提交申请并审核通过后将在此显示
-            </div>
-        </div>
-
-        <!-- 6. 实用工具 (进阶) -->
-        <div class="section-card">
-            <div class="section-title">🔔 实用工具</div>
+        <!-- 实用工具 (地图链接已更新为首页) -->
+        <div style="background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px; margin-bottom: 20px;">
+            <div style="font-size: 16px; font-weight: bold; color: #222; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 8px;">🔔 实用工具</div>
             <div class="tool-grid">
-                <a href="https://naver.com?query=实时汇率" target="_blank" class="tool-item">📊 实时汇率</a>
-                <a href="https://naver.com?query=首尔天气" target="_blank" class="tool-item">🌤️ 天气查询</a>
+                <a href="https://naver.com?query=환율" target="_blank" class="tool-item">📊 实时汇率</a>
+                <a href="https://naver.com?query=서울날씨" target="_blank" class="tool-item">🌤️ 天气查询</a>
                 <a href="https://naver.com?query=택배조회" target="_blank" class="tool-item">📦 快递查询</a>
                 <a href="https://naver.com?query=2026공휴일" target="_blank" class="tool-item">📅 公休日查询</a>
-                <a href="https://naver.com" target="_blank" class="tool-item" style="grid-column: span 2;">🗺️ Naver 地图导航 ↗</a>
+                <!-- 精准链接到 Naver Map 官网首页 -->
+                <a href="https://map.naver.com/" target="_blank" class="tool-item" style="grid-column: span 2; justify-content: center; background: var(--naver-green); color: #fff; font-weight: bold; border:none;">🗺️ Naver 地图：查路线 / 店名 ↗</a>
             </div>
         </div>
     </div>
@@ -167,7 +153,6 @@
         if(form.style.display === 'block') form.scrollIntoView({behavior: "smooth"});
     }
 
-    // 成功反馈
     window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('thanks') === 'true') {
@@ -176,7 +161,6 @@
         }
     }
 
-    // 自动滚贴士
     const tips = [
         "💡 租房必看：签约前务必确认 <span class='kor-txt'>등기부등본</span> (登记簿副本)，检查房东身份和房屋债务。",
         "💡 换钱安全：建议通过官方银行APP换钱，避免私人交易导致 <span class='kor-txt'>계좌정지</span> (账户冻结) 风险。",
