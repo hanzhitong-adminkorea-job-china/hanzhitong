@@ -3,96 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한직통 HanZhiTong</title>
+    <title>韩职通 HanZhiTong</title>
     <style>
         :root { --primary-blue: #007bff; --bg-gray: #f8f9fa; }
         body { font-family: 'Noto Sans KR', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
         .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
         
-        /* 헤더 - 브랜드 정체성 유지 */
+        /* 顶部导航 */
         header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
-        .logo { font-size: 22px; font-weight: bold; color: var(--primary-blue); }
-        .post-btn { background: var(--primary-blue); color: white; border: none; padding: 8px 18px; border-radius: 20px; font-size: 13px; cursor: pointer; text-decoration: none; }
+        .logo { font-size: 22px; font-weight: bold; color: var(--primary-blue); text-decoration: none; }
+        .post-btn { background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 25px; font-size: 14px; cursor: pointer; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .post-btn:hover { background: #0056b3; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
 
-        /* 메인 컨텐츠 영역 */
+        /* 主体内容 */
         .content { padding: 20px; }
 
-        /* [핵심] 네이버 통합 검색창 - 환율/날씨를 여기서 직접 검색하도록 유도 */
-        .search-section { margin-bottom: 30px; margin-top: 10px; }
-        .search-label { font-size: 14px; color: #666; margin-bottom: 8px; display: block; font-weight: 500; }
-        .search-box { display: flex; border: 2px solid var(--primary-blue); border-radius: 10px; overflow: hidden; background: #fff; box-shadow: 0 4px 6px rgba(0,123,255,0.1); }
-        .search-box input { flex: 1; border: none; padding: 14px; outline: none; font-size: 16px; }
-        .search-box button { background: var(--primary-blue); color: white; border: none; padding: 0 20px; font-weight: bold; cursor: pointer; font-size: 15px; }
+        /* 搜索框 */
+        .search-section { margin-bottom: 30px; }
+        .search-label { font-size: 14px; color: #666; margin-bottom: 10px; display: block; font-weight: 500; }
+        .search-box { display: flex; border: 2px solid var(--primary-blue); border-radius: 12px; overflow: hidden; background: #fff; }
+        .search-box input { flex: 1; border: none; padding: 15px; outline: none; font-size: 16px; }
+        .search-box button { background: var(--primary-blue); color: white; border: none; padding: 0 20px; font-weight: bold; cursor: pointer; }
 
-        /* 카드 레이아웃 */
-        .card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 18px; margin-bottom: 20px; }
-        .card-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; color: #222; }
+        /* 卡片样式 */
+        .card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 20px; margin-bottom: 20px; }
+        .card-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
         
-        /* 정보 리스트 스타일 */
-        .info-item { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f1f1f1; text-decoration: none; color: #444; font-size: 14px; }
-        .info-item:last-child { border-bottom: none; }
-        .badge { background: #e7f3ff; color: var(--primary-blue); padding: 3px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; }
+        /* 咨询按钮组 */
+        .contact-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .contact-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 10px; text-decoration: none; font-size: 14px; font-weight: bold; border: 1px solid #eee; transition: 0.2s; }
+        .btn-email { background: #f8f9fa; color: #333; }
+        .btn-wechat { background: #07c160; color: white; border: none; }
+        .contact-btn:hover { opacity: 0.8; }
 
-        /* 푸터 및 통계 */
-        .stats { text-align: center; margin-top: 40px; padding: 20px; background: #fafafa; border-radius: 15px; }
-        footer { text-align: center; padding: 40px 20px; color: #bbb; font-size: 12px; }
+        /* 列表项 */
+        .info-item { display: flex; align-items: center; gap: 12px; padding: 15px 0; border-bottom: 1px solid #f1f1f1; text-decoration: none; color: #444; font-size: 14px; }
+        .badge { background: #e7f3ff; color: var(--primary-blue); padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; }
+
+        /* 统计与页脚 */
+        .stats { text-align: center; margin-top: 40px; padding: 25px; background: #fafafa; border-radius: 15px; }
+        footer { text-align: center; padding: 50px 20px; color: #bbb; font-size: 12px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <div class="logo">韩职通 HanZhiTong</div>
-        <a href="#" class="post-btn">+ 发布招聘</a>
+        <a href="/" class="logo">韩职通 HanZhiTong</a>
+        <!-- 修复：点击弹出发布提示或跳转 -->
+        <button class="post-btn" onclick="handlePostClick()">+ 发布招聘</button>
     </header>
 
     <div class="content">
-        <!-- 네이버 통합 검색창 (환율, 날씨 등 모든 검색 해결) -->
+        <!-- 搜索区域 -->
         <div class="search-section">
-            <span class="search-label">🔍 궁금한 정보를 검색하세요 (날씨, 환율 등)</span>
+            <span class="search-label">🔍 实时汇率、天气查询</span>
             <form action="https://naver.com" method="get" target="_blank" class="search-box">
-                <input type="text" name="query" placeholder="예: 오늘 서울 날씨, 원위안 환율">
+                <input type="text" name="query" placeholder="输入: 首尔天气 或 汇率">
                 <button type="submit">搜索</button>
             </form>
         </div>
 
-        <!-- 꿀팁 섹션 -->
+        <!-- 咨询功能区 -->
+        <div class="contact-group">
+            <!-- 修复：邮件咨询调用本地邮箱 -->
+            <a href="mailto:support@hanzhitong.com" class="contact-btn btn-email">
+                ✉️ 邮件咨询
+            </a>
+            <!-- 修复：微信咨询点击弹出联系方式 -->
+            <a href="javascript:void(0);" onclick="alert('请添加客服微信: HanZhiTong_CS')" class="contact-btn btn-wechat">
+                💬 微信咨询
+            </a>
+        </div>
+
+        <!-- 贴士卡片 -->
         <div class="card">
-            <div class="card-title">💡 每日生活小贴士 (오늘의 꿀팁)</div>
-            <p style="font-size: 14px; color: #555; line-height: 1.6; margin: 0;">
-                建议通过正规银行APP ( 如新韩Sol Global ) 换钱，避免账号被冻结风险。
+            <div class="card-title">💡 每日生活小贴士</div>
+            <p style="font-size: 14px; color: #555; margin: 0; line-height: 1.5;">
+                建议通过正规银行APP (如新韩Sol Global) 换钱，避免账号被冻结风险。
             </p>
         </div>
 
-        <!-- 홍보/공지 배너 -->
-        <div style="background: #fff8e1; border: 1px solid #ffecb3; padding: 12px; border-radius: 8px; font-size: 13px; color: #795548; margin-bottom: 25px; text-align: center; font-weight: 500;">
-            🔥 限时活动：商家发帖免费置顶 30 天！
-        </div>
-
-        <!-- 최신 뉴스/정보 -->
+        <!-- 最新资讯 -->
         <div class="card">
             <div class="card-title">🔔 最新资讯 (최신 소식)</div>
             <a href="#" class="info-item">
                 <span class="badge">签证</span> 2026年最新签证政策及 F-4 解读
             </a>
-            <a href="#" class="info-item">
-                <span class="badge">指南</span> 韩国生活必备 APP 推荐 TOP 5
+            <a href="https://naver.com?query=汇率" target="_blank" class="info-item">
+                <span class="badge">汇率</span> 点击查看NAVER实时汇率详细图表
             </a>
         </div>
 
-        <!-- 채용 공고 -->
+        <!-- 公告栏 -->
         <div class="card">
             <div class="card-title">最新职位公告 (오늘 업데이트)</div>
             <div style="text-align: center; padding: 40px 0; color: #aaa; font-size: 14px;">
                 目前还没有发布的公告<br>
-                <span style="font-size: 12px; color: #ccc; display: block; margin-top: 8px;">点击上方“发布招聘”提交今日第一条公告</span>
+                <span style="font-size: 12px; margin-top: 10px; display: block;">点击上方“发布招聘”提交今日第一条公告</span>
             </div>
         </div>
 
-        <!-- 방문자 통계 -->
         <div class="stats">
-            <div style="font-size: 11px; color: #999; letter-spacing: 1px;">TOTAL VISITORS</div>
-            <div style="font-size: 36px; font-weight: bold; color: var(--primary-blue); margin-top: 5px;">923</div>
+            <div style="font-size: 11px; color: #999; margin-bottom: 5px;">TOTAL VISITORS</div>
+            <div style="font-size: 38px; font-weight: bold; color: var(--primary-blue);">923</div>
         </div>
     </div>
 
@@ -100,6 +114,15 @@
         © 2026 HanZhiTong. ALL RIGHTS RESERVED.
     </footer>
 </div>
+
+<script>
+    // 修复：发布招聘按钮点击逻辑
+    function handlePostClick() {
+        // 如果有发布页面，请将下面链接换成您的发布页URL
+        // window.location.href = '/post-job.html'; 
+        alert('发布功能已开启！请将招聘信息发送至客服微信进行登记。');
+    }
+</script>
 
 </body>
 </html>
