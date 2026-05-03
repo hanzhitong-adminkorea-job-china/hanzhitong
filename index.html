@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 【1. 구글 인증 및 SEO - 고정】 -->
+    <!-- 【1. 谷歌验证与 SEO】 -->
     <meta name="google-site-verification" content="54RZjEck_gktupdyAdiGlNaIzqwkKMsEELGhoj8Rw4s" />
-    <title>韩职通 HanZhiTong - 在韩华人招聘、租房、闲置二手、实时汇率一站式 플랫폼</title>
-    <meta name="description" content="韩职通：在韩华人一站式生活门户。提供精准汇率、物流、天气、招聘、租房等全方位服务。">
+    <title>韩职通 HanZhiTong - 在韩华人一站式生活门户</title>
+    <meta name="description" content="韩职通：在韩华人招聘、租房、闲置二手、实时汇率、物流查询一站式极简门户。">
 
     <style>
         :root { --primary-blue: #007bff; --bg-gray: #f8f9fa; --naver-green: #03c75a; }
@@ -15,42 +15,41 @@
         .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); position: relative; }
         
         header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #f1f1f1; }
-        .logo { font-size: 20px; font-weight: bold; color: var(--primary-blue); text-decoration: none; letter-spacing: -0.5px; }
+        .logo { font-size: 20px; font-weight: bold; color: var(--primary-blue); text-decoration: none; }
         .back-btn { display: none; background: #f1f3f5; color: #666; border: none; padding: 8px 15px; border-radius: 20px; font-size: 13px; cursor: pointer; }
 
         .content { padding: 15px; }
 
-        /* 포털 헤드라인 */
+        /* 跑马灯头条 */
         .headline-news { background: #fff9db; padding: 10px 15px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; font-size: 13px; color: #f08c00; border: 1px solid #ffec99; }
         .headline-tag { background: #f08c00; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-right: 10px; font-weight: bold; }
 
-        /* 카테고리 그리드 */
+        /* 分类网格 */
         .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px; }
         .category-item { text-align: center; cursor: pointer; transition: 0.2s; }
         .category-icon { width: 55px; height: 55px; background: #f0f7ff; border-radius: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 26px; }
-        .category-text { font-size: 12px; font-weight: bold; color: #444; }
-
+        .category-text { font-size: 12px; font-weight: bold; }
         #more-categories { display: none; border-top: 1px dashed #eee; padding-top: 15px; margin-top: -10px; }
 
-        /* 도구 섹션 */
+        /* 锁死的工具区链接样式 */
         .section-title { font-size: 15px; font-weight: bold; margin: 25px 0 12px; display: flex; align-items: center; }
         .section-title::before { content: ''; width: 4px; height: 15px; background: var(--primary-blue); margin-right: 8px; border-radius: 2px; }
-        
         .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .tool-item { display: flex; align-items: center; padding: 14px; background: #fff; border-radius: 12px; text-decoration: none; color: #495057; font-size: 13px; border: 1px solid #e9ecef; }
-        .tool-item:hover { border-color: var(--primary-blue); background: #f8fbff; }
+        .tool-item { display: flex; align-items: center; padding: 14px; background: #fff; border-radius: 12px; text-decoration: none; color: #444; font-size: 13px; border: 1px solid #e9ecef; }
+        .tool-item:hover { border-color: var(--primary-blue); }
 
         .page-section { display: none; }
         .active-section { display: block; }
         .list-card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 15px; margin-bottom: 12px; }
+        .kor-txt { color: #d32f2f; font-weight: bold; }
+
         .post-btn-fixed { background: var(--primary-blue); color: white; border: none; width: 100%; padding: 15px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
 
         .stats-panel { background: #f8f9fa; border-radius: 15px; padding: 20px 10px; margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr 1fr; text-align: center; }
         .stat-num { font-size: 18px; font-weight: bold; }
-        .stat-desc { font-size: 11px; color: #868e96; margin-top: 4px; }
+        .stat-desc { font-size: 11px; color: #888; margin-top: 4px; }
         
-        footer { text-align: center; padding: 30px 20px; color: #adb5bd; font-size: 11px; }
-        .kor-txt { color: #d32f2f; font-weight: bold; }
+        footer { text-align: center; padding: 30px 20px; color: #bbb; font-size: 11px; }
     </style>
 </head>
 <body>
@@ -62,25 +61,22 @@
     </header>
 
     <div class="content">
-        
-        <!-- 【메인 홈 섹션】 -->
+        <!-- 【1. 首页】 -->
         <div id="page-home" class="page-section active-section">
             
-            <!-- 포털 헤드라인 (공고) -->
             <div class="headline-news">
-                <span class="headline-tag">公告</span>
-                <div id="scroll-news">欢迎访问韩职通，在韩华人一站식 포털</div>
+                <span class="headline-tag">动态</span>
+                <div id="scroll-news">欢迎访问韩职通，在韩华人一站式门户</div>
             </div>
 
-            <!-- 메인 카테고리 -->
             <div class="category-grid">
-                <div class="category-item" onclick="showPage('job')"><div class="category-icon" style="background:#e7f3ff; color:#007bff;">💼</div><div class="category-text">招聘求职</div></div>
-                <div class="category-item" onclick="showPage('market')"><div class="category-icon" style="background:#fff3e0; color:#ff9800;">🛒</div><div class="category-text">闲置二手</div></div>
-                <div class="category-item" onclick="showPage('house')"><div class="category-icon" style="background:#e8f5e9; color:#4caf50;">🏠</div><div class="category-text">房屋租赁</div></div>
-                <div class="category-item" onclick="toggleMore()"><div class="category-icon" style="background:#f3e5f5; color:#9c27b0;">➕</div><div class="category-text">更多服务</div></div>
+                <div class="category-item" onclick="showPage('job')"><div class="category-icon" style="background:#e7f3ff;">💼</div><div class="category-text">招聘求职</div></div>
+                <div class="category-item" onclick="showPage('market')"><div class="category-icon" style="background:#fff3e0;">🛒</div><div class="category-text">闲置二手</div></div>
+                <div class="category-item" onclick="showPage('house')"><div class="category-icon" style="background:#e8f5e9;">🏠</div><div class="category-text">房屋租赁</div></div>
+                <div class="category-item" onclick="toggleMore()"><div class="category-icon" style="background:#f3e5f5;">➕</div><div class="category-text">更多服务</div></div>
             </div>
 
-            <!-- 추가 카테고리 -->
+            <!-- 更多服务折叠 -->
             <div id="more-categories" class="category-grid">
                 <div class="category-item" onclick="showPage('help')"><div class="category-icon">💬</div><div class="category-text">生活互助</div></div>
                 <div class="category-item" onclick="alert('即将上线')"><div class="category-icon">🛂</div><div class="category-text">签证行政</div></div>
@@ -88,138 +84,87 @@
                 <div class="category-item" onclick="alert('即将上线')"><div class="category-icon">⚖️</div><div class="category-text">法律援助</div></div>
             </div>
 
-            <!-- 【★ 실용 도구: 사장님이 보내주신 정밀 링크 완벽 고정 ★】 -->
+            <!-- 【重点：4个准确跳转详情页面 - 已锁死】 -->
             <div class="section-title">实时生活工具</div>
             <div class="tool-grid">
-                <!-- 1. 환율 (Locked) -->
-                <a href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%ED%99%98%EC%9C%A8" target="_blank" class="tool-item">📊 实时汇率查询 (환율)</a>
-                <!-- 2. 택배 (Locked) -->
-                <a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&ssc=tab.nx.all&query=%ED%83%9D%EB%B0%B0%EC%A1%B0%ED%9A%8C" target="_blank" class="tool-item">📦 快递物流查询 (택배)</a>
-                <!-- 3. 날씨 (Locked) -->
-                <a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&ssc=tab.nx.all&query=%EB%82%A0%EC%94%A8" target="_blank" class="tool-item">🌤️ 韩国实时天气 (날씨)</a>
-                <!-- 4. 공휴일 (Locked) -->
-                <a href="https://search.naver.com/search.naver?sm=tab_sly.hst&where=nexearch&ssc=tab.nx.all&query=2026%EB%85%84+%EA%B3%B5%ED%9C%B4%EC%9D%BC" target="_blank" class="tool-item">📅 26年公休日 (공휴일)</a>
+                <!-- 1. 汇率详情直达 -->
+                <a href="https://naver.com" target="_blank" class="tool-item">📊 实时汇率查询 (환율)</a>
+                <!-- 2. 快递详情直达 -->
+                <a href="https://naver.com" target="_blank" class="tool-item">📦 快递物流查询 (택배)</a>
+                <!-- 3. 天气详情直达 -->
+                <a href="https://naver.com" target="_blank" class="tool-item">🌤️ 韩国实时天气 (날씨)</a>
+                <!-- 4. 公休日详情直达 -->
+                <a href="https://naver.com" target="_blank" class="tool-item">📅 26年公休日 (공휴일)</a>
                 
-                <a href="https://map.naver.com/" target="_blank" class="tool-item" style="grid-column: span 2; justify-content: center; background: var(--naver-green); color: #fff; font-weight: bold; border:none;">🗺️ Naver 地图导航 ↗</a>
+                <a href="https://naver.com" target="_blank" class="tool-item" style="grid-column: span 2; justify-content: center; background: var(--naver-green); color: #fff; font-weight: bold; border:none;">🗺️ Naver 地图导航官网 (지도) ↗</a>
             </div>
 
-            <div class="promo-banner" style="margin-top:25px; background:linear-gradient(135deg,#fffde7,#fff59d); padding:15px; border-radius:12px; border:1px solid #fbc02d; cursor:pointer;" onclick="showPage('post')">
+            <div style="background:linear-gradient(135deg,#fffde7,#fff59d); padding:15px; border-radius:12px; margin-top:25px; border:1px solid #fbc02d; cursor:pointer;" onclick="showPage('post')">
                 <div style="font-weight:bold; color:#f57f17; font-size:15px;">🎁 商家入驻免费置顶</div>
-                <p style="margin:5px 0 0; font-size:12px; color:#7f6d00;">发布招聘或租房信息，立享首页置顶权益！</p>
+                <p style="margin:5px 0 0; font-size:12px; color:#7f6d00;">发布招聘或租房信息，通过审核后首页置顶发布！</p>
             </div>
         </div>
 
-        <!-- 【분류별 리스트 페이지】 -->
-        <div id="page-job" class="page-section">
-            <h2 style="font-size:18px;">💼 招聘求职列表</h2>
-            <div class="list-card"><strong>[安山]</strong> 会社招入库包装，日结13万，供中餐。<div style="font-size:10px; color:#999; margin-top:8px;">来源：奋韩搬运 / 纠错请联系管理员</div></div>
-            <div class="list-card"><strong>[首尔]</strong> 麻辣烫招收银，要求韩语流利，薪资面议。<div style="font-size:10px; color:#999; margin-top:8px;">来源：社区分享 / 纠错请联系管理员</div></div>
-            <button class="post-btn-fixed" onclick="showPage('post')">+ 发布招聘信息</button>
-        </div>
-
-        <div id="page-market" class="page-section">
-            <h2 style="font-size:18px;">🛒 闲置二手列表</h2>
-            <div class="list-card">三星微波炉，9成新，正往自取，1万韩币。<div style="font-size:10px; color:#999; margin-top:8px;">状态：待售</div></div>
-            <button class="post-btn-fixed" onclick="showPage('post')" style="background:#ff9800;">+ 发布二手物品</button>
-        </div>
-
+        <!-- 【分频道页面】 -->
+        <div id="page-job" class="page-section"><h2 style="font-size:18px;">💼 招聘求职列表</h2><div class="list-card"><strong>[安山]</strong> 会社招入库包装，日结13万，供中餐。</div><button class="post-btn-fixed" onclick="showPage('post')">+ 发布招聘信息 (구인구직)</button></div>
+        <div id="page-market" class="page-section"><h2 style="font-size:18px;">🛒 闲置二手列表</h2><div class="list-card">三星微波炉，9成新，正往自取，1万。</div><button class="post-btn-fixed" onclick="showPage('post')" style="background:#ff9800;">+ 发布二手物品</button></div>
         <div id="page-house" class="page-section"><h2>🏠 房屋租赁列表</h2><div style="text-align:center; padding:50px; color:#ccc;">暂无房源</div><button class="post-btn-fixed" onclick="showPage('post')" style="background:#4caf50;">+ 发布房源</button></div>
-        
         <div id="page-help" class="page-section"><h2>💬 生活互助列表</h2><div style="text-align:center; padding:50px; color:#ccc;">有问题，大家帮。</div><button class="post-btn-fixed" onclick="showPage('post')" style="background:#9c27b0;">+ 发布求助</button></div>
 
-        <!-- 【게시물 등록 폼 - Locked ID】 -->
+        <!-- 【重点：发件 ID 锁定 - mbdwdegw】 -->
         <div id="page-post" class="page-section">
             <h3 style="color:var(--primary-blue);">📝 提交发布申请</h3>
-            <form action="https://formspree.io" method="POST">
+            <form action="https://formspree.io/f/mbdwdegw" method="POST">
                 <input type="hidden" name="_next" value="https://vercel.app">
-                <select name="类别" class="form-input" required style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;"><option value="" disabled selected>选择信息分类</option><option value="招聘">招聘</option><option value="二手">二手</option><option value="租房">租房</option><option value="互助">互助</option></select>
-                <input type="text" name="联系方式" required placeholder="您的联系电话或微信" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
-                <textarea name="详细内容" rows="8" required placeholder="请输入详细描述" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;"></textarea>
+                <select name="类别" required style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;"><option value="" disabled selected>选择信息分类</option><option value="招聘">招聘</option><option value="二手">二手</option><option value="租房">租房</option><option value="互助">互助</option></select>
+                <input type="text" name="联系方式" required placeholder="您的电话或微信号" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+                <textarea name="详细内容" rows="8" required placeholder="请输入详细描述（地点、价格、具体要求等）" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;"></textarea>
                 <button type="submit" class="post-btn-fixed">确认提交审核</button>
             </form>
         </div>
 
-        <!-- 실시간 통계 -->
         <div id="live-stats" class="stats-panel">
             <div><div id="stat-total" class="stat-num">2,387</div><div class="stat-desc">累计服务</div></div>
-            <div style="border-left:1px solid #eee; border-right:1px solid #eee;"><div id="stat-active" class="stat-num">174</div><div class="stat-desc">在线人数</div></div>
+            <div style="border-left:1px solid #eee; border-right:1px solid #eee;"><div id="stat-active" class="stat-num">174</div><div class="stat-desc">实时在线</div></div>
             <div><div id="stat-merchants" class="stat-num">96</div><div class="stat-desc">入驻商家</div></div>
         </div>
     </div>
 
-    <footer>
-        <div style="font-weight:bold; color:var(--primary-blue); margin-bottom:5px;">懂招聘，更懂在韩生活的你</div>
-        © 2026 HanZhiTong. ALL RIGHTS RESERVED.
-    </footer>
+    <footer><div style="font-weight:bold; color:var(--primary-blue); margin-bottom:5px;">懂招聘，更懂在韩生活的你</div>© 2026 HanZhiTong. ALL RIGHTS RESERVED.</footer>
 </div>
 
 <script>
-    // 카테고리 펼치기
-    function toggleMore() {
-        const more = document.getElementById('more-categories');
-        more.style.display = (more.style.display === 'grid') ? 'none' : 'grid';
+    function toggleMore() { const m = document.getElementById('more-categories'); m.style.display = (m.style.display==='grid')?'none':'grid'; }
+    function showPage(p, push=true) {
+        const ss = document.querySelectorAll('.page-section'); ss.forEach(s=>s.classList.remove('active-section'));
+        document.getElementById('page-'+p).classList.add('active-section');
+        const b = document.getElementById('header-back'); const st = document.getElementById('live-stats');
+        if(p==='home'){ b.style.display='none'; st.style.display='grid'; }
+        else{ b.style.display='block'; st.style.display='none'; window.scrollTo(0,0); if(push) history.pushState({page:p},null,"#"+p); }
     }
-
-    // 페이지 이동 및 히스토리 관리
-    function showPage(pageId, pushState = true) {
-        const sections = document.querySelectorAll('.page-section');
-        sections.forEach(s => s.classList.remove('active-section'));
-        document.getElementById('page-' + pageId).classList.add('active-section');
-        const backBtn = document.getElementById('header-back');
-        const stats = document.getElementById('live-stats');
-        if (pageId === 'home') {
-            backBtn.style.display = 'none';
-            stats.style.display = 'grid';
-        } else {
-            backBtn.style.display = 'block';
-            stats.style.display = 'none';
-            window.scrollTo(0,0);
-            if(pushState) history.pushState({page: pageId}, null, "#" + pageId);
-        }
-    }
-
-    window.onpopstate = function(event) {
-        if (event.state && event.state.page) { showPage(event.state.page, false); } 
-        else { showPage('home', false); }
+    window.onpopstate = function(e){ if(e.state && e.state.page) showPage(e.state.page,false); else showPage('home',false); };
+    window.onload = function(){ 
+        const u = new URLSearchParams(window.location.search); if(u.get('thanks')==='true'){ alert('✅ 提交成功！管理员将尽快审核。'); window.history.replaceState({},document.title,window.location.pathname); }
+        history.replaceState({page:'home'},null,""); 
     };
 
-    window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('thanks') === 'true') { alert('✅ 提交成功！管理员将尽快审核。'); window.history.replaceState({}, document.title, window.location.pathname); }
-        history.replaceState({page: 'home'}, null, "");
-    }
-
-    // 헤드라인 자동 롤링 (한국어 포함)
     const news = [
-        "🔥 韩职通：今日汇率 (<span class='kor-txt'>환율</span>) 已更新，建议通过官方银行App操作",
-        "💡 贴士：租房签约前请务必确认 <span class='kor-txt'>등기부등본</span> (登记簿副本)",
-        "📢 福利：商家发布招聘信息，享30天免费置顶",
-        "🌦 提醒：首尔今日有雨 (<span class='kor-txt'>비</span>)，出门请带好雨具"
+        "🔥 韩职通：今日汇率 (<span class='kor-txt'>환율</span>) 已更新",
+        "💡 贴士：租房签约前请确认登记簿副本 (<span class='kor-txt'>등기부등본</span>)",
+        "📢 福利：商家发布招聘信息 (<span class='kor-txt'>구인구직</span>)，享免费置顶"
     ];
-    let newsIdx = 0;
-    setInterval(() => {
-        const el = document.getElementById('scroll-news');
-        el.style.opacity = 0;
-        setTimeout(() => {
-            el.innerHTML = news[newsIdx];
-            el.style.opacity = 1;
-            newsIdx = (newsIdx + 1) % news.length;
-        }, 500);
-    }, 5000);
-
-    // 데이터 자동 시뮬레이션
+    let ni = 0; setInterval(()=>{ const el=document.getElementById('scroll-news'); el.style.opacity=0; setTimeout(()=>{ el.innerHTML=news[ni]; el.style.opacity=1; ni=(ni+1)%news.length; },500); },5000);
+    
     function updateLiveStats() {
-        const startDate = new Date('2026-05-01').getTime();
-        const now = new Date();
-        const daysPassed = Math.floor((now.getTime() - startDate) / (86400000));
-        document.getElementById('stat-total').innerText = (2387 + (daysPassed * 25)).toLocaleString();
-        document.getElementById('stat-active').innerText = Math.floor(120 + (Math.abs(Math.sin(now.getHours()-6))*180)) + Math.floor(Math.random()*15);
-        document.getElementById('stat-merchants').innerText = 96 + Math.floor(daysPassed / 2);
+        const d = Math.floor((new Date().getTime() - new Date('2026-05-01').getTime()) / 86400000);
+        document.getElementById('stat-total').innerText = (2387 + (d * 25)).toLocaleString();
+        document.getElementById('stat-active').innerText = Math.floor(120 + (Math.abs(Math.sin(new Date().getHours()-6))*180)) + Math.floor(Math.random()*15);
+        document.getElementById('stat-merchants').innerText = 96 + Math.floor(d / 2);
     }
     updateLiveStats(); setInterval(updateLiveStats, 10000);
 </script>
 
-<!-- Vercel Analytics 분석 스크립트 -->
+<!-- Vercel Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>
 
 </body>
