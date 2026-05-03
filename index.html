@@ -1,40 +1,131 @@
-<!-- 한직통 정보 섹션 시작 -->
-<div style="max-width: 500px; margin: 0 auto; padding: 10px; font-family: 'Noto Sans KR', sans-serif;">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한직통 HanZhiTong</title>
+    <style>
+        :root { --primary-blue: #007bff; --bg-gray: #f4f7f6; }
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+        
+        /* 헤더 섹션 */
+        header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        .logo { font-size: 22px; font-weight: bold; color: var(--primary-blue); }
+        .post-btn { background: var(--primary-blue); color: white; border: none; padding: 8px 15px; border-radius: 20px; font-size: 13px; cursor: pointer; text-decoration: none; }
 
-    <!-- 1. 실시간 환율 바 (클릭 시 네이버 환율로 이동) -->
-    <div onclick="window.open('https://naver.com', '_blank')" 
-         style="background: #222; color: #fff; padding: 10px 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 12px; font-size: 14px;">
-        <div>📊 <span style="color: #ccc; margin-left: 5px;">실시간 환율:</span> <strong>1,000 KRW = 5.21 CNY</strong></div>
-        <div style="font-size: 12px; color: #aaa;">NAVER 이동 ></div>
+        /* 실시간 환율 바 (네이버 연동) */
+        .exchange-banner { background: #333; color: white; padding: 10px 20px; font-size: 14px; display: flex; justify-content: space-between; cursor: pointer; }
+        .exchange-banner span { color: #52e052; font-weight: bold; }
+
+        /* 메인 컨텐츠 영역 */
+        .content { padding: 20px; }
+
+        /* 네이버 통합 검색창 */
+        .search-section { margin-bottom: 25px; }
+        .search-box { display: flex; border: 2px solid var(--primary-blue); border-radius: 8px; overflow: hidden; }
+        .search-box input { flex: 1; border: none; padding: 12px; outline: none; font-size: 15px; }
+        .search-box button { background: var(--primary-blue); color: white; border: none; padding: 0 20px; font-weight: bold; cursor: pointer; }
+
+        /* 정보 카드 스타일 (꿀팁, 공지 등) */
+        .card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .card-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        
+        /* 퀵 메뉴 (날씨/환율 버튼) */
+        .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        .quick-btn { text-decoration: none; background: #f9f9f9; padding: 15px; border-radius: 10px; text-align: center; color: #333; border: 1px solid #eee; transition: 0.2s; }
+        .quick-btn:hover { background: #f0f0f0; border-color: #ddd; }
+        .quick-btn .icon { font-size: 24px; display: block; margin-bottom: 5px; }
+
+        /* 리스트 스타일 (최신 소식 등) */
+        .info-item { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px dotted #eee; text-decoration: none; color: #444; font-size: 14px; }
+        .badge { background: #e7f3ff; color: var(--primary-blue); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+
+        /* 푸터 */
+        footer { text-align: center; padding: 40px 20px; color: #aaa; font-size: 12px; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 헤더 -->
+    <header>
+        <div class="logo">韩职通 HanZhiTong</div>
+        <a href="#" class="post-btn">+ 发布招聘</a>
+    </header>
+
+    <!-- 실시간 환율 (클릭 시 네이버 이동) -->
+    <div class="exchange-banner" onclick="window.open('https://naver.com', '_blank')">
+        <div>📊 实时汇率: 1,000 KRW = <span>5.21 CNY</span></div>
+        <div>서울 ...°C ></div>
     </div>
 
-    <!-- 2. 통합 검색창 (날씨 및 정보 검색) -->
-    <div style="background: #fff; padding: 15px; border-radius: 12px; border: 1px solid #eee; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 15px;">
-        <h3 style="font-size: 15px; margin-top: 0; margin-bottom: 10px; color: #333;">🔍 무엇이든 검색해보세요</h3>
-        <form action="https://naver.com" method="get" target="_blank" style="display: flex; border: 2px solid #007bff; border-radius: 6px; overflow: hidden;">
-            <input type="text" name="query" placeholder="서울 날씨, 비자 정책 등 입력" 
-                   style="flex: 1; border: none; padding: 10px; outline: none; font-size: 14px;">
-            <button type="submit" style="background: #007bff; color: white; border: none; padding: 0 15px; cursor: pointer; font-weight: bold;">검색</button>
-        </form>
+    <div class="content">
+        <!-- [추가된 기능] 네이버 통합 검색창 -->
+        <div class="search-section">
+            <form action="https://naver.com" method="get" target="_blank" class="search-box">
+                <input type="text" name="query" placeholder="날씨, 환율, 비자 정보를 검색하세요">
+                <button type="submit">搜索</button>
+            </form>
+        </div>
+
+        <!-- 꿀팁 섹션 -->
+        <div class="card">
+            <div class="card-title">💡 每日生活小贴士 (오늘의 꿀팁)</div>
+            <p style="font-size: 13px; color: #666; margin: 0;">建议通过正规银行APP ( 如新韩Sol Global ) 换钱，避免账号被冻结风险。</p>
+        </div>
+
+        <!-- [개선된 부분] 날씨 및 환율 퀵 버튼 -->
+        <div class="quick-grid">
+            <a href="https://naver.com?query=날씨" target="_blank" class="quick-btn">
+                <span class="icon">🌤️</span>
+                <strong>本周天气</strong>
+                <div style="font-size: 11px; color: #999; margin-top: 5px;">네이버 실시간 날씨</div>
+            </a>
+            <a href="https://naver.com?query=네이버+환율" target="_blank" class="quick-btn">
+                <span class="icon">📈</span>
+                <strong>实时汇率</strong>
+                <div style="font-size: 11px; color: #999; margin-top: 5px;">상세 환율 차트</div>
+            </a>
+        </div>
+
+        <!-- 홍보 배너 -->
+        <div style="background: #fffbe6; border: 1px solid #ffe58f; padding: 10px; border-radius: 8px; font-size: 13px; color: #856404; margin-bottom: 20px;">
+            🔥 限时活动：商家发帖免费置顶 30 天！
+        </div>
+
+        <!-- 최신 소식 -->
+        <div class="card">
+            <div class="card-title">🔔 最新资讯 (최신 소식)</div>
+            <a href="#" class="info-item">
+                <span class="badge">签证</span> 2026年最新签证政策及 F-4 解读
+            </a>
+            <a href="https://naver.com?query=네이버+환율" target="_blank" class="info-item">
+                <span class="badge">汇率</span> 查看NAVER实时汇率详细图表
+            </a>
+        </div>
+
+        <!-- 최신 공지 -->
+        <div class="card">
+            <div class="card-title">最新职位公告 (오늘 업데이트)</div>
+            <div style="text-align: center; padding: 30px 0; color: #999; font-size: 14px;">
+                目前还没有发布的公告<br>
+                <span style="font-size: 12px;">点击上方“发布招聘”提交今日第一条公告</span>
+            </div>
+        </div>
+
+        <!-- 방문자 수 -->
+        <div style="text-align: center; margin-top: 30px;">
+            <div style="font-size: 10px; color: #ccc;">TOTAL VISITORS</div>
+            <div style="font-size: 32px; font-weight: bold; color: var(--primary-blue);">923</div>
+        </div>
     </div>
 
-    <!-- 3. 날씨 및 환율 퀵 메뉴 (날씨 위젯 대체) -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
-        <!-- 네이버 날씨 바로가기 -->
-        <a href="https://naver.com?query=%EB%82%A0%EC%94%A8" target="_blank" 
-           style="text-decoration: none; background: #fff; padding: 12px; border-radius: 10px; border: 1px solid #eee; text-align: center; color: #333; font-size: 14px; display: flex; flex-direction: column; align-items: center;">
-            <span style="font-size: 20px; margin-bottom: 5px;">🌤️</span>
-            <strong>실시간 날씨</strong>
-            <span style="font-size: 11px; color: #888; margin-top: 3px;">네이버 예보 확인</span>
-        </a>
-        <!-- 네이버 환율 상세정보 -->
-        <a href="https://naver.com?query=%EB%84%A4%EC%9D%B4%EB%B2%84+%ED%99%98%EC%9C%A8" target="_blank" 
-           style="text-decoration: none; background: #fff; padding: 12px; border-radius: 10px; border: 1px solid #eee; text-align: center; color: #333; font-size: 14px; display: flex; flex-direction: column; align-items: center;">
-            <span style="font-size: 20px; margin-bottom: 5px;">📈</span>
-            <strong>환율 차트</strong>
-            <span style="font-size: 11px; color: #888; margin-top: 3px;">실시간 상세분석</span>
-        </a>
-    </div>
-
+    <!-- 푸터 -->
+    <footer>
+        © 2026 HanZhiTong. ALL RIGHTS RESERVED.
+    </footer>
 </div>
-<!-- 한직통 정보 섹션 끝 -->
+
+</body>
+</html>
