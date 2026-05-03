@@ -9,45 +9,39 @@
         body { font-family: 'Microsoft YaHei', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
         .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
         
-        /* 顶部导航 */
+        /* 导航栏 */
         header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 22px; font-weight: bold; color: var(--primary-blue); text-decoration: none; }
         .post-btn { background: var(--primary-blue); color: white; border: none; padding: 10px 18px; border-radius: 25px; font-size: 13px; cursor: pointer; font-weight: bold; }
 
         .content { padding: 15px; }
 
-        /* 1. 分类金刚区 */
+        /* 分类菜单 */
         .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 25px; }
-        .category-item { text-align: center; text-decoration: none; color: #555; }
+        .category-item { text-align: center; text-decoration: none; color: #555; cursor: pointer; }
         .category-icon { width: 50px; height: 50px; background: #eef5ff; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; transition: 0.2s; }
         .category-item:hover .category-icon { background: var(--primary-blue); color: white; transform: translateY(-3px); }
         .category-text { font-size: 12px; font-weight: bold; }
 
-        /* 2. 自动滚动贴士 */
+        /* 滚动贴士 */
         .tips-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 15px; margin-bottom: 20px; border-left: 5px solid var(--primary-blue); }
         #tip-content { font-size: 13px; color: #666; line-height: 1.5; min-height: 40px; transition: opacity 0.5s; }
 
-        /* 3. 推广横幅 */
+        /* 推广横幅 */
         .promo-banner { background: linear-gradient(135deg, #fffde7 0%, #fff59d 100%); border: 1px solid #fbc02d; border-radius: 12px; padding: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
         .promo-info h4 { margin: 0 0 5px; color: #f57f17; font-size: 15px; }
         .promo-info p { margin: 0; font-size: 12px; color: #7f6d00; }
 
-        /* 4. 信息展示卡片 */
-        .section-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px; margin-bottom: 20px; }
-        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 8px; }
-        .section-title { font-size: 16px; font-weight: bold; color: #222; }
-
-        /* 列表样式 */
-        .info-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f9f9f9; text-decoration: none; color: #444; font-size: 14px; }
-        .badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-right: 8px; font-weight: bold; }
-        .bg-blue { background: #e7f3ff; color: #007bff; }
-        .bg-orange { background: #fff3e0; color: #ff9800; }
-        .bg-green { background: #e8f5e9; color: #4caf50; }
-
         /* 发布表单 */
-        #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; }
-        .form-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        
+        #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .form-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
+
+        /* 信息展示区 */
+        .section-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px; margin-bottom: 20px; }
+        .section-title { font-size: 16px; font-weight: bold; color: #222; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 8px; }
+
+        .empty-state { text-align: center; padding: 40px 20px; color: #ccc; font-size: 14px; }
+
         footer { text-align: center; padding: 40px 20px; color: #bbb; font-size: 11px; }
     </style>
 </head>
@@ -62,18 +56,18 @@
     <div class="content">
         <!-- 分类菜单 -->
         <div class="category-grid">
-            <a href="javascript:void(0)" class="category-item" onclick="toggleForm()">
+            <div class="category-item" onclick="toggleForm()">
                 <div class="category-icon">💼</div><div class="category-text">招聘求职</div>
-            </a>
-            <a href="javascript:void(0)" class="category-item" onclick="toggleForm()">
+            </div>
+            <div class="category-item" onclick="toggleForm()">
                 <div class="category-icon">🛒</div><div class="category-text">闲置二手</div>
-            </a>
-            <a href="javascript:void(0)" class="category-item" onclick="toggleForm()">
+            </div>
+            <div class="category-item" onclick="toggleForm()">
                 <div class="category-icon">🏠</div><div class="category-text">房屋租赁</div>
-            </a>
-            <a href="javascript:void(0)" class="category-item" onclick="toggleForm()">
+            </div>
+            <div class="category-item" onclick="toggleForm()">
                 <div class="category-icon">💬</div><div class="category-text">生活互助</div>
-            </a>
+            </div>
         </div>
 
         <!-- 自动滚动贴士 -->
@@ -81,62 +75,50 @@
             <div id="tip-content">正在为您加载生活小贴士...</div>
         </div>
 
-        <!-- 推广奖励横幅 -->
+        <!-- 推广横幅 -->
         <div class="promo-banner" onclick="toggleForm()">
             <div style="font-size: 30px;">🎁</div>
             <div class="promo-info">
                 <h4>商家入驻限时优惠</h4>
-                <p>发布招聘、租房信息，立享 **30天首页置顶** 权益！</p>
+                <p>发布招聘或租房信息，通过审核即享 **30天首页置顶**！</p>
             </div>
         </div>
 
-        <!-- 投稿表单 (对接您的邮箱) -->
+        <!-- 投稿表单 (信息将发送至您的邮箱) -->
         <div id="postForm">
-            <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 发布信息 (审核后发布)</h3>
+            <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 发布新信息</h3>
+            <p style="font-size:12px; color:#999; margin-bottom:15px;">请填写以下内容，管理员审核后将为您发布。</p>
             <form action="https://formspree.io" method="POST">
                 <select name="类别" class="form-input" required>
-                    <option value="招聘">💼 发布招聘</option>
+                    <option value="" disabled selected>选择分类</option>
+                    <option value="招聘">💼 招聘求职</option>
                     <option value="二手">🛒 闲置二手</option>
                     <option value="租房">🏠 房屋租赁</option>
                     <option value="互助">💬 生活互助</option>
                 </select>
-                <input type="text" name="联系方式" required placeholder="您的联系电话 / 微信" class="form-input">
-                <textarea name="详情" rows="5" required placeholder="请详细描述您的需求（如地点、价格、具体要求等）" class="form-input"></textarea>
+                <input type="text" name="联系方式" required placeholder="您的电话或微信号" class="form-input">
+                <textarea name="详细内容" rows="5" required placeholder="请输入详细描述（地点、价格、具体要求等）" class="form-input"></textarea>
                 <button type="submit" class="post-btn" style="width:100%; border-radius:8px; height:45px;">提交申请</button>
             </form>
         </div>
 
-        <!-- 最新发布展示区 -->
+        <!-- 最新信息区 -->
         <div class="section-card">
-            <div class="section-header">
-                <div class="section-title">✨ 最新发布</div>
-            </div>
-            
-            <div class="info-item">
-                <span><span class="badge bg-blue">招聘</span> [首尔] 中餐厅招收银，薪资优渥</span>
-                <span style="color:#aaa; font-size:11px;">刚才</span>
-            </div>
-            <div class="info-item">
-                <span><span class="badge bg-green">租房</span> [大林] 出租阳光好房，保证金低</span>
-                <span style="color:#aaa; font-size:11px;">1小时前</span>
-            </div>
-            <div class="info-item">
-                <span><span class="badge bg-orange">二手</span> 9.9成新空气炸锅，半价转让</span>
-                <span style="color:#aaa; font-size:11px;">3小时前</span>
-            </div>
-            
-            <div style="text-align: center; padding: 20px 0; color: #ddd; font-size: 13px;">
-                快去发布第一条信息吧！
+            <div class="section-title">✨ 最新动态</div>
+            <div class="empty-state">
+                <div style="font-size: 40px; margin-bottom: 10px;">📝</div>
+                目前还没有发布的信息<br>
+                点击上方“发布信息”提交您的第一条申请吧！
             </div>
         </div>
 
         <!-- 实用工具 -->
         <div class="section-card">
-            <div class="section-header"><div class="section-title">🔔 实用工具</div></div>
-            <a href="https://naver.com" target="_blank" class="info-item">
+            <div class="section-title">🔔 实用工具</div>
+            <a href="https://naver.com" target="_blank" style="display:flex; justify-content:space-between; padding:12px 0; text-decoration:none; color:#444; font-size:14px; border-bottom:1px solid #f9f9f9;">
                 <span>📊 实时汇率查询 (韩币/人民币)</span> <span style="color:#ccc;">↗</span>
             </a>
-            <a href="https://naver.com" target="_blank" class="info-item">
+            <a href="https://naver.com" target="_blank" style="display:flex; justify-content:space-between; padding:12px 0; text-decoration:none; color:#444; font-size:14px;">
                 <span>🌤️ 实时天气与空气质量</span> <span style="color:#ccc;">↗</span>
             </a>
         </div>
@@ -146,14 +128,12 @@
 </div>
 
 <script>
-    // 切换表单显示/隐藏
     function toggleForm() {
         var form = document.getElementById('postForm');
         form.style.display = (form.style.display === 'block') ? 'none' : 'block';
         if(form.style.display === 'block') form.scrollIntoView({behavior: "smooth"});
     }
 
-    // 自动轮播生活小贴士
     const tips = [
         "💡 租房提示：签约前务必确认【等记簿副本】，检查房东债务情况。",
         "💡 换钱安全：请通过银行官方APP换钱，避免私人交易导致账号被封。",
@@ -171,7 +151,7 @@
             tipIdx = (tipIdx + 1) % tips.length;
         }, 500);
     }
-    setInterval(rotateTips, 5000); // 每5秒更换一次
+    setInterval(rotateTips, 5000);
     rotateTips();
 </script>
 
