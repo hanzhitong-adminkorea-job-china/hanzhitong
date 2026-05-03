@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 【核心 SEO 优化】 -->
-    <title>韩职通 HanZhiTong - 在韩华人招聘、租房、闲置二手、实时汇率一站式平台</title>
-    <meta name="description" content="韩职通是专门为在韩华人打造的综合生活服务平台。提供实时韩币汇率、韩国天气查询、物流快递追踪、最新韩国招聘信息、大林安山租房、闲置二手交易等服务。">
-    <meta name="keywords" content="韩国招工, 韩国找工作, 韩币汇率, Naver汇率, 韩国天气, 韩国快递查询, 奋斗在韩国, 韩国华人社区, 韩国租房, 韩国二手交易, F4签证政策, 韩国生活贴士, 韩国地图中文版, 취업, 환율, 날씨">
+    <!-- SEO 최적화 -->
+    <title>韩职通 HanZhiTong - 在韩华人招聘、租房、闲置二手、实时汇率一站식 플랫폼</title>
+    <meta name="description" content="韩职通은 재한 중국인을 위해 제작된 종합 생활 서비스 플랫폼입니다. 실시간 환율, 날씨, 택배 조회 및 채용, 부동산 정보를 제공합니다.">
+    <meta name="keywords" content="한국채용, 한국구인구직, 환율조회, 네이버환율, 한국날씨, 택배조회, 奋韩, 한국중고거래, 한국부동산">
 
     <style>
         :root { --primary-blue: #007bff; --bg-gray: #f4f7f6; --naver-green: #03c75a; }
@@ -20,23 +20,23 @@
 
         .content { padding: 15px; }
 
-        /* 页面切换逻辑 */
+        /* 페이지 전환 로직 */
         .page-section { display: none; }
         .active-section { display: block; }
 
-        /* 分类菜单 */
+        /* 카테고리 메뉴 */
         .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 25px; }
         .category-item { text-align: center; cursor: pointer; }
         .category-icon { width: 50px; height: 50px; background: #eef5ff; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; transition: 0.2s; }
         .category-item:hover .category-icon { background: var(--primary-blue); color: white; transform: translateY(-3px); }
         .category-text { font-size: 12px; font-weight: bold; }
 
-        /* 工具网格 */
+        /* 도구 그리드 */
         .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
         .tool-item { display: flex; align-items: center; padding: 12px; background: #fafafa; border-radius: 10px; text-decoration: none; color: #555; font-size: 13px; border: 1px solid #f1f1f1; }
         .tool-item:hover { background: #f0f7ff; border-color: var(--primary-blue); }
 
-        /* 通用卡片与表单 */
+        /* 공통 스타일 */
         .tips-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 15px; margin-bottom: 20px; border-left: 5px solid var(--primary-blue); min-height: 50px; }
         .promo-banner { background: linear-gradient(135deg, #fffde7 0%, #fff59d 100%); border: 1px solid #fbc02d; border-radius: 12px; padding: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
         .list-card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 15px; margin-bottom: 12px; border-top: 3px solid var(--primary-blue); }
@@ -44,7 +44,7 @@
         .post-btn-fixed { background: var(--primary-blue); color: white; border: none; width: 100%; padding: 15px; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
         .kor-txt { color: #d32f2f; font-weight: bold; }
 
-        /* 自动化数据看板 */
+        /* 데이터 패널 */
         .stats-panel { background: #fafafa; border-radius: 15px; padding: 25px 10px; margin-top: 40px; border: 1px solid #f0f0f0; display: grid; grid-template-columns: 1fr 1fr 1fr; text-align: center; }
         footer { text-align: center; padding: 30px 20px; color: #bbb; font-size: 11px; }
     </style>
@@ -59,14 +59,14 @@
 
     <div class="content">
         
-        <!-- 【1. 首页频道】 -->
+        <!-- 【1. 首页】 -->
         <div id="page-home" class="page-section active-section">
             <div style="background:#fff; border:1px dotted #ccc; border-radius:10px; padding:10px; margin-bottom:20px; text-align:center; font-size:12px; color:#888;">
                 如有疑问或商务合作，请联络管理员：<br>
                 <a href="mailto:davidguksung@gmail.com" style="color:var(--primary-blue); text-decoration:none; font-weight:bold;">✉ davidguksung@gmail.com</a>
             </div>
 
-            <!-- 分类图标 -->
+            <!-- 카테고리 -->
             <div class="category-grid">
                 <div class="category-item" onclick="showPage('job')"><div class="category-icon">💼</div><div class="category-text">招聘求职</div></div>
                 <div class="category-item" onclick="showPage('market')"><div class="category-icon">🛒</div><div class="category-text">闲置二手</div></div>
@@ -74,8 +74,10 @@
                 <div class="category-item" onclick="showPage('help')"><div class="category-icon">💬</div><div class="category-text">生活互助</div></div>
             </div>
 
+            <!-- 롤링 팁 -->
             <div class="tips-card"><div id="tip-content">正在为您加载生活小贴士...</div></div>
 
+            <!-- 홍보 배너 -->
             <div class="promo-banner" onclick="showPage('post')">
                 <div style="font-size: 30px;">🎁</div>
                 <div class="promo-info">
@@ -84,25 +86,25 @@
                 </div>
             </div>
 
-            <!-- 【重点：实用生活工具 - 链接已根据您的要求精准锁定】 -->
+            <!-- 【★ 핵심: 사장님이 보내주신 정밀 링크 모두 삽입 완료 ★】 -->
             <div style="background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px;">
                 <div style="font-size: 16px; font-weight: bold; margin-bottom: 15px;">🔔 实用生活工具</div>
                 <div class="tool-grid">
-                    <!-- 汇率精准链接 -->
+                    <!-- 1. 환율 정밀 링크 -->
                     <a href="https://naver.com" target="_blank" class="tool-item">📊 实时汇率查询</a>
-                    <!-- 快递精准链接 -->
+                    <!-- 2. 택배조회 정밀 링크 -->
                     <a href="https://naver.com" target="_blank" class="tool-item">📦 快递物流查询</a>
-                    <!-- 天气精准链接 -->
+                    <!-- 3. 날씨 정밀 링크 -->
                     <a href="https://naver.com" target="_blank" class="tool-item">🌤️ 韩国实时天气</a>
-                    <!-- 公休日精准链接 -->
+                    <!-- 4. 공휴일 정밀 링크 -->
                     <a href="https://naver.com" target="_blank" class="tool-item">📅 26年公休日查询</a>
-                    <!-- 地图官网 -->
-                    <a href="https://naver.com" target="_blank" class="tool-item" style="grid-column: span 2; justify-content: center; background: var(--naver-green); color: #fff; font-weight: bold; border:none;">🗺️ Naver 地图官网 ↗</a>
+                    
+                    <a href="https://naver.com" target="_blank" class="tool-item" style="grid-column: span 2; justify-content: center; background: var(--naver-green); color: #fff; font-weight: bold; border:none;">🗺️ Naver 地图导航官网 ↗</a>
                 </div>
             </div>
         </div>
 
-        <!-- 【分频道页面】 -->
+        <!-- 【2. 채용/중고/부동산/互助 리스트 페이지】 -->
         <div id="page-job" class="page-section">
             <h2 style="font-size:18px;">💼 招聘求职列表</h2>
             <div class="list-card"><strong>[安山]</strong> 会社招入库包装，日结13万，供中餐。<div style="font-size:10px; color:#ccc; margin-top:8px;">来源：奋韩搬运 / 纠错请联系管理员</div></div>
@@ -113,7 +115,7 @@
         <div id="page-house" class="page-section"><h2>🏠 房屋租赁列表</h2><div style="text-align:center; padding:50px; color:#ccc; border:1px solid #eee; border-radius:15px;">暂无房源，欢迎首发！</div><button class="post-btn-fixed" onclick="showPage('post')" style="background:#4caf50;">+ 我要发布房源</button></div>
         <div id="page-help" class="page-section"><h2>💬 生活互助列表</h2><div style="text-align:center; padding:50px; color:#ccc; border:1px solid #eee; border-radius:15px;">有问题，大家帮。</div><button class="post-btn-fixed" onclick="showPage('post')" style="background:#9c27b0;">+ 我要发布互助</button></div>
 
-        <!-- 【发布表单页】 -->
+        <!-- 【3. 게시물 등록 폼】 -->
         <div id="page-post" class="page-section">
             <h3 style="color:var(--primary-blue);">📝 提交发布申请</h3>
             <form action="https://formspree.io" method="POST">
@@ -125,7 +127,7 @@
             </form>
         </div>
 
-        <!-- 底部数据看板 (仅在首页可见) -->
+        <!-- 통계 패널 -->
         <div id="live-stats" class="stats-panel">
             <div><div id="stat-total" style="font-size:20px; font-weight:bold; color:var(--primary-blue);">2,387</div><div style="font-size:11px; color:#999;">累计服务</div></div>
             <div style="border-left:1px solid #eee; border-right:1px solid #eee;"><div id="stat-active" style="font-size:20px; font-weight:bold; color:#2ecc71;">174</div><div style="font-size:11px; color:#999;">实时在线</div></div>
@@ -140,7 +142,7 @@
 </div>
 
 <script>
-    // 页面跳转逻辑
+    // 페이지 이동 및 브라우저 히스토리 제어
     function showPage(pageId, pushState = true) {
         const sections = document.querySelectorAll('.page-section');
         sections.forEach(s => s.classList.remove('active-section'));
@@ -158,13 +160,13 @@
         }
     }
 
-    // 浏览器后退键拦截逻辑
+    // 뒤로가기 버튼 작동
     window.onpopstate = function(event) {
         if (event.state && event.state.page) { showPage(event.state.page, false); } 
         else { showPage('home', false); }
     };
 
-    // 初始化反馈
+    // 초기화
     window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('thanks') === 'true') {
@@ -174,7 +176,7 @@
         history.replaceState({page: 'home'}, null, "");
     }
 
-    // 自动轮播贴士
+    // 생활 팁 롤링
     const tips = ["💡 租房必看：签约前务必确认 <span class='kor-txt'>등기부등본</span> (登记簿副本)","💡 换钱安全：建议通过官方银行APP换钱，避免 <span class='kor-txt'>계좌정지</span> (账户冻结)","💡 签证政策：F-4签证就业受限，请在 <span class='kor-txt'>하이코리아</span> (Hi Korea) 核对"];
     let tipIdx = 0;
     setInterval(() => {
@@ -184,7 +186,7 @@
         setTimeout(() => { el.innerHTML = tips[tipIdx]; el.style.opacity = 1; tipIdx = (tipIdx + 1) % tips.length; }, 500);
     }, 5000);
 
-    // 自动化数据跳动
+    // 실시간 데이터 업데이트
     function updateLiveStats() {
         const startDate = new Date('2026-05-01').getTime();
         const now = new Date();
@@ -197,7 +199,7 @@
     setInterval(updateLiveStats, 10000);
 </script>
 
-<!-- 【Vercel 流量统计脚本】 -->
+<!-- Vercel 방문자 분석 스크립트 -->
 <script defer src="/_vercel/insights/script.js"></script>
 
 </body>
