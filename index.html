@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>韩职通 - 专业的在韩华人招聘网</title>
     <style>
-        /* 눈이 편안한 모바일 최적화 스타일 */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { font-family: -apple-system, system-ui, sans-serif; background-color: #f5f7f9; color: #333; line-height: 1.6; }
         .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; display: flex; flex-direction: column; }
@@ -21,7 +20,7 @@
         .hero p { color: #888; font-size: 14px; margin-bottom: 25px; }
         .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 15px; font-size: 16px; outline: none; }
 
-        /* 채용 등록 폼 (Formspree) */
+        /* 채용 등록 폼 */
         #post-form { display: none; padding: 25px 20px; background: #f9fbff; border-bottom: 5px solid #eee; }
         .form-title { font-size: 18px; font-weight: bold; margin-bottom: 20px; color: #007AFF; }
         .form-group { margin-bottom: 15px; }
@@ -29,17 +28,12 @@
         .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; }
         .submit-btn { width: 100%; padding: 15px; background: #007AFF; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 16px; }
 
-        /* 공고 목록 */
+        /* 공고 목록 헤더 */
         .section-header { padding: 20px 20px 10px; font-weight: bold; font-size: 18px; border-bottom: 1px solid #f0f0f0; }
         
-        /* 공고 카드 디자인 (유료화 대비 버전) */
-        .job-card { padding: 20px; border-bottom: 1px solid #eee; position: relative; }
-        .job-card:last-child { border-bottom: none; }
-        .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .d-day { background: #FF3B30; color: white; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 4px; }
-        .job-title { font-size: 18px; font-weight: bold; color: #111; margin-bottom: 5px; }
-        .job-desc { font-size: 14px; color: #666; margin-bottom: 15px; }
-        .contact-link { display: block; text-align: center; background: #007AFF; color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 14px; }
+        /* 공고가 없을 때 표시되는 화면 */
+        .empty-state { padding: 80px 20px; text-align: center; color: #bbb; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .empty-icon { font-size: 50px; margin-bottom: 15px; opacity: 0.5; }
 
         /* 푸터 및 카운터 */
         footer { padding: 60px 20px; text-align: center; background: #fafbfc; border-top: 1px solid #eee; margin-top: auto; }
@@ -86,27 +80,22 @@
     <!-- 메인 섹션 -->
     <section class="hero">
         <h2>在韩华人, <span style="color:#007AFF;">高效就业</span></h2>
-        <p>무료 등록 이벤트 중! 지금 바로 공고를 올려보세요.</p>
+        <p>무료 등록 이벤트 중! 직접 등록한 공고만 게시됩니다.</p>
         <input type="text" class="search-box" placeholder="搜索您感兴趣的职位...">
     </section>
 
     <div class="section-header">最新职位公告 (최신공고)</div>
 
-    <!-- 첫 번째 공고 샘플 (유료화 대비 디자인) -->
-    <div class="job-card">
-        <div class="card-top">
-            <span class="d-day">D-15 (급구)</span>
-            <span style="font-size: 11px; color: #bbb;">今日 14:30</span>
-        </div>
-        <div class="job-title">[서울/강남] IT무역회사 중국어 영업 담당자</div>
-        <div class="job-desc">📍 서울 강남구 | 💰 연봉 3,000만~ | 📄 비자 지원가능</div>
-        <a href="tel:010-1234-5678" class="contact-link">📞 바로 전화문의</a>
+    <!-- 공고 없음 상태 -->
+    <div class="empty-state">
+        <span class="empty-icon">📂</span>
+        <p style="font-weight: bold; color: #888;">目前还没有发布的公告</p>
+        <p style="font-size: 13px; margin-top: 5px;">点击上方“发布招聘”提交您的第一条公告！</p>
     </div>
 
     <footer>
         <div class="visitor-box">
             <div class="visitor-label">TOTAL VISITORS</div>
-            <!-- 실시간 누적 카운터 -->
             <span id="live-counter">...</span>
             <div class="live-status">
                 <span class="dot"></span> 시스템 정상 작동중 (LIVE)
@@ -118,7 +107,6 @@
 </div>
 
 <script>
-    // 폼 보이기/숨기기
     function toggleForm() {
         const form = document.getElementById('post-form');
         const isHidden = (form.style.display === 'none' || form.style.display === '');
@@ -126,11 +114,9 @@
         if(isHidden) form.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // 외부 이미지 없이 정직하게 숫자가 올라가는 카운터 기능
     function initCounter() {
         const counterEl = document.getElementById('live-counter');
-        // 브라우저 로컬 저장소를 활용해 사장님의 방문 횟수를 정직하게 기록
-        let count = localStorage.getItem('hzt_visitor_count') || 12; // 12명부터 시작(예시)
+        let count = localStorage.getItem('hzt_visitor_count') || 10;
         count = parseInt(count) + 1;
         localStorage.setItem('hzt_visitor_count', count);
         counterEl.innerText = count.toLocaleString();
