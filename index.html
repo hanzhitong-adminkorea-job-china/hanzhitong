@@ -7,7 +7,7 @@
     <style>
         :root { --primary-blue: #007bff; --bg-gray: #f4f7f6; }
         body { font-family: 'Microsoft YaHei', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); position: relative; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
         
         header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 22px; font-weight: bold; color: var(--primary-blue); text-decoration: none; }
@@ -27,6 +27,10 @@
         #tip-content { font-size: 13.5px; color: #444; line-height: 1.6; min-height: 45px; transition: opacity 0.5s; }
         .kor-txt { color: #d32f2f; font-weight: bold; }
 
+        /* 管理员联系方式 (新添加) */
+        .admin-contact { background: #f0f7ff; border: 1px solid #cce3ff; border-radius: 15px; padding: 15px; margin-bottom: 20px; text-align: center; }
+        .admin-email { color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 14px; display: block; margin-top: 5px; }
+
         /* 推广横幅 */
         .promo-banner { background: linear-gradient(135deg, #fffde7 0%, #fff59d 100%); border: 1px solid #fbc02d; border-radius: 12px; padding: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
         .promo-info h4 { margin: 0 0 5px; color: #f57f17; font-size: 15px; }
@@ -36,28 +40,7 @@
         #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .form-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
 
-        /* AI 悬浮按钮 */
-        #ai-button {
-            position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px;
-            background: var(--primary-blue); border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; z-index: 999;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
-        /* AI 聊天窗口 */
-        #ai-window {
-            display: none; position: fixed; bottom: 90px; right: 20px; width: 300px;
-            background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-            z-index: 1000; overflow: hidden; border: 1px solid #eee;
-        }
-        .ai-header { background: var(--primary-blue); color: #fff; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; }
-        .ai-body { padding: 15px; max-height: 250px; overflow-y: auto; font-size: 13px; background: #f9f9f9; }
-        .ai-bubble { background: #e3f2fd; padding: 10px; border-radius: 10px; margin-bottom: 10px; line-height: 1.4; }
-        .ai-input-area { padding: 10px; border-top: 1px solid #eee; display: flex; }
-        .ai-input { flex: 1; border: 1px solid #ddd; padding: 8px; border-radius: 5px; outline: none; font-size: 12px; }
-
-        /* 展示区 */
+        /* 最新动态区 */
         .section-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px; margin-bottom: 20px; }
         .section-title { font-size: 16px; font-weight: bold; color: #222; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 8px; }
 
@@ -73,17 +56,10 @@
     </header>
 
     <div class="content">
-        <!-- AI 助手 -->
-        <div id="ai-button" onclick="toggleAI()">🤖</div>
-        <div id="ai-window">
-            <div class="ai-header">AI 智能助理 <span onclick="toggleAI()" style="cursor:pointer">×</span></div>
-            <div class="ai-body">
-                <div class="ai-bubble">您好！我是韩职通助手。您可以直接在这里留言，我会通过邮件通知管理员。<br><br>需要帮助请描述您的问题：</div>
-            </div>
-            <form action="https://formspree.io" method="POST" class="ai-input-area">
-                <input type="text" name="来自AI助理的咨询" class="ai-input" placeholder="输入您的问题..." required>
-                <button type="submit" style="background:var(--primary-blue); color:#fff; border:none; padding:0 10px; border-radius:5px; margin-left:5px; cursor:pointer">发送</button>
-            </form>
+        <!-- 管理员联系方式 -->
+        <div class="admin-contact">
+            <span style="font-size: 13px; color: #666;">如有疑问或商务合作，请联络管理员：</span>
+            <a href="mailto:davidguksung@gmail.com" class="admin-email">✉ davidguksung@gmail.com</a>
         </div>
 
         <!-- 分类菜单 -->
@@ -133,7 +109,7 @@
             </form>
         </div>
 
-        <!-- 展示区 -->
+        <!-- 最新动态区 -->
         <div class="section-card">
             <div class="section-title">✨ 最新动态</div>
             <div style="text-align:center; padding:30px; color:#ccc; font-size:14px;">目前还没有发布的信息<br>审核通过后将在此显示</div>
@@ -159,11 +135,6 @@
         var form = document.getElementById('postForm');
         form.style.display = (form.style.display === 'block') ? 'none' : 'block';
         if(form.style.display === 'block') form.scrollIntoView({behavior: "smooth"});
-    }
-
-    function toggleAI() {
-        var win = document.getElementById('ai-window');
-        win.style.display = (win.style.display === 'block') ? 'none' : 'block';
     }
 
     const tips = [
