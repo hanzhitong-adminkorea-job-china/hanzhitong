@@ -21,10 +21,15 @@
         .category-icon { width: 50px; height: 50px; background: #eef5ff; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; }
         .category-text { font-size: 12px; font-weight: bold; }
 
-        /* 滚动贴士 - 重点优化部分 */
+        /* 滚动贴士 */
         .tips-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 15px; margin-bottom: 20px; border-left: 5px solid var(--primary-blue); }
         #tip-content { font-size: 13.5px; color: #444; line-height: 1.6; min-height: 45px; transition: opacity 0.5s; }
         .kor-txt { color: #d32f2f; font-weight: bold; background: #fff8f8; padding: 0 4px; border-radius: 3px; border: 1px solid #ffcdd2; }
+
+        /* 客服与合作区域 */
+        .contact-card { background: #e3f2fd; border-radius: 15px; padding: 15px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .contact-item { display: flex; align-items: center; justify-content: space-between; background: #fff; padding: 12px; border-radius: 10px; text-decoration: none; color: #333; font-size: 14px; font-weight: bold; border: 1px solid #bbdefb; }
+        .contact-item span { color: var(--primary-blue); font-size: 12px; font-weight: normal; }
 
         /* 推广横幅 */
         .promo-banner { background: linear-gradient(135deg, #fffde7 0%, #fff59d 100%); border: 1px solid #fbc02d; border-radius: 12px; padding: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
@@ -32,10 +37,10 @@
         .promo-info p { margin: 0; font-size: 12px; color: #7f6d00; }
 
         /* 投稿表单 */
-        #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; }
+        #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .form-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
 
-        /* 最新动态区 */
+        /* 动态区 */
         .section-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px; margin-bottom: 20px; }
         .section-title { font-size: 16px; font-weight: bold; color: #222; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 8px; }
         .empty-state { text-align: center; padding: 40px 20px; color: #ccc; font-size: 14px; }
@@ -68,9 +73,19 @@
             </div>
         </div>
 
-        <!-- 自动滚动贴士 (含韩文术语) -->
+        <!-- 自动滚动贴士 -->
         <div class="tips-card">
             <div id="tip-content">正在为您加载生活小贴士...</div>
+        </div>
+
+        <!-- 客服与商务合作 -->
+        <div class="contact-card">
+            <a href="mailto:davidguksung@gmail.com" class="contact-item">
+                🎧 联系在线客服 <span>点击发送邮件</span>
+            </a>
+            <a href="mailto:davidguksung@gmail.com" class="contact-item">
+                🤝 商务合作洽谈 <span>davidguksung@gmail.com</span>
+            </a>
         </div>
 
         <!-- 推广横幅 -->
@@ -82,12 +97,12 @@
             </div>
         </div>
 
-        <!-- 投稿表单 (对接您的邮箱) -->
+        <!-- 投稿表单 -->
         <div id="postForm">
-            <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 发布新信息</h3>
+            <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 提交发布申请</h3>
             <form action="https://formspree.io" method="POST">
                 <select name="类别" class="form-input" required>
-                    <option value="" disabled selected>选择分类</option>
+                    <option value="" disabled selected>选择信息分类</option>
                     <option value="招聘">💼 招聘求职</option>
                     <option value="二手">🛒 闲置二手</option>
                     <option value="租房">🏠 房屋租赁</option>
@@ -95,7 +110,7 @@
                 </select>
                 <input type="text" name="联系方式" required placeholder="您的电话或微信号" class="form-input">
                 <textarea name="详细内容" rows="5" required placeholder="请输入详细描述（地点、价格、具体要求等）" class="form-input"></textarea>
-                <button type="submit" class="post-btn" style="width:100%; border-radius:8px; height:45px;">提交申请</button>
+                <button type="submit" class="post-btn" style="width:100%; border-radius:8px; height:45px;">确认提交</button>
             </form>
         </div>
 
@@ -103,9 +118,8 @@
         <div class="section-card">
             <div class="section-title">✨ 最新动态</div>
             <div class="empty-state">
-                <div style="font-size: 40px; margin-bottom: 10px;">📝</div>
                 目前还没有发布的信息<br>
-                点击上方“发布信息”提交您的第一条申请吧！
+                提交申请并审核通过后将在此显示
             </div>
         </div>
 
@@ -131,14 +145,12 @@
         if(form.style.display === 'block') form.scrollIntoView({behavior: "smooth"});
     }
 
-    // 重点：加入韩文正确用语的生活贴士
     const tips = [
         "💡 租房必看：签约前务必确认 <span class='kor-txt'>등기부등본</span> (登记簿副本)，检查房东身份和房屋债务。",
         "💡 换钱安全：建议通过官方银行APP换钱，避免私人交易导致 <span class='kor-txt'>계좌정지</span> (账户冻结) 风险。",
         "💡 签证政策：F-4签证在某些服务业就业受限，请在 <span class='kor-txt'>하이코리아</span> (Hi Korea) 官网核对职业清单。",
         "💡 法律维权：职场纠纷可拨打1350咨询 <span class='kor-txt'>고용노동부</span> (雇佣劳动部)，支持中文人工翻译。",
-        "💡 生活提示：丢弃冰箱、沙发等大件垃圾需购买 <span class='kor-txt'>대형폐기물 스티커</span> (大件垃圾排放贴纸)。",
-        "💡 房产交易：中介合同中必须包含 <span class='kor-txt'>중개대상물 확인설명서</span> (中介对象物确认说明书) 才能保障权益。"
+        "💡 生活提示：丢弃冰箱、沙发等大件垃圾需购买 <span class='kor-txt'>대형폐기물 스티커</span> (大件垃圾排放贴纸)。"
     ];
 
     let tipIdx = 0;
