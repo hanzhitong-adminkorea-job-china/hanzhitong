@@ -11,33 +11,28 @@
         
         header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
         .logo { font-size: 22px; font-weight: bold; color: var(--primary-blue); text-decoration: none; }
-        .post-btn { background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 25px; font-size: 14px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .post-btn { background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 25px; font-size: 14px; cursor: pointer; font-weight: bold; }
 
         .content { padding: 20px; }
 
-        /* 搜索框：明确标注为外部搜索工具 */
+        /* 搜索框 */
         .search-section { margin-bottom: 25px; }
         .search-box { display: flex; border: 2px solid var(--primary-blue); border-radius: 12px; overflow: hidden; background: #fff; }
         .search-box input { flex: 1; border: none; padding: 15px; outline: none; font-size: 16px; }
         .search-box button { background: var(--primary-blue); color: white; border: none; padding: 0 20px; font-weight: bold; cursor: pointer; }
 
-        /* 内部娱乐模块：点击跳转外部工具 */
-        .fun-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
-        .fun-item { background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 12px; text-align: center; text-decoration: none; color: #333; }
-        .fun-icon { font-size: 24px; display: block; margin-bottom: 8px; }
-        .fun-text { font-size: 13px; font-weight: bold; }
+        /* 生活小贴士增强版 */
+        .tips-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 20px; margin-bottom: 25px; position: relative; border-left: 5px solid var(--primary-blue); }
+        .tips-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .tips-title { font-size: 16px; font-weight: bold; color: #222; }
+        .tips-date { font-size: 12px; color: var(--primary-blue); font-weight: bold; }
+        #tip-content { font-size: 14px; color: #444; line-height: 1.6; min-height: 45px; }
+        .hot-tag { background: #ff4d4f; color: white; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-right: 5px; vertical-align: middle; }
 
-        /* 置顶宣传 banner：纯展示，留在本站 */
-        .promo-banner { background: linear-gradient(135deg, #fff9c4 0%, #fff176 100%); border: 1px solid #fdd835; padding: 15px; border-radius: 12px; margin-bottom: 25px; color: #827717; }
-
-        /* 列表项：内部功能不跳转，外部资讯才跳转 */
+        /* 其他样式保持一致 */
         .card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 20px; margin-bottom: 20px; }
         .card-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #222; }
         .info-item { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f1f1f1; text-decoration: none; color: #444; font-size: 14px; }
-        .info-item:last-child { border-bottom: none; }
-        .badge { background: #e7f3ff; color: var(--primary-blue); padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; margin-right: 10px; }
-
-        /* 发布招聘表单 */
         #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; }
         .stats { text-align: center; margin-top: 40px; padding: 25px; background: #fafafa; border-radius: 15px; }
         footer { text-align: center; padding: 50px 20px; color: #bbb; font-size: 12px; }
@@ -48,67 +43,49 @@
 <div class="container">
     <header>
         <a href="/" class="logo">韩职通 HanZhiTong</a>
-        <!-- 【本站功能】展开表单，不跳转 -->
         <button class="post-btn" onclick="toggleForm()">+ 发布招聘</button>
     </header>
 
     <div class="content">
-        <!-- 【工具】外部搜索 -->
+        <!-- 搜索 -->
         <div class="search-section">
             <form action="https://naver.com" method="get" target="_blank" class="search-box">
-                <input type="text" name="query" placeholder="在NAVER中搜索实时信息">
+                <input type="text" name="query" placeholder="搜索实时汇率、天气、政策">
                 <button type="submit">搜索</button>
             </form>
         </div>
 
-        <!-- 【娱乐链接】明确标记会前往外部 -->
-        <div class="fun-grid">
-            <a href="https://naver.com?query=오늘의+운세" target="_blank" class="fun-item">
-                <span class="fun-icon">🍀</span>
-                <span class="fun-text">今日运势 ↗</span>
-            </a>
-            <a href="https://youtube.com" target="_blank" class="fun-item">
-                <span class="fun-icon">📽️</span>
-                <span class="fun-text">生活视频 ↗</span>
-            </a>
+        <!-- 【核心改进】自动更新的生活小贴士 -->
+        <div class="tips-card">
+            <div class="tips-header">
+                <div class="tips-title">💡 每日生活贴士 <span class="hot-tag">HOT</span></div>
+                <div id="current-date" class="tips-date"></div>
+            </div>
+            <div id="tip-content">正在加载今日精选内容...</div>
         </div>
 
-        <!-- 【本站活动】纯展示，不跳转 -->
-        <div class="promo-banner">
-            <div style="font-weight: bold; font-size: 15px; margin-bottom: 5px;">🔥 商家专属优惠</div>
-            <div style="font-size: 13px;">商家发布招聘帖，免费提供 <strong>30天 首页置顶</strong>！</div>
-        </div>
-
-        <!-- 【本站表单】投稿到您的邮箱，不跳转 -->
+        <!-- 提交招聘表单 -->
         <div id="postForm">
             <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 提交招聘信息</h3>
             <form action="https://formspree.io" method="POST">
                 <input type="text" name="联系方式" required placeholder="您的联系电话 / 微信" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;">
-                <textarea name="详情" rows="5" required placeholder="招聘职位、工作地点、薪资等详情" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;"></textarea>
+                <textarea name="详情" rows="5" required placeholder="请填写：职位、地点、待遇等详细信息" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;"></textarea>
                 <button type="submit" class="post-btn" style="width:100%; border-radius:8px; height:45px;">确认提交审核</button>
             </form>
         </div>
 
-        <!-- 【本站贴士】 -->
-        <div class="card">
-            <div class="card-title">💡 每日生活小贴士</div>
-            <p style="font-size: 14px; color: #555; margin: 0; line-height: 1.6;">建议通过正规银行APP换钱，避免账号被冻结风险。</p>
-        </div>
-
-        <!-- 【资讯】跳转到外部查看详情 -->
+        <!-- 资讯 -->
         <div class="card">
             <div class="card-title">🔔 最新资讯</div>
             <a href="https://naver.com?query=2026年最新签证政策" target="_blank" class="info-item">
-                <span><span class="badge">签证</span> 2026年最新签证政策及 F-4 解读</span>
-                <span style="color:#ccc;">↗</span>
+                <span>签证: 2026年最新政策及 F-4 解读</span> <span style="color:#ccc;">↗</span>
             </a>
             <a href="https://naver.com?query=实时汇率" target="_blank" class="info-item">
-                <span><span class="badge">汇率</span> 查看实时汇率详细图表</span>
-                <span style="color:#ccc;">↗</span>
+                <span>汇率: 查看实时汇率详细图表</span> <span style="color:#ccc;">↗</span>
             </a>
         </div>
 
-        <!-- 【本站公告】职位展示区 -->
+        <!-- 公告 -->
         <div class="card">
             <div class="card-title">💼 最新职位公告</div>
             <div style="text-align: center; padding: 40px 0; color: #aaa; font-size: 14px;">
@@ -127,11 +104,40 @@
 </div>
 
 <script>
+    // 1. 发布表单切换
     function toggleForm() {
         var form = document.getElementById('postForm');
         form.style.display = (form.style.display === 'block') ? 'none' : 'block';
         if(form.style.display === 'block') form.scrollIntoView({behavior: "smooth"});
     }
+
+    // 2. 自动更新日期与贴士内容
+    function updateDailyTips() {
+        const dateEl = document.getElementById('current-date');
+        const contentEl = document.getElementById('tip-content');
+        
+        // 设置当前时间
+        const now = new Date();
+        dateEl.innerText = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`;
+
+        // 贴士知识库 (您可以随时在这里添加新内容)
+        const tipsLibrary = [
+            "建议通过正规银行APP（如新韩Sol Global）换钱，避免私人换钱导致账号被冻结风险。",
+            "在韩国丢了护照？第一时间去附近派出所开具遗失证明，并联系领事馆预约补办。",
+            "租房合同快到期？记得提前至少2个月告知房东是否续租，否则可能会自动默认续约。",
+            "2026年新规：F-4签证持有者在部分服务业就业限制已放宽，务必确认最新职业清单。",
+            "天气转冷，记得检查地暖（Ondol）排水管是否防冻，避免爆裂产生高额维修费。",
+            "使用Coupang购物时，若开启Wow会员可享受当日达，但记得定期检查订阅费扣除情况。",
+            "遇到职场不公正待遇？可拨打1350劳动部咨询热线，支持多语种翻译服务。"
+        ];
+
+        // 根据日期随机选择一条（保证当天刷新的内容一致，或者纯随机）
+        const randomTip = tipsLibrary[Math.floor(Math.random() * tipsLibrary.length)];
+        contentEl.innerHTML = randomTip;
+    }
+
+    // 初始化运行
+    updateDailyTips();
 </script>
 
 </body>
