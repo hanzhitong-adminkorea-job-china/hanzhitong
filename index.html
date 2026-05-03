@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한직통 HanZhiTong</title>
+    <title>韩职通 HanZhiTong</title>
     <style>
-        :root { --primary-blue: #007bff; --accent-yellow: #fffde7; --bg-gray: #f8f9fa; }
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
+        :root { --primary-blue: #007bff; --accent-gold: #ffc107; --bg-gray: #f8f9fa; }
+        body { font-family: 'Microsoft YaHei', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
         .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
         
         header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
@@ -15,25 +15,48 @@
 
         .content { padding: 20px; }
 
-        /* 搜索框 */
-        .search-section { margin-bottom: 25px; }
-        .search-box { display: flex; border: 2px solid var(--primary-blue); border-radius: 12px; overflow: hidden; background: #fff; }
+        /* 1. 搜索框 */
+        .search-section { margin-bottom: 20px; }
+        .search-box { display: flex; border: 2px solid var(--primary-blue); border-radius: 12px; overflow: hidden; }
         .search-box input { flex: 1; border: none; padding: 15px; outline: none; font-size: 16px; }
         .search-box button { background: var(--primary-blue); color: white; border: none; padding: 0 20px; font-weight: bold; cursor: pointer; }
 
-        /* 生活小贴士增强版 */
-        .tips-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 20px; margin-bottom: 25px; position: relative; border-left: 5px solid var(--primary-blue); }
-        .tips-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .tips-title { font-size: 16px; font-weight: bold; color: #222; }
-        .tips-date { font-size: 12px; color: var(--primary-blue); font-weight: bold; }
-        #tip-content { font-size: 14px; color: #444; line-height: 1.6; min-height: 45px; }
-        .hot-tag { background: #ff4d4f; color: white; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-right: 5px; vertical-align: middle; }
+        /* 2. 每日贴士卡片 */
+        .tips-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px; margin-bottom: 20px; border-left: 5px solid var(--primary-blue); }
+        .tips-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .tips-title { font-size: 15px; font-weight: bold; }
+        .tips-date { font-size: 11px; color: var(--primary-blue); font-weight: bold; }
+        #tip-content { font-size: 13.5px; color: #555; line-height: 1.5; }
 
-        /* 其他样式保持一致 */
+        /* 3. 核心：30天免费推广活动 */
+        .promo-card { 
+            background: linear-gradient(135deg, #fff9c4 0%, #fff176 100%); 
+            border: 1px solid #fdd835; 
+            border-radius: 15px; 
+            padding: 20px; 
+            margin-bottom: 25px; 
+            position: relative;
+            box-shadow: 0 4px 10px rgba(253, 216, 53, 0.2);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+            100% { transform: scale(1); }
+        }
+        .promo-tag { background: #e65100; color: white; font-size: 10px; padding: 2px 8px; border-radius: 50px; font-weight: bold; margin-bottom: 8px; display: inline-block; }
+        .promo-title { font-size: 17px; font-weight: bold; color: #bf360c; margin-bottom: 5px; }
+        .promo-desc { font-size: 13px; color: #5d4037; line-height: 1.5; }
+
+        /* 列表与通用卡片 */
         .card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 20px; margin-bottom: 20px; }
-        .card-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #222; }
+        .card-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; }
         .info-item { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f1f1f1; text-decoration: none; color: #444; font-size: 14px; }
+        
+        /* 投稿表单 */
         #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; }
+        .form-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        
         .stats { text-align: center; margin-top: 40px; padding: 25px; background: #fafafa; border-radius: 15px; }
         footer { text-align: center; padding: 50px 20px; color: #bbb; font-size: 12px; }
     </style>
@@ -47,34 +70,47 @@
     </header>
 
     <div class="content">
-        <!-- 搜索 -->
+        <!-- 搜索工具 -->
         <div class="search-section">
             <form action="https://naver.com" method="get" target="_blank" class="search-box">
-                <input type="text" name="query" placeholder="搜索实时汇率、天气、政策">
+                <input type="text" name="query" placeholder="在NAVER中搜索实时汇率、天气、政策">
                 <button type="submit">搜索</button>
             </form>
         </div>
 
-        <!-- 【核心改进】自动更新的生活小贴士 -->
+        <!-- 每日生活贴士 (自动更新) -->
         <div class="tips-card">
             <div class="tips-header">
-                <div class="tips-title">💡 每日生活贴士 <span class="hot-tag">HOT</span></div>
+                <div class="tips-title">💡 每日生活贴士</div>
                 <div id="current-date" class="tips-date"></div>
             </div>
             <div id="tip-content">正在加载今日精选内容...</div>
         </div>
 
-        <!-- 提交招聘表单 -->
+        <!-- 30天免费推广活动 -->
+        <div class="promo-card">
+            <span class="promo-tag">限时活动</span>
+            <div class="promo-title">🔥 商家免费推广计划</div>
+            <div class="promo-desc">
+                现在提交招聘信息，审核通过后即可获得 <br>
+                <strong>首页置顶 30天</strong> 免费服务！助您快速招聘人才。
+            </div>
+            <button onclick="toggleForm()" style="margin-top:12px; background:#e65100; color:white; border:none; padding:8px 15px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:13px;">
+                立即点击申请发布 >
+            </button>
+        </div>
+
+        <!-- 发布招聘表单 (发送至 davidguksung@gmail.com) -->
         <div id="postForm">
-            <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 提交招聘信息</h3>
+            <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 提交招聘详情 (人工审核)</h3>
             <form action="https://formspree.io" method="POST">
-                <input type="text" name="联系方式" required placeholder="您的联系电话 / 微信" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;">
-                <textarea name="详情" rows="5" required placeholder="请填写：职位、地点、待遇等详细信息" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;"></textarea>
+                <input type="text" name="联系方式" required placeholder="您的联系电话 / 微信" class="form-input">
+                <textarea name="详情" rows="5" required placeholder="请填写：招聘职位、工作地点、薪资待遇、工作时间等" class="form-input"></textarea>
                 <button type="submit" class="post-btn" style="width:100%; border-radius:8px; height:45px;">确认提交审核</button>
             </form>
         </div>
 
-        <!-- 资讯 -->
+        <!-- 实时资讯 -->
         <div class="card">
             <div class="card-title">🔔 最新资讯</div>
             <a href="https://naver.com?query=2026年最新签证政策" target="_blank" class="info-item">
@@ -85,7 +121,7 @@
             </a>
         </div>
 
-        <!-- 公告 -->
+        <!-- 招聘公告栏 -->
         <div class="card">
             <div class="card-title">💼 最新职位公告</div>
             <div style="text-align: center; padding: 40px 0; color: #aaa; font-size: 14px;">
@@ -104,39 +140,31 @@
 </div>
 
 <script>
-    // 1. 发布表单切换
+    // 1. 切换表单显示状态
     function toggleForm() {
         var form = document.getElementById('postForm');
         form.style.display = (form.style.display === 'block') ? 'none' : 'block';
         if(form.style.display === 'block') form.scrollIntoView({behavior: "smooth"});
     }
 
-    // 2. 自动更新日期与贴士内容
+    // 2. 自动日期与贴士更新逻辑
     function updateDailyTips() {
         const dateEl = document.getElementById('current-date');
         const contentEl = document.getElementById('tip-content');
-        
-        // 设置当前时间
         const now = new Date();
         dateEl.innerText = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`;
 
-        // 贴士知识库 (您可以随时在这里添加新内容)
         const tipsLibrary = [
-            "建议通过正规银行APP（如新韩Sol Global）换钱，避免私人换钱导致账号被冻结风险。",
-            "在韩国丢了护照？第一时间去附近派出所开具遗失证明，并联系领事馆预约补办。",
-            "租房合同快到期？记得提前至少2个月告知房东是否续租，否则可能会自动默认续约。",
-            "2026年新规：F-4签证持有者在部分服务业就业限制已放宽，务必确认最新职业清单。",
-            "天气转冷，记得检查地暖（Ondol）排水管是否防冻，避免爆裂产生高额维修费。",
-            "使用Coupang购物时，若开启Wow会员可享受当日达，但记得定期检查订阅费扣除情况。",
-            "遇到职场不公正待遇？可拨打1350劳动部咨询热线，支持多语种翻译服务。"
+            "建议通过正规银行APP换钱，避免因私人换钱导致银行账号被冻结的风险。",
+            "在韩国丢失护照？请第一时间去附近派出所开具证明，并联系大使馆预约补办。",
+            "房屋租赁合同到期前至少2个月告知房东续租意愿，否则可能默认自动续约。",
+            "2026新规：部分服务行业已放宽F-4签证就业限制，请关注最新职业许可清单。",
+            "职场遇到不公正待遇？拨打1350劳动部热线，支持多语种翻译和法律咨询。",
+            "垃圾分类注意：食物垃圾务必装入专用黄色垃圾袋，乱丢会被处以高额罚款。"
         ];
-
-        // 根据日期随机选择一条（保证当天刷新的内容一致，或者纯随机）
-        const randomTip = tipsLibrary[Math.floor(Math.random() * tipsLibrary.length)];
-        contentEl.innerHTML = randomTip;
+        // 随机显示一条
+        contentEl.innerHTML = tipsLibrary[Math.floor(Math.random() * tipsLibrary.length)];
     }
-
-    // 初始化运行
     updateDailyTips();
 </script>
 
