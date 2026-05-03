@@ -9,7 +9,6 @@
         body { font-family: 'Microsoft YaHei', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
         .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
         
-        /* 导航栏 */
         header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 22px; font-weight: bold; color: var(--primary-blue); text-decoration: none; }
         .post-btn { background: var(--primary-blue); color: white; border: none; padding: 10px 18px; border-radius: 25px; font-size: 13px; cursor: pointer; font-weight: bold; }
@@ -18,28 +17,27 @@
 
         /* 分类菜单 */
         .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 25px; }
-        .category-item { text-align: center; text-decoration: none; color: #555; cursor: pointer; }
-        .category-icon { width: 50px; height: 50px; background: #eef5ff; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; transition: 0.2s; }
-        .category-item:hover .category-icon { background: var(--primary-blue); color: white; transform: translateY(-3px); }
+        .category-item { text-align: center; cursor: pointer; }
+        .category-icon { width: 50px; height: 50px; background: #eef5ff; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; }
         .category-text { font-size: 12px; font-weight: bold; }
 
-        /* 滚动贴士 */
+        /* 滚动贴士 - 重点优化部分 */
         .tips-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 15px; margin-bottom: 20px; border-left: 5px solid var(--primary-blue); }
-        #tip-content { font-size: 13px; color: #666; line-height: 1.5; min-height: 40px; transition: opacity 0.5s; }
+        #tip-content { font-size: 13.5px; color: #444; line-height: 1.6; min-height: 45px; transition: opacity 0.5s; }
+        .kor-txt { color: #d32f2f; font-weight: bold; background: #fff8f8; padding: 0 4px; border-radius: 3px; border: 1px solid #ffcdd2; }
 
         /* 推广横幅 */
         .promo-banner { background: linear-gradient(135deg, #fffde7 0%, #fff59d 100%); border: 1px solid #fbc02d; border-radius: 12px; padding: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
         .promo-info h4 { margin: 0 0 5px; color: #f57f17; font-size: 15px; }
         .promo-info p { margin: 0; font-size: 12px; color: #7f6d00; }
 
-        /* 发布表单 */
-        #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* 投稿表单 */
+        #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; }
         .form-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
 
-        /* 信息展示区 */
+        /* 最新动态区 */
         .section-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px; margin-bottom: 20px; }
         .section-title { font-size: 16px; font-weight: bold; color: #222; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 8px; }
-
         .empty-state { text-align: center; padding: 40px 20px; color: #ccc; font-size: 14px; }
 
         footer { text-align: center; padding: 40px 20px; color: #bbb; font-size: 11px; }
@@ -70,7 +68,7 @@
             </div>
         </div>
 
-        <!-- 自动滚动贴士 -->
+        <!-- 自动滚动贴士 (含韩文术语) -->
         <div class="tips-card">
             <div id="tip-content">正在为您加载生活小贴士...</div>
         </div>
@@ -84,10 +82,9 @@
             </div>
         </div>
 
-        <!-- 投稿表单 (信息将发送至您的邮箱) -->
+        <!-- 投稿表单 (对接您的邮箱) -->
         <div id="postForm">
             <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 发布新信息</h3>
-            <p style="font-size:12px; color:#999; margin-bottom:15px;">请填写以下内容，管理员审核后将为您发布。</p>
             <form action="https://formspree.io" method="POST">
                 <select name="类别" class="form-input" required>
                     <option value="" disabled selected>选择分类</option>
@@ -102,7 +99,7 @@
             </form>
         </div>
 
-        <!-- 最新信息区 -->
+        <!-- 展示区 -->
         <div class="section-card">
             <div class="section-title">✨ 最新动态</div>
             <div class="empty-state">
@@ -134,19 +131,22 @@
         if(form.style.display === 'block') form.scrollIntoView({behavior: "smooth"});
     }
 
+    // 重点：加入韩文正确用语的生活贴士
     const tips = [
-        "💡 租房提示：签约前务必确认【等记簿副本】，检查房东债务情况。",
-        "💡 换钱安全：请通过银行官方APP换钱，避免私人交易导致账号被封。",
-        "💡 签证政策：F-4签证在部分服务业就业有限制，工作前请核对清单。",
-        "💡 维权热线：遇到职场不公可拨打1350咨询劳动部，支持中文服务。",
-        "💡 生活常识：丢弃大件垃圾（如沙发）需去便利店购买专用贴纸。"
+        "💡 租房必看：签约前务必确认 <span class='kor-txt'>등기부등본</span> (登记簿副本)，检查房东身份和房屋债务。",
+        "💡 换钱安全：建议通过官方银行APP换钱，避免私人交易导致 <span class='kor-txt'>계좌정지</span> (账户冻结) 风险。",
+        "💡 签证政策：F-4签证在某些服务业就业受限，请在 <span class='kor-txt'>하이코리아</span> (Hi Korea) 官网核对职业清单。",
+        "💡 法律维权：职场纠纷可拨打1350咨询 <span class='kor-txt'>고용노동부</span> (雇佣劳动部)，支持中文人工翻译。",
+        "💡 生活提示：丢弃冰箱、沙发等大件垃圾需购买 <span class='kor-txt'>대형폐기물 스티커</span> (大件垃圾排放贴纸)。",
+        "💡 房产交易：中介合同中必须包含 <span class='kor-txt'>중개대상물 확인설명서</span> (中介对象物确认说明书) 才能保障权益。"
     ];
+
     let tipIdx = 0;
     function rotateTips() {
         const el = document.getElementById('tip-content');
         el.style.opacity = 0;
         setTimeout(() => {
-            el.innerText = tips[tipIdx];
+            el.innerHTML = tips[tipIdx];
             el.style.opacity = 1;
             tipIdx = (tipIdx + 1) % tips.length;
         }, 500);
