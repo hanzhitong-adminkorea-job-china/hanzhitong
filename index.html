@@ -7,10 +7,13 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: -apple-system, system-ui, sans-serif; background-color: #f5f7f9; color: #333; }
-        .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; }
+        .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
         header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 20px; font-weight: 800; color: #007AFF; }
-        .post-btn { background: #007AFF; color: #fff; padding: 8px 15px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: bold; }
+        
+        /* 채용 등록 버튼: 클릭 시 이메일 작성창 열림 */
+        .post-btn { background: #007AFF; color: #fff; padding: 8px 15px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: bold; cursor: pointer; border: none; }
+        
         .hero { padding: 30px 20px; background: #f9fbff; }
         .hero h2 { font-size: 22px; margin-bottom: 5px; }
         .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 12px; margin-top: 15px; font-size: 15px; }
@@ -20,20 +23,11 @@
         .job-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
         .job-info { font-size: 14px; color: #666; margin-bottom: 15px; line-height: 1.8; }
         
-        /* 버튼 스타일 업그레이드 */
+        /* 연락처 버튼: 클릭 시 전화 걸기(모바일) 또는 안내창(PC) */
         .contact-link { 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center; 
-            width: 100%; 
-            padding: 14px; 
-            background: #007AFF; /* 눈에 띄게 파란색으로 변경 */
-            color: #fff; 
-            border-radius: 12px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            transition: 0.2s;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            width: 100%; padding: 14px; background: #007AFF; color: #fff; border-radius: 12px; 
+            text-decoration: none; font-weight: bold; transition: 0.2s; border: none; cursor: pointer;
         }
         .contact-link:active { background: #0056b3; transform: scale(0.98); }
         .contact-subtext { font-size: 11px; font-weight: normal; opacity: 0.9; margin-top: 2px; }
@@ -46,7 +40,8 @@
     <div class="container">
         <header>
             <div class="logo">韩职通 HanZhiTong</div>
-            <a href="#" class="post-btn">+ 发布招聘</a>
+            <!-- 수정: 클릭 시 이메일 전송창이 뜨도록 설정 -->
+            <a href="mailto:admin@hanzhitong.app" class="post-btn" onclick="handlePost()">+ 发布招聘</a>
         </header>
 
         <section class="hero">
@@ -62,13 +57,13 @@
             <div class="job-title">贸易公司 - 中文海外 market 运营专员</div>
             <div class="job-info">
                 📍 首尔 江南区<br>
-                💰 月薪 300万 - 400万<br>
+                💰 月薪 300万 - 400만<br>
                 📄 F-4, F-5, F-6 优先
             </div>
-            <!-- 버튼 클릭 시 확실한 반응을 위해 배경색과 서브텍스트 추가 -->
-            <a href="tel:010-1234-5678" class="contact-link">
+            <!-- 수정: PC와 모바일 모두 대응하는 연락 기능 -->
+            <a href="tel:010-1234-5678" class="contact-link" onclick="handleContact(event, '010-1234-5678')">
                 <span>📞 立即联系 (金经理)</span>
-                <span class="contact-subtext">010-1234-5678</span>
+                <span class="contact-subtext">010-1234-5678 (点击拨打)</span>
             </a>
         </div>
 
@@ -80,5 +75,22 @@
             <p>© 2024 HanZhiTong. ALL RIGHTS RESERVED.</p>
         </footer>
     </div>
+
+    <script>
+        // 채용 등록 버튼 클릭 시 알림
+        function handlePost() {
+            alert('请通过邮件 (admin@hanzhitong.app) 发送招聘信息。\n我们将尽快为您发布！');
+        }
+
+        // 연락처 버튼 클릭 시 (PC 대응)
+        function handleContact(event, phone) {
+            // 모바일인지 확인
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (!isMobile) {
+                event.preventDefault(); // PC에서는 전화 걸기 중단
+                alert('联系电话: ' + phone + '\n请在手机上拨打此号码。');
+            }
+        }
+    </script>
 </body>
 </html>
