@@ -5,99 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>韩职通 - 专业的在韩华人招聘网</title>
     <style>
-        /* 눈이 편한 기본 스타일 설정 */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: #f5f7f9; 
-            color: #333; 
-            line-height: 1.6;
-        }
-        .container { max-width: 480px; margin: 0 auto; background: #fff; min-h: 100vh; overflow: hidden; shadow: 0 0 20px rgba(0,0,0,0.05); }
-        
-        /* 헤더 스타일 */
-        header { padding: 25px 20px; background: #fff; border-bottom: 1px solid #eee; }
-        .logo { font-size: 22px; font-weight: 800; color: #007AFF; letter-spacing: -1px; }
-        .post-btn { float: right; background: #007AFF; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; text-decoration: none; font-weight: bold; }
-        
-        /* 히어로 섹션 */
+        body { font-family: -apple-system, system-ui, sans-serif; background-color: #f5f7f9; color: #333; }
+        .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; }
+        header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 20px; font-weight: 800; color: #007AFF; }
+        .post-btn { background: #007AFF; color: #fff; padding: 8px 15px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: bold; }
         .hero { padding: 30px 20px; background: #f9fbff; }
-        .hero h2 { font-size: 24px; margin-bottom: 8px; color: #111; }
-        .hero p { font-size: 14px; color: #666; margin-bottom: 20px; }
-        .search-box { width: 100%; padding: 15px; border: 2px solid #e1e4e8; border-radius: 12px; font-size: 16px; transition: 0.3s; }
-        .search-box:focus { border-color: #007AFF; outline: none; }
-
-        /* 채용 카드 스타일 */
-        .section-title { padding: 20px; font-size: 18px; font-weight: bold; border-bottom: 1px solid #f0f0f0; }
-        .job-card { padding: 20px; border-bottom: 8px solid #f5f7f9; position: relative; }
-        .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-bottom: 10px; }
-        .badge-blue { background: #eef5ff; color: #007AFF; }
-        .badge-green { background: #e8f9ee; color: #17c948; }
-        .job-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #1a1a1a; }
-        .job-info { font-size: 14px; color: #555; margin-bottom: 15px; }
-        .contact-btn { display: block; width: 100%; padding: 12px; text-align: center; background: #f0f2f5; color: #333; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 14px; }
-        .contact-btn:hover { background: #e4e6e9; }
-
-        /* 푸터 및 방문자 카운터 */
-        footer { padding: 40px 20px; text-align: center; background: #f9fbff; color: #888; }
-        .visitor-box { background: white; padding: 15px; border-radius: 15px; border: 1px solid #eee; display: inline-block; margin-bottom: 20px; }
-        .visitor-label { font-size: 11px; color: #aaa; text-transform: uppercase; margin-bottom: 5px; font-weight: bold; }
-        .live-dot { display: inline-block; width: 8px; height: 8px; background: #17c948; border-radius: 50%; margin-right: 5px; box-shadow: 0 0 5px #17c948; }
-        .footer-logo { font-weight: bold; color: #444; margin-bottom: 5px; }
+        .hero h2 { font-size: 22px; margin-bottom: 5px; }
+        .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 12px; margin-top: 15px; font-size: 15px; }
+        .section-title { padding: 20px 20px 10px; font-weight: bold; font-size: 17px; }
+        .job-card { padding: 20px; border-bottom: 6px solid #f5f7f9; }
+        .badge { display: inline-block; padding: 3px 7px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-bottom: 10px; background: #eef5ff; color: #007AFF; }
+        .job-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+        .job-info { font-size: 14px; color: #666; margin-bottom: 15px; line-height: 1.8; }
+        .contact-link { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px; background: #f0f2f5; color: #333; border-radius: 12px; text-decoration: none; font-weight: bold; }
+        footer { padding: 40px 20px; text-align: center; color: #aaa; font-size: 12px; }
+        .visitor-badge { margin-bottom: 15px; display: inline-block; padding: 10px; background: #fafafa; border-radius: 10px; }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <div class="logo">韩职通 HanZhiTong</div>
+            <a href="#" class="post-btn">+ 发布招聘</a>
+        </header>
 
-<div class="container">
-    <header>
-        <a href="#" class="post-btn">+ 发布招聘</a>
-        <div class="logo">韩职通 <span style="font-size:12px; font-weight:normal; color:#999;">Jobs</span></div>
-    </header>
+        <section class="hero">
+            <h2>在韩华人, <span style="color:#007AFF;">高效就业</span></h2>
+            <p style="color:#888; font-size:14px;">直接联系，无需等待</p>
+            <input type="text" class="search-box" placeholder="搜索职位...">
+        </section>
 
-    <section class="hero">
-        <h2>在韩华人, <span style="color:#007AFF;">高效就业</span></h2>
-        <p>直接联系，无需等待，最快的求职体验</p>
-        <input type="text" class="search-box" placeholder="搜索您心仪的职位...">
-    </section>
+        <div class="section-title">最新职位公告</div>
 
-    <div class="section-title">最新职位公告</div>
-
-    <!-- 카드 1 -->
-    <div class="job-card">
-        <span class="badge badge-blue">E-7 支援 · 今日新</span>
-        <div class="job-title">贸易公司 - 中文海外市场运营专员</div>
-        <div class="job-info">
-            📍 首尔 江남区 <br>
-            💰 月薪 300万 - 400万 <br>
-            📄 F-4, F-5, F-6 优先
-        </div>
-        <a href="tel:010-1234-5678" class="contact-btn">📞 立即联系 (金经理)</a>
-    </div>
-
-    <!-- 카드 2 -->
-    <div class="job-card">
-        <span class="badge badge-green">留学生欢迎 D-2</span>
-        <div class="job-title">明洞免税店 - 化妆品柜台中文导购</div>
-        <div class="job-info">
-            📍 首尔 中区 (明洞) <br>
-            💰 时薪 11,500韩元
-        </div>
-        <a href="#" class="contact-btn" onclick="alert('WeChat ID: korea_job_114 已复制')">💬 复制微信号</a>
-    </div>
-
-    <footer>
-        <div class="visitor-box">
-            <div class="visitor-label">Total Visitors</div>
-            <!-- 방문자수 이미지 (인코딩 수정 완료) -->
-            <img src="https://seeyoufarm.com" alt="Visitors" style="height:20px; vertical-align:middle;">
-            <div style="font-size:11px; margin-top:8px;">
-                <span class="live-dot"></span> 系统正在运行中 (LIVE)
+        <div class="job-card">
+            <span class="badge">E-7 支援 · 今日新</span>
+            <div class="job-title">贸易公司 - 中文海外市场运营专员</div>
+            <div class="job-info">
+                📍 首尔 江南区<br>
+                💰 月薪 300万 - 400만<br>
+                📄 F-4, F-5, F-6 优先
             </div>
+            <!-- 클릭 시 전화 걸기 수정 완료 -->
+            <a href="tel:010-1234-5678" class="contact-link">📞 立即联系 (金经理)</a>
         </div>
-        <div class="footer-logo">韩职通 HanZhiTong</div>
-        <div style="font-size:11px;">© 2024 HanZhiTong. ALL RIGHTS RESERVED.</div>
-    </footer>
-</div>
 
+        <footer>
+            <div class="visitor-badge">
+                <div style="margin-bottom:5px; font-size:10px;">TOTAL VISITORS</div>
+                <img src="https://seeyoufarm.com" alt="Visitors">
+            </div>
+            <p>© 2024 HanZhiTong. ALL RIGHTS RESERVED.</p>
+        </footer>
+    </div>
 </body>
 </html>
