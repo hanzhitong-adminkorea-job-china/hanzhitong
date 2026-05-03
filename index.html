@@ -15,10 +15,7 @@
 
         .content { padding: 15px; }
 
-        /* 管理员联系方式 */
-        .admin-contact { background: #fff; border: 1px dotted #ccc; border-radius: 10px; padding: 10px; margin-bottom: 20px; text-align: center; font-size: 12px; color: #888; }
-
-        /* 顶部搜索框 */
+        /* 顶部搜索 */
         .top-search { margin-bottom: 20px; }
         .search-inner { display: flex; background: #f1f3f5; border-radius: 12px; padding: 5px 15px; align-items: center; }
         .search-inner input { flex: 1; border: none; background: none; padding: 10px; outline: none; font-size: 14px; }
@@ -31,7 +28,7 @@
         .category-item:hover .category-icon { background: var(--primary-blue); color: white; transform: translateY(-3px); }
         .category-text { font-size: 12px; font-weight: bold; }
 
-        /* 自动滚动贴士 */
+        /* 滚动贴士 */
         .tips-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 15px; margin-bottom: 20px; border-left: 5px solid var(--primary-blue); min-height: 50px; }
         #tip-content { font-size: 13.5px; color: #444; line-height: 1.6; transition: opacity 0.5s; }
         .kor-txt { color: #d32f2f; font-weight: bold; }
@@ -47,10 +44,11 @@
         .tool-item:hover { background: #f0f7ff; border-color: var(--primary-blue); }
 
         /* 发布表单 */
-        #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; }
+        #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .form-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
 
-        /* 页脚 */
+        /* 管理员信息与页脚 */
+        .admin-contact { background: #fff; border: 1px dotted #ccc; border-radius: 10px; padding: 10px; margin-bottom: 20px; text-align: center; font-size: 12px; color: #888; }
         footer { text-align: center; padding: 40px 20px; background: #fafafa; color: #bbb; font-size: 11px; border-top: 1px solid #eee; }
         .footer-slogan { color: var(--primary-blue); font-weight: bold; margin-bottom: 5px; font-size: 12px; }
     </style>
@@ -64,20 +62,21 @@
     </header>
 
     <div class="content">
+        <!-- 管理员联络 -->
         <div class="admin-contact">
             如有疑问或商务合作，请联络管理员：<br>
             <a href="mailto:davidguksung@gmail.com" style="color:var(--primary-blue); text-decoration:none; font-weight:bold;">✉ davidguksung@gmail.com</a>
         </div>
 
-        <!-- 顶部搜索 -->
+        <!-- 顶部搜索工具 -->
         <div class="top-search">
-            <form action="https://naver.com" method="get" target="_blank" class="search-inner">
+            <form action="https://search.naver.com/search.naver" method="get" target="_blank" class="search-inner">
                 <button type="submit">🔍</button>
                 <input type="text" name="query" placeholder="在NAVER查汇率、天气、快递...">
             </form>
         </div>
 
-        <!-- 分类菜单 -->
+        <!-- 分类导航 -->
         <div class="category-grid">
             <div class="category-item" onclick="toggleForm()">
                 <div class="category-icon">💼</div><div class="category-text">招聘求职</div>
@@ -93,12 +92,12 @@
             </div>
         </div>
 
-        <!-- 滚动贴士 -->
+        <!-- 自动滚动贴士 -->
         <div class="tips-card">
             <div id="tip-content">正在为您加载生活小贴士...</div>
         </div>
 
-        <!-- 推广横幅 -->
+        <!-- 商家推广 -->
         <div class="promo-banner" onclick="toggleForm()">
             <div style="font-size: 30px;">🎁</div>
             <div class="promo-info">
@@ -107,7 +106,7 @@
             </div>
         </div>
 
-        <!-- 投稿表单 -->
+        <!-- 信息投稿表单 -->
         <div id="postForm">
             <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 提交发布申请</h3>
             <form action="https://formspree.io" method="POST">
@@ -125,17 +124,26 @@
             </form>
         </div>
 
-        <!-- 实用工具 (地图链接已更新为首页) -->
+        <!-- 核心功能：实用生活工具 -->
         <div style="background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px; margin-bottom: 20px;">
-            <div style="font-size: 16px; font-weight: bold; color: #222; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 8px;">🔔 实用工具</div>
+            <div style="font-size: 16px; font-weight: bold; color: #222; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 8px;">🔔 实用生活工具</div>
             <div class="tool-grid">
-                <a href="https://naver.com?query=환율" target="_blank" class="tool-item">📊 实时汇率</a>
-                <a href="https://naver.com?query=서울날씨" target="_blank" class="tool-item">🌤️ 天气查询</a>
-                <a href="https://naver.com?query=택배조회" target="_blank" class="tool-item">📦 快递查询</a>
-                <a href="https://naver.com?query=2026공휴일" target="_blank" class="tool-item">📅 公休日查询</a>
-                <!-- 精准链接到 Naver Map 官网首页 -->
+                <!-- 【已更新】直接跳转至您提供的 Naver 汇率搜索页面 -->
+                <a href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%ED%99%98%EC%9C%A8" target="_blank" class="tool-item">📊 实时汇率查询</a>
+                <a href="https://naver.com" target="_blank" class="tool-item">🌤️ 韩国实时天气</a>
+                <a href="https://naver.com" target="_blank" class="tool-item">📦 国际/境内快递</a>
+                <a href="https://naver.com" target="_blank" class="tool-item">📅 2026放假安排</a>
                 <a href="https://map.naver.com/" target="_blank" class="tool-item" style="grid-column: span 2; justify-content: center; background: var(--naver-green); color: #fff; font-weight: bold; border:none;">🗺️ Naver 地图：查路线 / 店名 ↗</a>
             </div>
+        </div>
+
+        <!-- 最新资讯链接 (同样更新为最新汇率地址) -->
+        <div style="background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px; margin-bottom: 20px;">
+            <div style="font-size: 16px; font-weight: bold; color: #222; margin-bottom: 15px; border-bottom: 2px solid #f8f9fa; padding-bottom: 8px;">🔔 最新资讯汇总</div>
+            <a href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%ED%99%98%EC%9C%A8" target="_blank" style="display:flex; justify-content:space-between; align-items:center; text-decoration:none; padding:10px 0; color:#555; font-size:14px;">
+                <span>📈 <strong style="color:var(--primary-blue);">实时汇率：</strong>查看 Naver 官方实时图表</span>
+                <span style="color:#ccc;">↗</span>
+            </a>
         </div>
     </div>
 
