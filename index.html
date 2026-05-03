@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>韩职通 - 专业的在韩华人招聘及签证就业平台</title>
+    <title>韩职通 - 专业的在韩华人招聘网</title>
     <script src="https://tailwindcss.com"></script>
     <style>
         @import url('https://googleapis.com');
@@ -15,6 +15,7 @@
         .badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; margin-right: 6px; }
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); }
         .modal-content { background: white; margin: 5% auto; padding: 32px; border-radius: 24px; width: 95%; max-width: 550px; position: relative; }
+        .contact-box { background-color: #eff6ff; border-radius: 12px; padding: 12px 20px; border: 1px dashed #3b82f6; }
     </style>
 </head>
 <body>
@@ -23,120 +24,69 @@
     <nav class="nav-glass sticky top-0 z-50 border-b border-slate-100">
         <div class="container-custom flex justify-between h-20 items-center">
             <div class="flex items-center space-x-3">
-                <div class="w-11 h-11 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
-                    <span class="text-white font-bold text-2xl">韩</span>
-                </div>
+                <div class="w-11 h-11 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg"><span class="text-white font-bold text-2xl">韩</span></div>
                 <div>
                     <span class="text-2xl font-black tracking-tighter text-slate-900 block leading-none">韩职通</span>
                     <span class="text-[10px] text-slate-400 font-bold tracking-widest uppercase">HanZhiTong Jobs</span>
                 </div>
             </div>
-            <div class="flex items-center space-x-4">
-                <a href="#visa" class="hidden md:block font-bold text-slate-600 hover:text-blue-600">签证政策</a>
-                <button onclick="openModal()" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100 text-sm md:text-base">
-                    + 发布职位 (免费)
-                </button>
-            </div>
+            <button onclick="openModal()" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-700 transition shadow-lg text-sm md:text-base">
+                + 发布招聘 (무료 등록)
+            </button>
         </div>
     </nav>
 
-    <!-- 메인 헤더 및 검색 -->
+    <!-- 메인 헤더 -->
     <header class="pt-16 pb-12 bg-white border-b border-slate-50">
         <div class="container-custom text-center">
-            <div class="inline-flex items-center space-x-2 px-4 py-1.5 mb-6 text-xs font-bold text-blue-700 bg-blue-50 rounded-full">
-                <span>⚡</span> <span>已连接 WorkOn & 114114Korea 实时数据</span>
-            </div>
             <h1 class="text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tight text-slate-900">
-                连接机会，<span class="text-blue-600">发现未来</span><br>在韩华人求职首选
+                在韩华人，<span class="text-blue-600">高效就业</span><br>直接联系，无需等待
             </h1>
-            <div class="max-w-3xl mx-auto mb-12">
-                <div class="flex items-center bg-white border-2 border-slate-100 p-2 rounded-2xl shadow-xl">
-                    <input type="text" class="w-full p-4 outline-none font-medium text-slate-700" placeholder="搜索职位、签证类型或工作地点...">
-                    <button class="bg-blue-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-md">立即搜索</button>
-                </div>
-                <div class="mt-6 flex flex-wrap justify-center gap-3 text-sm text-slate-400 font-medium">
-                    <span>热门：</span>
-                    <a href="#" class="text-slate-600 hover:text-blue-600">#翻译</a>
-                    <a href="#" class="text-slate-600 hover:text-blue-600">#化妆品</a>
-                    <a href="#" class="text-slate-600 hover:text-blue-600">#免税店</a>
-                    <a href="#" class="text-slate-600 hover:text-blue-600">#AI视频</a>
-                </div>
+            <div class="max-w-2xl mx-auto flex items-center bg-white border-2 border-slate-100 p-2 rounded-2xl shadow-xl">
+                <input type="text" class="w-full p-4 outline-none font-medium text-slate-700" placeholder="搜索职位、签证或地点...">
+                <button class="bg-blue-600 text-white px-10 py-4 rounded-xl font-bold">搜索</button>
             </div>
         </div>
     </header>
 
-    <!-- 🔥 핵심 경쟁력: 비자별 퀵 메뉴 섹션 (추가된 부분) -->
-    <section class="container-custom -mt-10 mb-16 relative z-10">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-yellow-400 p-6 rounded-3xl shadow-xl hover:scale-105 transition cursor-pointer group">
-                <div class="text-2xl mb-2">⭐</div>
-                <h3 class="font-black text-slate-900">E-7 签证专区</h3>
-                <p class="text-xs text-slate-800 font-medium opacity-80 mt-1">专业人才/特定活动招聘</p>
-            </div>
-            <div class="bg-emerald-500 p-6 rounded-3xl shadow-xl hover:scale-105 transition cursor-pointer group text-white">
-                <div class="text-2xl mb-2">✅</div>
-                <h3 class="font-black">D-2/10 留学生</h3>
-                <p class="text-xs font-medium opacity-80 mt-1">合法打工/实习/校招</p>
-            </div>
-            <div class="bg-indigo-600 p-6 rounded-3xl shadow-xl hover:scale-105 transition cursor-pointer group text-white">
-                <div class="text-2xl mb-2">📹</div>
-                <h3 class="font-black">AI 视频制作</h3>
-                <p class="text-xs font-medium opacity-80 mt-1">短视频剪辑/远程兼职</p>
-            </div>
-            <div class="bg-blue-600 p-6 rounded-3xl shadow-xl hover:scale-105 transition cursor-pointer group text-white border-2 border-white/20">
-                <div class="text-2xl mb-2">💬</div>
-                <h3 class="font-black">1:1 微信咨询</h3>
-                <p class="text-xs font-medium opacity-80 mt-1">直接联系雇主面试</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 채용 정보 섹션 -->
-    <main id="jobs" class="py-12 container-custom">
-        <div class="flex justify-between items-end mb-10">
-            <div>
-                <h2 class="text-3xl font-black text-slate-900">最新职位公告</h2>
-                <p class="text-slate-400 font-medium mt-1">为您筛选最优质的在韩工作岗位</p>
-            </div>
-            <a href="#" class="text-blue-600 font-bold hover:underline">浏览全部职位 →</a>
-        </div>
-
+    <!-- 채용 정보 리스트 -->
+    <main id="jobs" class="py-12 container-custom mb-20">
+        <h2 class="text-2xl font-black text-slate-900 mb-8">最新职位公告 (직접 연락처 공개)</h2>
+        
         <div class="space-y-6">
-            <!-- 실제 공고 예시 1 -->
+            <!-- 공고 1 -->
             <div class="bg-white p-8 rounded-3xl card-shadow flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center space-x-6">
-                    <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-2xl font-bold text-blue-600">贸</div>
-                    <div>
+                <div class="flex items-center space-x-6 w-full">
+                    <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-2xl font-bold text-blue-600 shrink-0">贸</div>
+                    <div class="flex-grow">
                         <div class="mb-2">
-                            <span class="badge bg-blue-100 text-blue-600">E-7 支援</span>
-                            <span class="badge bg-slate-100 text-slate-500">今日新</span>
+                            <span class="badge bg-blue-100 text-blue-600">E-7 支援</span><span class="badge bg-slate-100 text-slate-500">今日新</span>
                         </div>
                         <h3 class="text-xl font-black text-slate-900 leading-tight">贸易公司 - 中文海外市场运营专员</h3>
-                        <p class="text-slate-500 mt-2 text-sm font-medium">📍 首尔 江南区 | 💰 月薪 300万-400万韩元 | F-4, F-5, F-6 优先</p>
+                        <p class="text-slate-500 mt-2 text-sm font-medium">📍 首尔 江남구 | 💰 月薪 300万-400万 | F-4, F-5, F-6 优先</p>
+                        <!-- 연락처 영역 -->
+                        <div class="mt-4 contact-box inline-block">
+                            <span class="text-blue-700 font-bold text-sm">📞 联系方式: 010-1234-5678 (金经理)</span>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-6 md:mt-0 flex space-x-3">
-                    <button class="bg-slate-50 text-slate-600 px-6 py-3 rounded-2xl font-bold hover:bg-slate-100 transition">详情</button>
-                    <!-- 위챗 연결 버튼 예시 -->
-                    <a href="https://kakao.com" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-2xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-100 transition">申请 / 微信聊</a>
                 </div>
             </div>
 
-            <!-- 실제 공고 예시 2 -->
+            <!-- 공고 2 -->
             <div class="bg-white p-8 rounded-3xl card-shadow flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-6 w-full">
                     <div class="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-2xl font-bold text-emerald-600">美</div>
-                    <div>
+                    <div class="flex-grow">
                         <div class="mb-2">
-                            <span class="badge bg-emerald-100 text-emerald-600">留学生欢迎</span>
-                            <span class="badge bg-slate-100 text-slate-500">D-2 가능</span>
+                            <span class="badge bg-emerald-100 text-emerald-600">留学生欢迎</span><span class="badge bg-slate-100 text-slate-500">D-2 가능</span>
                         </div>
-                        <h3 class="text-xl font-black text-slate-900 leading-tight">明洞免세점 - 化妆品柜台中文导购 (兼职)</h3>
-                        <p class="text-slate-500 mt-2 text-sm font-medium">📍 首尔 中区 | 💰 时薪 11,500韩元 | 工作环境佳</p>
+                        <h3 class="text-xl font-black text-slate-900 leading-tight">明洞免税店 - 化妆品柜台中文导购 (兼职)</h3>
+                        <p class="text-slate-500 mt-2 text-sm font-medium">📍 首尔 中区 | 💰 时薪 11,500韩元 | 05-03 登记</p>
+                        <!-- 연락처 영역 -->
+                        <div class="mt-4 contact-box inline-block">
+                            <span class="text-blue-700 font-bold text-sm">💬 WeChat ID: korea_job_114</span>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-6 md:mt-0 flex space-x-3">
-                    <a href="https://kakao.com" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-2xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-100 transition w-full md:w-auto text-center">立即申请</a>
                 </div>
             </div>
         </div>
@@ -147,58 +97,39 @@
         <div class="modal-content shadow-2xl">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-2xl font-black text-slate-900">发布招聘信息</h2>
-                <button onclick="closeModal()" class="text-slate-400 text-3xl hover:text-slate-600 transition">&times;</button>
+                <button onclick="closeModal()" class="text-slate-400 text-3xl hover:text-gray-600 transition">&times;</button>
             </div>
             <form action="https://formspree.io" method="POST" class="space-y-5">
                 <div>
                     <label class="block text-sm font-bold text-slate-700 mb-2">公司/店铺名称</label>
-                    <input type="text" name="company" required class="w-full border-2 border-slate-100 p-4 rounded-2xl focus:border-blue-500 outline-none transition shadow-inner" placeholder="如：XX贸易公司">
+                    <input type="text" name="company" required class="w-full border-2 border-slate-100 p-4 rounded-2xl outline-none focus:border-blue-500" placeholder="如：XX贸易公司">
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-slate-700 mb-2">职位名称</label>
-                    <input type="text" name="job_title" required class="w-full border-2 border-slate-100 p-4 rounded-2xl focus:border-blue-500 outline-none transition shadow-inner" placeholder="如：翻译、运营">
+                    <input type="text" name="job_title" required class="w-full border-2 border-slate-100 p-4 rounded-2xl outline-none focus:border-blue-500" placeholder="如：翻译、厨师">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">公开联系方式 (전화번호/위챗)</label>
+                    <input type="text" name="contact" required class="w-full border-2 border-blue-500 p-4 rounded-2xl outline-none bg-blue-50 text-blue-800 font-bold" placeholder="예: 010-1234-5678 또는 위챗ID">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">月薪/时薪</label>
-                        <input type="text" name="salary" class="w-full border-2 border-slate-100 p-4 rounded-2xl focus:border-blue-500 outline-none transition shadow-inner" placeholder="300万韩元">
+                        <input type="text" name="salary" class="w-full border-2 border-slate-100 p-4 rounded-2xl outline-none focus:border-blue-500" placeholder="300万韩元">
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">联系方式 (微信/手机)</label>
-                        <input type="text" name="contact" required class="w-full border-2 border-slate-100 p-4 rounded-2xl focus:border-blue-500 outline-none transition shadow-inner" placeholder="WeChat ID">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">签证要求</label>
+                        <input type="text" name="visa" class="w-full border-2 border-slate-100 p-4 rounded-2xl outline-none focus:border-blue-500" placeholder="F-4, D-2 등">
                     </div>
                 </div>
-                <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-2">签证要求及详细说明</label>
-                    <textarea name="description" rows="3" class="w-full border-2 border-slate-100 p-4 rounded-2xl focus:border-blue-500 outline-none transition shadow-inner" placeholder="说明签证要求及具体工作内容..."></textarea>
-                </div>
-                <button type="submit" class="w-full bg-blue-600 text-white p-5 rounded-2xl font-black text-lg hover:bg-blue-700 transition shadow-lg shadow-blue-100">确认并发布招聘公告</button>
+                <button type="submit" class="w-full bg-blue-600 text-white p-5 rounded-2xl font-black text-lg hover:bg-blue-700 transition shadow-lg">确认并公开发布</button>
             </form>
         </div>
     </div>
 
-    <!-- 하단 푸터 -->
-    <footer class="py-20 border-t border-slate-100 bg-white mt-24">
-        <div class="container-custom text-center">
-            <div class="flex justify-center items-center space-x-3 mb-8">
-                <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center">
-                    <span class="text-white font-bold text-lg">韩</span>
-                </div>
-                <span class="text-2xl font-black text-slate-900">韩职通</span>
-            </div>
-            <p class="text-slate-400 text-sm max-w-lg mx-auto mb-12 leading-loose">
-                韩职通致力于为在韩华人提供最优质、真实的就业平台。<br>
-                所有职位信息均经过人工审核，助您在韩国开启理想事业。
-            </p>
-            <div class="flex justify-center space-x-12 text-sm font-bold text-slate-600">
-                <a href="#" class="hover:text-blue-600 transition">简历代写</a>
-                <a href="#" class="hover:text-blue-600 transition">签证咨询</a>
-                <a href="#" class="hover:text-blue-600 transition">合作伙伴</a>
-            </div>
-            <div class="mt-16 pt-10 border-t border-slate-50 text-xs text-slate-300 font-medium">
-                © 2024 HanZhiTong x DigitalNomad. ALL RIGHTS RESERVED.
-            </div>
-        </div>
+    <footer class="py-12 bg-white border-t border-slate-100 text-center">
+        <span class="text-xl font-black text-slate-900">韩职通 HanZhiTong</span>
+        <p class="text-slate-400 text-xs mt-4">© 2024 HanZhiTong Platform. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
