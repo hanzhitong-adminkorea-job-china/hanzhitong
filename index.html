@@ -3,45 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>韩职通 - 专业的在韩华人招聘网</title>
+    
+    <!-- SEO 核心设置：让谷歌、百度搜到你 -->
+    <title>韩职通 - 专业的在韩华人招聘网 | 韩国求职招聘首选</title>
+    <meta name="description" content="韩职通（HanZhiTong）是在韩华人首选的求职招聘平台，提供餐厅、贸易、物流、建筑等全行业真实招聘信息。商家免费发布，求职者直接联系老板。">
+    <meta name="keywords" content="韩国招聘, 在韩华人求职, 韩国打工, 韩国找工作, 大林招聘, 安山招聘, 韩国劳务, 韩职通">
+    <link rel="canonical" href="https://hanzhitong.vercel.app/">
+
     <style>
-        /* 기본 레이아웃 및 폰트 */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { font-family: -apple-system, system-ui, sans-serif; background-color: #f5f7f9; color: #333; line-height: 1.6; }
         .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; display: flex; flex-direction: column; }
-        
-        /* 헤더 */
         header { padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 20px; font-weight: 800; color: #007AFF; text-decoration: none; }
         .post-btn { background: #007AFF; color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 13px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; }
         
-        /* 홍보 이벤트 배너 */
+        /* 官方群组悬浮按钮 */
+        .floating-chat { position: fixed; bottom: 20px; right: 20px; background: #28a745; color: white; padding: 12px 18px; border-radius: 50px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; }
+        
         .event-banner { background: #FFF9E6; border: 1px dashed #FFCC00; padding: 15px; border-radius: 12px; margin: 20px 20px 0; text-align: left; }
         .event-title { font-size: 13px; color: #D48806; font-weight: bold; margin-bottom: 5px; }
-        .event-desc { font-size: 12px; color: #666; line-height: 1.4; }
-
-        /* 히어로 섹션 */
         .hero { padding: 30px 20px; text-align: center; }
         .hero h2 { font-size: 24px; margin-bottom: 10px; color: #111; }
-        .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 15px; font-size: 16px; outline: none; transition: 0.3s; }
-        .search-box:focus { border-color: #007AFF; }
-
-        /* 채용 등록 폼 (보안 강화) */
+        .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 15px; font-size: 16px; outline: none; }
         #post-form { display: none; padding: 25px 20px; background: #f9fbff; border-bottom: 5px solid #eee; }
-        .form-title { font-size: 18px; font-weight: bold; margin-bottom: 20px; color: #007AFF; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #666; }
         .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; }
-        .submit-btn { width: 100%; padding: 15px; background: #007AFF; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 16px; }
-
-        /* 목록 영역 */
+        .submit-btn { width: 100%; padding: 15px; background: #007AFF; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
         .section-header { padding: 20px 20px 10px; font-weight: bold; font-size: 18px; border-bottom: 1px solid #f0f0f0; }
         .empty-state { padding: 80px 20px; text-align: center; color: #bbb; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-
-        /* 푸터 및 누적 카운터 */
         footer { padding: 60px 20px; text-align: center; background: #fafbfc; border-top: 1px solid #eee; margin-top: auto; }
-        .visitor-box { display: inline-block; padding: 20px 30px; background: #fff; border-radius: 25px; border: 1px solid #eee; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .visitor-label { font-size: 11px; color: #aaa; font-weight: bold; letter-spacing: 1px; margin-bottom: 8px; }
+        .visitor-box { display: inline-block; padding: 20px 30px; background: #fff; border-radius: 25px; border: 1px solid #eee; margin-bottom: 30px; }
         #live-counter { font-size: 32px; font-weight: 900; color: #007AFF; display: block; margin: 5px 0; }
         .live-status { font-size: 11px; color: #17c948; margin-top: 10px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 5px; }
         .dot { width: 8px; height: 8px; background: #17c948; border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; }
@@ -56,49 +49,35 @@
         <button class="post-btn" onclick="toggleForm()">+ 发布招聘</button>
     </header>
 
-    <!-- 채용 등록 폼 (스팸 방지 필터 적용) -->
+    <!-- 悬浮加入群聊按钮 -->
+    <a href="https://kakao.com" class="floating-chat" onclick="alert('请添加微信或进入Kakao群组进行交流')">
+        💬 加入官方交流群
+    </a>
+
     <section id="post-form">
-        <div class="form-title">무료 구인 공고 등록</div>
+        <div class="form-title">发布招聘信息</div>
         <form action="https://formspree.io" method="POST">
-            <div class="form-group">
-                <label>公司/店铺名称 (업체명)</label>
-                <input type="text" name="company" required placeholder="예: ○○무역">
-            </div>
-            <div class="form-group">
-                <label>职位名称 (구인직종)</label>
-                <input type="text" name="job_title" required placeholder="예: 주방장 / 사무직">
-            </div>
-            <div class="form-group">
-                <label>联系方式 (연락처)</label>
-                <input type="text" name="contact" required placeholder="010-0000-0000">
-            </div>
-            <div class="form-group">
-                <label>详细说明 (상세내용)</label>
-                <textarea name="details" rows="4" placeholder="비자 요구사항, 급여 등 상세 내용"></textarea>
-            </div>
-            
-            <!-- 보안용 허니팟 필드 (사람 눈엔 안보임, 봇 스팸 차단용) -->
+            <div class="form-group"><label>公司/店铺名称</label><input type="text" name="company" required></div>
+            <div class="form-group"><label>职位名称</label><input type="text" name="job_title" required></div>
+            <div class="form-group"><label>联系方式</label><input type="text" name="contact" required></div>
+            <div class="form-group"><label>详细说明</label><textarea name="details" rows="4"></textarea></div>
             <input type="text" name="_gotcha" style="display:none">
-            
-            <button type="submit" class="submit-btn">신청하기</button>
+            <button type="submit" class="submit-btn">申请发布</button>
         </form>
     </section>
 
-    <!-- 홍보 이벤트 배너 -->
     <div class="event-banner">
         <p class="event-title">🔥 限时免费推广活动 (무료 홍보 이벤트)</p>
         <p class="event-desc">现在发布招聘信息，我们将为您 <b>免费置顶 30 天</b>！让更多求职者第一时间看到您的信息。</p>
     </div>
 
-    <!-- 히어로 섹션 -->
     <section class="hero">
         <h2>在韩华人, <span style="color:#007AFF;">高效就业</span></h2>
-        <input type="text" class="search-box" placeholder="搜索您感兴趣의职位...">
+        <input type="text" class="search-box" placeholder="搜索您感兴趣的职位...">
     </section>
 
     <div class="section-header">最新职位公告 (최신공고)</div>
 
-    <!-- 공고 없음 상태 -->
     <div class="empty-state">
         <span style="font-size: 50px; opacity: 0.5; margin-bottom: 15px;">📂</span>
         <p style="font-weight: bold; color: #888;">目前还没有发布的公告</p>
@@ -108,15 +87,11 @@
     <footer>
         <div class="visitor-box">
             <div class="visitor-label">TOTAL VISITORS</div>
-            <!-- 실시간 누적 카운터 -->
             <span id="live-counter">...</span>
-            <div class="live-status">
-                <span class="dot"></span> 시스템 정상 작동중 (LIVE)
-            </div>
+            <div class="live-status"><span class="dot"></span> 系统正常运行中 (LIVE)</div>
         </div>
         <div style="font-weight:bold; color:#444; margin-bottom:5px;">韩职通 HanZhiTong</div>
         <p style="font-size:11px; color:#aaa;">© 2024 HanZhiTong. ALL RIGHTS RESERVED.</p>
-        <p style="font-size:9px; color:#ddd; margin-top:10px;">Security protected by HanZhiTong Anti-Spam</p>
     </footer>
 </div>
 
@@ -127,15 +102,13 @@
         form.style.display = isHidden ? 'block' : 'none';
         if(isHidden) form.scrollIntoView({ behavior: 'smooth' });
     }
-
     function initCounter() {
         const counterEl = document.getElementById('live-counter');
-        let count = localStorage.getItem('hzt_final_count') || 10;
+        let count = localStorage.getItem('hzt_master_count') || 10;
         count = parseInt(count) + 1;
-        localStorage.setItem('hzt_final_count', count);
+        localStorage.setItem('hzt_master_count', count);
         counterEl.innerText = count.toLocaleString();
     }
-
     window.onload = initCounter;
 </script>
 
