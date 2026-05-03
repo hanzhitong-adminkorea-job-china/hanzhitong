@@ -19,7 +19,25 @@
         .badge { display: inline-block; padding: 3px 7px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-bottom: 10px; background: #eef5ff; color: #007AFF; }
         .job-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
         .job-info { font-size: 14px; color: #666; margin-bottom: 15px; line-height: 1.8; }
-        .contact-link { display: flex; align-items: center; justify-content: center; width: 100%; padding: 14px; background: #f0f2f5; color: #333; border-radius: 12px; text-decoration: none; font-weight: bold; }
+        
+        /* 버튼 스타일 업그레이드 */
+        .contact-link { 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            width: 100%; 
+            padding: 14px; 
+            background: #007AFF; /* 눈에 띄게 파란색으로 변경 */
+            color: #fff; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            transition: 0.2s;
+        }
+        .contact-link:active { background: #0056b3; transform: scale(0.98); }
+        .contact-subtext { font-size: 11px; font-weight: normal; opacity: 0.9; margin-top: 2px; }
+
         footer { padding: 40px 20px; text-align: center; color: #aaa; font-size: 12px; }
         .visitor-badge { margin-bottom: 15px; display: inline-block; padding: 10px; background: #fafafa; border-radius: 10px; }
     </style>
@@ -41,14 +59,17 @@
 
         <div class="job-card">
             <span class="badge">E-7 支援 · 今日新</span>
-            <div class="job-title">贸易公司 - 中文海外市场运营专员</div>
+            <div class="job-title">贸易公司 - 中文海外 market 运营专员</div>
             <div class="job-info">
                 📍 首尔 江南区<br>
-                💰 月薪 300万 - 400만<br>
+                💰 月薪 300万 - 400万<br>
                 📄 F-4, F-5, F-6 优先
             </div>
-            <!-- 클릭 시 전화 걸기 수정 완료 -->
-            <a href="tel:010-1234-5678" class="contact-link">📞 立即联系 (金经理)</a>
+            <!-- 버튼 클릭 시 확실한 반응을 위해 배경색과 서브텍스트 추가 -->
+            <a href="tel:010-1234-5678" class="contact-link">
+                <span>📞 立即联系 (金经理)</span>
+                <span class="contact-subtext">010-1234-5678</span>
+            </a>
         </div>
 
         <footer>
