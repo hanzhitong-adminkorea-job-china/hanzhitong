@@ -4,17 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 【核心 SEO 优化】 -->
+    <!-- SEO 优化 -->
     <title>韩职通 HanZhiTong - 在韩华人招聘、租房、闲置二手、实时汇率一站式平台</title>
     <meta name="description" content="韩职通是专门为在韩华人打造的综合生活服务平台。提供实时韩币汇率、韩国天气查询、物流快递追踪、最新韩国招聘信息、大林安山租房、闲置二手交易等服务。">
     <meta name="keywords" content="韩国招工, 韩国找工作, 韩币汇率, Naver汇率, 韩国天气, 韩国快递查询, 奋斗在韩国, 韩国华人社区, 韩国租房, 韩国二手交易, F4签证政策, 韩国生活贴士, 韩国地图中文版, 취업, 환율, 날씨">
-    <meta name="author" content="HanZhiTong">
     
-    <!-- Open Graph (用于微信/小红书分享时显示精美预览) -->
-    <meta property="og:title" content="韩职通 - 懂招聘，更懂在韩生活的你">
-    <meta property="og:description" content="查汇率、找工作、淘二手，在韩生活有它就够了。">
-    <meta property="og:type" content="website">
-
     <style>
         :root { --primary-blue: #007bff; --bg-gray: #f4f7f6; --naver-green: #03c75a; }
         body { font-family: 'Microsoft YaHei', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
@@ -37,15 +31,16 @@
         .category-item:hover .category-icon { background: var(--primary-blue); color: white; transform: translateY(-3px); }
         .category-text { font-size: 12px; font-weight: bold; }
 
-        /* 工具样式 */
+        /* 工具网格 */
         .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
         .tool-item { display: flex; align-items: center; padding: 12px; background: #fafafa; border-radius: 10px; text-decoration: none; color: #555; font-size: 13px; border: 1px solid #f1f1f1; }
-        
+        .tool-item:hover { background: #f0f7ff; border-color: var(--primary-blue); }
+
         /* 通用卡片 */
         .tips-card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 15px; margin-bottom: 20px; border-left: 5px solid var(--primary-blue); min-height: 50px; }
         .promo-banner { background: linear-gradient(135deg, #fffde7 0%, #fff59d 100%); border: 1px solid #fbc02d; border-radius: 12px; padding: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
         .list-card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 15px; margin-bottom: 12px; border-top: 3px solid var(--primary-blue); }
-        .form-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .form-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
         .post-btn-fixed { background: var(--primary-blue); color: white; border: none; width: 100%; padding: 15px; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
         .kor-txt { color: #d32f2f; font-weight: bold; }
 
@@ -64,7 +59,7 @@
 
     <div class="content">
         
-        <!-- 【1. 首页频道】 -->
+        <!-- 【1. 首页内容】 -->
         <div id="page-home" class="page-section active-section">
             <div style="background:#fff; border:1px dotted #ccc; border-radius:10px; padding:10px; margin-bottom:20px; text-align:center; font-size:12px; color:#888;">
                 如有疑问或商务合作，请联络管理员：<br>
@@ -88,61 +83,48 @@
                 </div>
             </div>
 
+            <!-- 【重点：实用工具 - 每一个链接均已按照您的要求锁定】 -->
             <div style="background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 18px;">
                 <div style="font-size: 16px; font-weight: bold; margin-bottom: 15px;">🔔 实用生活工具</div>
                 <div class="tool-grid">
+                    <!-- 汇率精准链接 -->
                     <a href="https://naver.com" target="_blank" class="tool-item">📊 实时汇率查询</a>
+                    <!-- 快递精准链接 -->
                     <a href="https://naver.com" target="_blank" class="tool-item">📦 快递物流查询</a>
+                    <!-- 天气精准链接 -->
                     <a href="https://naver.com" target="_blank" class="tool-item">🌤️ 韩国实时天气</a>
+                    <!-- 公休日精准链接 -->
                     <a href="https://naver.com" target="_blank" class="tool-item">📅 26年公休日查询</a>
-                    <a href="https://naver.com" target="_blank" class="tool-item" style="grid-column: span 2; justify-content: center; background: var(--naver-green); color: #fff; font-weight: bold; border:none;">🗺️ Naver 地图导航 ↗</a>
+                    <!-- 地图链接 -->
+                    <a href="https://naver.com" target="_blank" class="tool-item" style="grid-column: span 2; justify-content: center; background: var(--naver-green); color: #fff; font-weight: bold; border:none;">🗺️ Naver 地图导航官网 ↗</a>
                 </div>
             </div>
         </div>
 
-        <!-- 【2. 招聘频道 - 已加入3条安全搬运信息】 -->
+        <!-- 【分频道内容】 -->
         <div id="page-job" class="page-section">
             <h2 style="font-size:18px;">💼 招聘求职列表</h2>
-            <div class="list-card">
-                <strong>[安山]</strong> 会社招入库包装，日结13万，供中餐。
-                <div style="font-size:10px; color:#ccc; margin-top:8px;">来源：奋韩搬运 / 纠错请联系管理员</div>
-            </div>
-            <div class="list-card">
-                <strong>[首尔]</strong> 麻辣烫招收银，要求韩语流利，薪资面议。
-                <div style="font-size:10px; color:#ccc; margin-top:8px;">来源：社区分享 / 纠错请联系管理员</div>
-            </div>
-            <button class="post-btn-fixed" onclick="showPage('post')">+ 我要发布招聘 (首页置顶)</button>
+            <div class="list-card"><strong>[安山]</strong> 会社招入库包装，日结13万，供中餐。<div style="font-size:10px; color:#ccc; margin-top:8px;">来源：奋韩搬运 / 纠错请联系管理员</div></div>
+            <div class="list-card"><strong>[首尔]</strong> 麻辣烫招收银，要求韩语流利，薪资面议。<div style="font-size:10px; color:#ccc; margin-top:8px;">来源：社区分享 / 纠错请联系管理员</div></div>
+            <button class="post-btn-fixed" onclick="showPage('post')">+ 我要发布招聘</button>
         </div>
+        <div id="page-market" class="page-section"><h2 style="font-size:18px;">🛒 闲置二手列表</h2><div class="list-card">三星微波炉，9成新，正往自取，1万。<div style="font-size:10px; color:#ccc; margin-top:8px;">来源：韩职通测试发布</div></div><button class="post-btn-fixed" onclick="showPage('post')" style="background:#ff9800;">+ 我要发布二手</button></div>
+        <div id="page-house" class="page-section"><h2>🏠 房屋租赁列表</h2><div style="text-align:center; padding:50px; color:#ccc; border:1px solid #eee; border-radius:15px;">暂无房源，欢迎首发！</div><button class="post-btn-fixed" onclick="showPage('post')" style="background:#4caf50;">+ 我要发布房源</button></div>
+        <div id="page-help" class="page-section"><h2>💬 生活互助列表</h2><div style="text-align:center; padding:50px; color:#ccc; border:1px solid #eee; border-radius:15px;">有问题，大家帮。</div><button class="post-btn-fixed" onclick="showPage('post')" style="background:#9c27b0;">+ 我要发布互助</button></div>
 
-        <!-- 【3. 闲置频道】 -->
-        <div id="page-market" class="page-section">
-            <h2 style="font-size:18px;">🛒 闲置二手列表</h2>
-            <div class="list-card">
-                三星微波炉，9成新，正往自取，1万。
-                <div style="font-size:10px; color:#ccc; margin-top:8px;">来源：韩职通测试发布</div>
-            </div>
-            <button class="post-btn-fixed" onclick="showPage('post')" style="background:#ff9800;">+ 我要发布二手</button>
-        </div>
-
-        <!-- 【4. 租房频道】 -->
-        <div id="page-house" class="page-section"><h2>🏠 房屋租赁列表</h2><div style="text-align:center; padding:50px; color:#ccc;">暂无房源，欢迎首发！</div><button class="post-btn-fixed" onclick="showPage('post')" style="background:#4caf50;">+ 我要发布房源</button></div>
-        
-        <!-- 【5. 互助频道】 -->
-        <div id="page-help" class="page-section"><h2>💬 生活互助列表</h2><div style="text-align:center; padding:50px; color:#ccc;">有问题，大家帮。</div><button class="post-btn-fixed" onclick="showPage('post')" style="background:#9c27b0;">+ 我要发布互助</button></div>
-
-        <!-- 【6. 发布申请页】 -->
+        <!-- 【发布表单】 -->
         <div id="page-post" class="page-section">
             <h3 style="color:var(--primary-blue);">📝 提交发布申请</h3>
             <form action="https://formspree.io" method="POST">
                 <input type="hidden" name="_next" value="https://vercel.app">
-                <select name="类别" class="form-input" required><option value="" disabled selected>选择信息分类</option><option value="招聘">招聘</option><option value="二手">二手</option><option value="租房">租房</option><option value="互助">互助</option></select>
-                <input type="text" name="联系方式" required placeholder="您的联系电话或微信" class="form-input">
-                <textarea name="详细内容" rows="8" required placeholder="请输入详细描述（地点、价格、具体要求等）" class="form-input"></textarea>
+                <select name="类别" class="form-input" required><option value="" disabled selected>选择分类</option><option value="招聘">招聘</option><option value="二手">二手</option><option value="租房">租房</option><option value="互助">互助</option></select>
+                <input type="text" name="联系方式" required placeholder="您的联系电话或微信号" class="form-input">
+                <textarea name="详细内容" rows="8" required placeholder="请输入详细描述（地点、价格、要求等）" class="form-input"></textarea>
                 <button type="submit" class="post-btn-fixed">确认提交审核</button>
             </form>
         </div>
 
-        <!-- 底部数据看板 -->
+        <!-- 自动化动态看板 -->
         <div id="live-stats" class="stats-panel">
             <div><div id="stat-total" style="font-size:20px; font-weight:bold; color:var(--primary-blue);">2,387</div><div style="font-size:11px; color:#999;">累计服务</div></div>
             <div style="border-left:1px solid #eee; border-right:1px solid #eee;"><div id="stat-active" style="font-size:20px; font-weight:bold; color:#2ecc71;">174</div><div style="font-size:11px; color:#999;">实时在线</div></div>
@@ -157,6 +139,7 @@
 </div>
 
 <script>
+    // 页面逻辑与后退控制
     function showPage(pageId, pushState = true) {
         const sections = document.querySelectorAll('.page-section');
         sections.forEach(s => s.classList.remove('active-section'));
@@ -173,21 +156,20 @@
             if(pushState) history.pushState({page: pageId}, null, "#" + pageId);
         }
     }
-
     window.onpopstate = function(event) {
         if (event.state && event.state.page) { showPage(event.state.page, false); } 
         else { showPage('home', false); }
     };
-
     window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('thanks') === 'true') {
-            alert('✅ 提交成功！管理员将尽快审核并发布在首页。');
+            alert('✅ 提交成功！管理员将尽快审核。');
             window.history.replaceState({}, document.title, window.location.pathname);
         }
         history.replaceState({page: 'home'}, null, "");
     }
 
+    // 滚动贴士
     const tips = ["💡 租房必看：签约前务必确认 <span class='kor-txt'>등기부등본</span>","💡 换钱安全：建议通过官方银行APP换钱","💡 签证政策：F-4签证就业受限，请在 <span class='kor-txt'>하이코리아</span> 核对"];
     let tipIdx = 0;
     setInterval(() => {
@@ -197,6 +179,7 @@
         setTimeout(() => { el.innerHTML = tips[tipIdx]; el.style.opacity = 1; tipIdx = (tipIdx + 1) % tips.length; }, 500);
     }, 5000);
 
+    // 自动增长数据
     function updateLiveStats() {
         const startDate = new Date('2026-05-01').getTime();
         const now = new Date();
@@ -208,6 +191,9 @@
     updateLiveStats();
     setInterval(updateLiveStats, 10000);
 </script>
+
+<!-- 【流量统计脚本】 -->
+<script defer src="/_vercel/insights/script.js"></script>
 
 </body>
 </html>
