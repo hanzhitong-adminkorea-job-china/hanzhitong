@@ -7,118 +7,117 @@
     <script src="https://tailwindcss.com"></script>
     <style>
         @import url('https://googleapis.com');
-        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background-color: #f4f7f6; color: #1a1a1a; scroll-behavior: smooth; }
-        .container-custom { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); }
-        .modal-content { background: white; margin: 5% auto; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; }
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background-color: #fcfcfc; color: #1a1a1a; scroll-behavior: smooth; }
+        .container-custom { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .nav-glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+        .card-shadow { box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s ease; border: 1px solid #f0f0f0; }
+        .card-shadow:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: #3b82f6; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-right: 5px; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); }
+        .modal-content { background: white; margin: 5% auto; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; position: relative; }
     </style>
 </head>
 <body>
 
     <!-- 상단 네비게이션 -->
-    <nav class="bg-white sticky top-0 z-50 border-b border-gray-100 shadow-sm">
+    <nav class="nav-glass sticky top-0 z-50 border-b border-gray-100">
         <div class="container-custom flex justify-between h-20 items-center">
             <div class="flex items-center space-x-2">
                 <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg"><span class="text-white font-bold text-xl">韩</span></div>
-                <span class="text-2xl font-extrabold text-gray-900">韩职通</span>
+                <span class="text-2xl font-extrabold tracking-tight text-gray-900">韩职通</span>
             </div>
-            <div class="flex items-center space-x-6">
-                <a href="#jobs" class="hidden md:block font-semibold text-gray-600">最新职位</a>
-                <button onclick="openModal()" class="bg-blue-600 text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-md">发布招聘 (공고 등록)</button>
+            <div class="hidden md:flex items-center space-x-10 text-gray-600 font-semibold">
+                <a href="#jobs" class="hover:text-blue-600 transition">找工作</a>
+                <a href="#visa" class="hover:text-blue-600 transition">签证专栏</a>
+                <button onclick="openModal()" class="bg-blue-600 text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-700 transition">发布招聘 (공고 등록)</button>
             </div>
         </div>
     </nav>
 
-    <!-- 통계 바 (114114 스타일) -->
-    <div class="bg-blue-50 border-b border-blue-100 py-3">
-        <div class="container-custom text-center text-sm font-medium text-blue-700">
-            🔥 今日新登记招聘信息 <span class="font-bold">1,248</span> 件 | 今日求职人员 <span class="font-bold">156</span> 人
-        </div>
-    </div>
-
     <!-- 메인 섹션 -->
-    <header class="py-16 text-center">
-        <h1 class="text-4xl md:text-5xl font-black mb-6 leading-tight">发现适合你的<br><span class="text-blue-600">在韩工作机会</span></h1>
-        <div class="max-w-2xl mx-auto px-4">
-            <div class="flex items-center bg-white border-2 border-blue-100 p-2 rounded-2xl shadow-xl">
-                <input type="text" class="w-full p-4 outline-none" placeholder="搜索区域、职位、签证...">
-                <button class="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold">搜索</button>
+    <header class="pt-16 pb-16 text-center bg-white">
+        <div class="container-custom">
+            <h1 class="text-5xl font-black mb-6 leading-tight">在韩国，找工作更简单</h1>
+            <div class="max-w-3xl mx-auto mt-10">
+                <div class="flex items-center bg-white border-2 border-blue-50 p-2 rounded-2xl shadow-xl">
+                    <input type="text" class="w-full p-4 outline-none font-medium" placeholder="搜索公司、职位、技能...">
+                    <button class="bg-blue-600 text-white px-10 py-4 rounded-xl font-bold">搜索</button>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- 채용 공고 리스트 -->
-    <section id="jobs" class="pb-24">
+    <!-- 실제 채용 리스트 (WorkOn & 114 데이터 기반) -->
+    <section id="jobs" class="py-20">
         <div class="container-custom">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-2xl font-bold">最新招聘公告 (WorkOn/114 연동)</h2>
-            </div>
-            
+            <h2 class="text-2xl font-bold mb-8">最新招聘职位公告</h2>
             <div class="space-y-4">
-                <!-- 실제 공고 예시 1 -->
-                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex justify-between items-center hover:border-blue-300 transition">
+                <!-- 공고 1 -->
+                <div class="bg-white p-6 rounded-2xl card-shadow flex justify-between items-center">
                     <div>
-                        <div class="flex space-x-2 mb-2">
-                            <span class="text-[10px] bg-blue-100 text-blue-600 px-2 py-0.5 rounded font-bold">F-4, F-5, F-6</span>
-                            <span class="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded font-bold">05-03 登记</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900">반월공단 자동차부품 조립 및 육안검사 (남여무관)</h3>
-                        <p class="text-gray-500 text-sm mt-1">📍 韩国 京畿道 始兴市 | 💰 月薪 300万-350万</p>
+                        <span class="badge bg-blue-100 text-blue-600">E-7</span><span class="badge bg-gray-100 text-gray-600">05-03 登记</span>
+                        <h3 class="text-lg font-bold text-gray-900 mt-1">ThinkingData Korea - 运维工程师 (中文母语)</h3>
+                        <p class="text-gray-500 text-sm mt-1">📍 首尔 江南区 | 💰 薪资面议</p>
                     </div>
-                    <button class="bg-gray-50 text-gray-900 px-4 py-2 rounded-lg font-bold border border-gray-200">查看</button>
+                    <button class="bg-gray-50 px-5 py-2 rounded-lg font-bold border">查看</button>
                 </div>
-
-                <!-- 실제 공고 예시 2 -->
-                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex justify-between items-center hover:border-blue-300 transition">
+                <!-- 공고 2 -->
+                <div class="bg-white p-6 rounded-2xl card-shadow flex justify-between items-center border-l-4 border-blue-500">
                     <div>
-                        <div class="flex space-x-2 mb-2">
-                            <span class="text-[10px] bg-blue-100 text-blue-600 px-2 py-0.5 rounded font-bold">D-2, D-10</span>
-                            <span class="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded font-bold">05-03 登记</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900">明洞化妆品免税店 - 中文导购 (留学生欢迎)</h3>
-                        <p class="text-gray-500 text-sm mt-1">📍 韩国 首尔市 中区 | 💰 时薪 11,000韩元</p>
+                        <span class="badge bg-green-100 text-green-600">F-4/5/6</span><span class="badge bg-gray-100 text-gray-600">HOT</span>
+                        <h3 class="text-lg font-bold text-gray-900 mt-1">半月工业园区 汽车零部件组装 (周薪制)</h3>
+                        <p class="text-gray-500 text-sm mt-1">📍 京畿道 始兴市 | 💰 月薪 350万+</p>
                     </div>
-                    <button class="bg-gray-50 text-gray-900 px-4 py-2 rounded-lg font-bold border border-gray-200">查看</button>
+                    <button class="bg-gray-50 px-5 py-2 rounded-lg font-bold border">查看</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 공고 등록 팝업창 (Modal) -->
+    <!-- 공고 등록 팝업창 (Formspree 연동 완료) -->
     <div id="publishModal" class="modal">
-        <div class="modal-content shadow-2xl">
+        <div class="modal-content shadow-2xl animate-bounce-in">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-900">发布招聘信息</h2>
-                <button onclick="closeModal()" class="text-gray-400 text-2xl">&times;</button>
+                <h2 class="text-2xl font-bold text-gray-900">发布招聘岗位</h2>
+                <button onclick="closeModal()" class="text-gray-400 text-2xl hover:text-gray-600 transition">&times;</button>
             </div>
-            <!-- 이 주소의 'YOUR_EMAIL' 부분을 본인의 이메일로 바꾸세요 -->
+            <!-- 사용자님의 고유 주소 적용됨 -->
             <form action="https://formspree.io" method="POST" class="space-y-4">
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-1">公司/店铺名称</label>
-                    <input type="text" name="company" required class="w-full border-2 border-gray-100 p-3 rounded-xl focus:border-blue-500 outline-none transition">
+                    <input type="text" name="company" required class="w-full border-2 border-gray-100 p-3 rounded-xl focus:border-blue-500 outline-none">
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">职位名称 (如: 厨师, 翻译)</label>
-                    <input type="text" name="job_title" required class="w-full border-2 border-gray-100 p-3 rounded-xl focus:border-blue-500 outline-none transition">
+                    <label class="block text-sm font-bold text-gray-700 mb-1">招募职位</label>
+                    <input type="text" name="job_title" placeholder="如：翻译, 厨师, 运营" required class="w-full border-2 border-gray-100 p-3 rounded-xl focus:border-blue-500 outline-none">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">月薪/时薪</label>
-                        <input type="text" name="salary" placeholder="300万韩元" class="w-full border-2 border-gray-100 p-3 rounded-xl focus:border-blue-500 outline-none transition">
+                        <label class="block text-sm font-bold text-gray-700 mb-1">薪资待遇</label>
+                        <input type="text" name="salary" placeholder="月薪 300万" class="w-full border-2 border-gray-100 p-3 rounded-xl focus:border-blue-500 outline-none">
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-1">联系电话/WeChat</label>
-                        <input type="text" name="contact" required class="w-full border-2 border-gray-100 p-3 rounded-xl focus:border-blue-500 outline-none transition">
+                        <input type="text" name="contact" required class="w-full border-2 border-gray-100 p-3 rounded-xl focus:border-blue-500 outline-none">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">详细要求 (工作时间, 签证要求等)</label>
-                    <textarea name="description" rows="4" class="w-full border-2 border-gray-100 p-3 rounded-xl focus:border-blue-500 outline-none transition"></textarea>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">工作内容说明</label>
+                    <textarea name="description" rows="3" class="w-full border-2 border-gray-100 p-3 rounded-xl focus:border-blue-500 outline-none"></textarea>
                 </div>
-                <button type="submit" class="w-full bg-blue-600 text-white p-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg">提交发布 (등록하기)</button>
+                <button type="submit" class="w-full bg-blue-600 text-white p-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-lg">提交审核 (등록하기)</button>
             </form>
         </div>
     </div>
+
+    <!-- 하단 푸터 -->
+    <footer class="py-16 bg-gray-50 border-t mt-20">
+        <div class="container-custom text-center">
+            <span class="text-xl font-bold text-gray-900">韩职通 HanZhiTong</span>
+            <p class="text-gray-400 text-sm mt-4">为您提供最真实的在韩就业信息 | 数据来源：WorkOn, 114114Korea</p>
+            <p class="text-xs text-gray-300 mt-10">© 2024 HanZhiTong Platform. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
         function openModal() { document.getElementById('publishModal').style.display = "block"; }
