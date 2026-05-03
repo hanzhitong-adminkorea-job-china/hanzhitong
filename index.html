@@ -5,66 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>韩职通 - 专业的在韩华人招聘网</title>
     <style>
-        /* 기본 스타일: 모바일 퍼스트 디자인 */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: #f0f2f5; /* PC 배경색 */
-            color: #333; 
-            line-height: 1.6;
-        }
-        .container { 
-            max-width: 480px; /* 모바일 앱 같은 느낌을 주는 너비 제한 */
-            margin: 0 auto; 
-            background: #fff; 
-            min-height: 100vh; 
-            box-shadow: 0 0 20px rgba(0,0,0,0.05); 
-        }
-        
-        /* 상단 바 */
-        header { 
-            padding: 15px 20px; 
-            border-bottom: 1px solid #eee; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            background: #fff; 
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
-        }
+        body { font-family: -apple-system, system-ui, sans-serif; background-color: #f0f2f5; color: #333; line-height: 1.6; }
+        .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+        header { padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 20px; font-weight: 800; color: #007AFF; text-decoration: none; }
         .post-btn { background: #007AFF; color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 13px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; }
-        
-        /* 메인 슬로건 */
         .hero { padding: 40px 20px; background: linear-gradient(180deg, #f9fbff 0%, #fff 100%); text-align: center; }
         .hero h2 { font-size: 24px; margin-bottom: 10px; color: #111; }
-        .hero p { color: #666; font-size: 14px; margin-bottom: 25px; }
-        .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 15px; font-size: 16px; outline: none; transition: 0.3s; }
-        .search-box:focus { border-color: #007AFF; }
-
-        /* 채용 등록 폼 (Formspree 연동) */
-        #post-form { display: none; padding: 25px 20px; background: #fff; border-bottom: 8px solid #f5f7f9; border-top: 1px solid #eee; }
-        .form-title { font-size: 18px; font-weight: bold; margin-bottom: 20px; color: #007AFF; }
+        .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 15px; font-size: 16px; outline: none; }
+        #post-form { display: none; padding: 25px 20px; background: #fff; border-bottom: 8px solid #f5f7f9; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #666; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; font-family: inherit; }
-        .submit-btn { width: 100%; padding: 15px; background: #007AFF; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.2s; }
-        .submit-btn:active { background: #0056b3; transform: scale(0.98); }
-
-        /* 공고 리스트 영역 */
-        .section-header { padding: 20px 20px 10px; border-bottom: 1px solid #f0f0f0; }
-        .section-title { font-weight: bold; font-size: 18px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; }
+        .submit-btn { width: 100%; padding: 15px; background: #007AFF; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
         .empty-state { padding: 80px 20px; text-align: center; color: #bbb; }
-        .empty-icon { font-size: 50px; margin-bottom: 15px; display: block; filter: grayscale(1); }
-
-        /* 푸터 & 카운터 */
+        
+        /* 푸터 및 카운터 스타일 */
         footer { padding: 60px 20px; text-align: center; background: #fafbfc; border-top: 1px solid #eee; }
-        .visitor-box { display: inline-block; padding: 15px 25px; background: #fff; border-radius: 20px; border: 1px solid #eee; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .visitor-box { display: inline-block; padding: 15px 20px; background: #fff; border-radius: 20px; border: 1px solid #eee; margin-bottom: 30px; }
         .visitor-label { font-size: 10px; color: #aaa; letter-spacing: 1px; margin-bottom: 10px; font-weight: bold; }
-        .footer-logo { font-weight: bold; color: #444; font-size: 16px; margin-bottom: 8px; }
-        .footer-copyright { font-size: 11px; color: #aaa; }
-        .live-status { font-size: 11px; color: #17c948; margin-top: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .live-status { font-size: 11px; color: #17c948; margin-top: 10px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 5px; }
         .dot { width: 8px; height: 8px; background: #17c948; border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
     </style>
@@ -77,86 +38,53 @@
         <button class="post-btn" onclick="toggleForm()">+ 发布招聘</button>
     </header>
 
-    <!-- 채용 등록 폼 섹션 -->
     <section id="post-form">
-        <div class="form-title">发布您的招聘信息</div>
+        <h3 style="margin-bottom:15px; color:#007AFF;">发布招聘信息</h3>
         <form action="https://formspree.io" method="POST">
-            <div class="form-group">
-                <label>公司/店铺名称</label>
-                <input type="text" name="company" required placeholder="예: ○○贸易 / ○○饭店">
-            </div>
-            <div class="form-group">
-                <label>职位名称</label>
-                <input type="text" name="job_title" required placeholder="예: 厨师 / 办公室职员">
-            </div>
-            <div class="form-group">
-                <label>联系方式 (电话/微信)</label>
-                <input type="text" name="contact" required placeholder="예: 010-1234-5678 / 위챗ID">
-            </div>
-            <div class="form-group">
-                <label>工作地点及待遇要求</label>
-                <textarea name="details" rows="4" placeholder="예: 首尔江南, 薪资面议, 签证不限"></textarea>
-            </div>
-            <button type="submit" class="submit-btn">立即提交</button>
+            <div class="form-group"><label>公司/店铺名称</label><input type="text" name="company" required></div>
+            <div class="form-group"><label>职位名称</label><input type="text" name="job_title" required></div>
+            <div class="form-group"><label>联系方式</label><input type="text" name="contact" required></div>
+            <div class="form-group"><label>详细说明</label><textarea name="details" rows="4"></textarea></div>
+            <button type="submit" class="submit-btn">提交申请</button>
         </form>
     </section>
 
-    <!-- 메인 비주얼 -->
     <section class="hero">
         <h2>在韩华人, <span style="color:#007AFF;">高效就业</span></h2>
-        <p>提供最真实的招聘信息，求职招聘更简单</p>
-        <input type="text" class="search-box" placeholder="搜索职位关键词...">
+        <p>提供最真实的招聘信息</p>
+        <input type="text" class="search-box" placeholder="搜索职位...">
     </section>
 
-    <div class="section-header">
-        <div class="section-title">最新职位公告</div>
-    </div>
-
-    <!-- 데이터가 없을 때의 상태 -->
+    <div style="padding:20px; font-weight:bold; border-bottom:1px solid #f0f0f0;">最新职位公告</div>
     <div class="empty-state">
-        <span class="empty-icon">📂</span>
-        <p style="font-weight: bold; color: #888;">目前还没有发布的公告</p>
+        <p>📝 目前还没有发布的公告</p>
         <p style="font-size: 13px; margin-top: 5px;">点击上方“发布招聘”提交您的第一条公告！</p>
     </div>
 
-    <!-- 푸터 섹션 -->
     <footer>
         <div class="visitor-box">
             <div class="visitor-label">TOTAL VISITORS</div>
-            <!-- 카운터 이미지: 로딩 실패 시 다른 카운터로 자동 전환되는 기능 추가 -->
-            <img src="https://seeyoufarm.com" 
-                 alt="Visitors" 
-                 style="height: 20px; display: block; margin: 0 auto;"
-                 onerror="this.onerror=null; this.src='https://glitch.me';">
+            <!-- 가장 안정적인 카운터 서비스로 교체 -->
+            <img src="https://komarev.com" 
+                 alt="Visitor Counter" 
+                 style="display: block; margin: 0 auto; height: 20px;"
+                 onerror="this.src='https://glitch.me'">
             
             <div class="live-status">
-                <span class="dot"></span> 系统正在运行中 (LIVE)
+                <span class="dot"></span> 系统正在运行중 (LIVE)
             </div>
         </div>
-        
-        <div class="footer-logo">韩职通 HanZhiTong</div>
-        <p class="footer-copyright">© 2024 HanZhiTong. ALL RIGHTS RESERVED.</p>
+        <div style="font-weight:bold; color:#444; margin-bottom:5px;">韩职通 HanZhiTong</div>
+        <p style="font-size:11px; color:#aaa;">© 2024 HanZhiTong. ALL RIGHTS RESERVED.</p>
     </footer>
 </div>
 
 <script>
-    // 폼 보이기/숨기기 토글 함수
     function toggleForm() {
         const form = document.getElementById('post-form');
-        const isHidden = (form.style.display === 'none' || form.style.display === '');
-        form.style.display = isHidden ? 'block' : 'none';
-        if (isHidden) {
-            form.scrollIntoView({ behavior: 'smooth' });
-        }
+        form.style.display = (form.style.display === 'block') ? 'none' : 'block';
+        if(form.style.display === 'block') form.scrollIntoView({behavior: "smooth"});
     }
-
-    // 전송 완료 후 URL 확인 (Formspree 전송 후 돌아올 때 대응)
-    window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('thanks')) {
-            alert('您的信息已提交！审核后会立即显示。');
-        }
-    };
 </script>
 
 </body>
