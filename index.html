@@ -4,41 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- SEO 核心设置：让谷歌、百度搜到你 -->
-    <title>韩职通 - 专业的在韩华人招聘网 | 韩国求职招聘首选</title>
-    <meta name="description" content="韩职通（HanZhiTong）是在韩华人首选的求职招聘平台，提供餐厅、贸易、物流、建筑等全行业真实招聘信息。商家免费发布，求职者直接联系老板。">
-    <meta name="keywords" content="韩国招聘, 在韩华人求职, 韩国打工, 韩国找工作, 大林招聘, 安山招聘, 韩国劳务, 韩职通">
-    <link rel="canonical" href="https://hanzhitong.vercel.app/">
-
+    <!-- SEO: 구글/바이두 검색 최적화 -->
+    <title>韩职通 - 专业的在韩华人招聘网 | 商家免费置顶</title>
+    <meta name="description" content="韩职通（HanZhiTong）是在韩华人首选的求职招聘平台，提供餐厅、贸易、物流等全行业真实招聘信息。商家免费发布，免费置顶30天。">
+    <meta name="keywords" content="韩国招聘, 在韩华人求职, 韩国打工, 大林招聘, 安山招聘, 韩职通, guksung1201">
+    
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { font-family: -apple-system, system-ui, sans-serif; background-color: #f5f7f9; color: #333; line-height: 1.6; }
-        .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; display: flex; flex-direction: column; }
+        .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; display: flex; flex-direction: column; position: relative; }
+        
         header { padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 20px; font-weight: 800; color: #007AFF; text-decoration: none; }
         .post-btn { background: #007AFF; color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 13px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; }
         
-        /* 官方群组悬浮按钮 */
-        .floating-chat { position: fixed; bottom: 20px; right: 20px; background: #28a745; color: white; padding: 12px 18px; border-radius: 50px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; }
-        
+        /* 위챗 고객센터 플로팅 버튼 */
+        .wechat-float { position: fixed; bottom: 20px; right: 20px; background: #07C160; color: white; padding: 12px 18px; border-radius: 50px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 999; text-decoration: none; border: none; cursor: pointer; }
+
         .event-banner { background: #FFF9E6; border: 1px dashed #FFCC00; padding: 15px; border-radius: 12px; margin: 20px 20px 0; text-align: left; }
-        .event-title { font-size: 13px; color: #D48806; font-weight: bold; margin-bottom: 5px; }
         .hero { padding: 30px 20px; text-align: center; }
         .hero h2 { font-size: 24px; margin-bottom: 10px; color: #111; }
         .search-box { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 15px; font-size: 16px; outline: none; }
+
         #post-form { display: none; padding: 25px 20px; background: #f9fbff; border-bottom: 5px solid #eee; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #666; }
         .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; }
-        .submit-btn { width: 100%; padding: 15px; background: #007AFF; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
+        .submit-btn { width: 100%; padding: 15px; background: #007AFF; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 16px; }
+
         .section-header { padding: 20px 20px 10px; font-weight: bold; font-size: 18px; border-bottom: 1px solid #f0f0f0; }
         .empty-state { padding: 80px 20px; text-align: center; color: #bbb; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
         footer { padding: 60px 20px; text-align: center; background: #fafbfc; border-top: 1px solid #eee; margin-top: auto; }
         .visitor-box { display: inline-block; padding: 20px 30px; background: #fff; border-radius: 25px; border: 1px solid #eee; margin-bottom: 30px; }
         #live-counter { font-size: 32px; font-weight: 900; color: #007AFF; display: block; margin: 5px 0; }
         .live-status { font-size: 11px; color: #17c948; margin-top: 10px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 5px; }
         .dot { width: 8px; height: 8px; background: #17c948; border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        
+        .admin-wechat { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 15px; border-radius: 12px; margin-top: 20px; font-size: 13px; }
     </style>
 </head>
 <body>
@@ -49,13 +53,13 @@
         <button class="post-btn" onclick="toggleForm()">+ 发布招聘</button>
     </header>
 
-    <!-- 悬浮加入群聊按钮 -->
-    <a href="https://kakao.com" class="floating-chat" onclick="alert('请添加微信或进入Kakao群组进行交流')">
-        💬 加入官方交流群
-    </a>
+    <!-- 위챗 실시간 상담 플로팅 버튼 -->
+    <button class="wechat-float" onclick="copyWeChat()">
+        💬 微信咨询
+    </button>
 
     <section id="post-form">
-        <div class="form-title">发布招聘信息</div>
+        <div class="form-title">무료 구인 공고 등록</div>
         <form action="https://formspree.io" method="POST">
             <div class="form-group"><label>公司/店铺名称</label><input type="text" name="company" required></div>
             <div class="form-group"><label>职位名称</label><input type="text" name="job_title" required></div>
@@ -67,8 +71,8 @@
     </section>
 
     <div class="event-banner">
-        <p class="event-title">🔥 限时免费推广活动 (무료 홍보 이벤트)</p>
-        <p class="event-desc">现在发布招聘信息，我们将为您 <b>免费置顶 30 天</b>！让更多求职者第一时间看到您的信息。</p>
+        <p style="font-size: 13px; color: #D48806; font-weight: bold; margin-bottom: 5px;">🔥 限时免费推广活动 (무료 홍보 이벤트)</p>
+        <p style="font-size: 12px; color: #666; line-height: 1.4;">现在发布招聘信息，我们将为您 <b>免费置顶 30 天</b>！让更多求职者第一时间看到您的信息。</p>
     </div>
 
     <section class="hero">
@@ -82,13 +86,19 @@
         <span style="font-size: 50px; opacity: 0.5; margin-bottom: 15px;">📂</span>
         <p style="font-weight: bold; color: #888;">目前还没有发布的公告</p>
         <p style="font-size: 13px; margin-top: 5px;">点击上方“发布招聘”提交您的第一条公告！</p>
+        
+        <!-- 관리자 위챗 안내 추가 -->
+        <div class="admin-wechat">
+            <b>客服微信 (고객센터):</b> <span style="color:#07C160; font-weight:bold;">guksung1201</span><br>
+            <span style="font-size:11px; color:#666;">人工审核，快速发布 | 1:1 咨询服务</span>
+        </div>
     </div>
 
     <footer>
         <div class="visitor-box">
             <div class="visitor-label">TOTAL VISITORS</div>
             <span id="live-counter">...</span>
-            <div class="live-status"><span class="dot"></span> 系统正常运行中 (LIVE)</div>
+            <div class="live-status"><span class="dot"></span> 系统正常 작동중 (LIVE)</div>
         </div>
         <div style="font-weight:bold; color:#444; margin-bottom:5px;">韩职通 HanZhiTong</div>
         <p style="font-size:11px; color:#aaa;">© 2024 HanZhiTong. ALL RIGHTS RESERVED.</p>
@@ -102,11 +112,24 @@
         form.style.display = isHidden ? 'block' : 'none';
         if(isHidden) form.scrollIntoView({ behavior: 'smooth' });
     }
+    
+    function copyWeChat() {
+        const id = 'guksung1201';
+        // 임시 텍스트 영역을 만들어 복사 수행
+        const textarea = document.createElement('textarea');
+        textarea.value = id;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        alert('客服微信 ID (guksung1201) 已复制！\n请在微信中添加好友咨询。');
+    }
+
     function initCounter() {
         const counterEl = document.getElementById('live-counter');
-        let count = localStorage.getItem('hzt_master_count') || 10;
+        let count = localStorage.getItem('hzt_final_master_count') || 15;
         count = parseInt(count) + 1;
-        localStorage.setItem('hzt_master_count', count);
+        localStorage.setItem('hzt_final_master_count', count);
         counterEl.innerText = count.toLocaleString();
     }
     window.onload = initCounter;
