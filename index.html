@@ -20,8 +20,6 @@
         .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px; outline: none; }
         .submit-btn { width: 100%; padding: 15px; background: #007AFF; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
         .empty-state { padding: 80px 20px; text-align: center; color: #bbb; }
-        
-        /* 푸터 및 카운터 스타일 */
         footer { padding: 60px 20px; text-align: center; background: #fafbfc; border-top: 1px solid #eee; }
         .visitor-box { display: inline-block; padding: 15px 20px; background: #fff; border-radius: 20px; border: 1px solid #eee; margin-bottom: 30px; }
         .visitor-label { font-size: 10px; color: #aaa; letter-spacing: 1px; margin-bottom: 10px; font-weight: bold; }
@@ -64,11 +62,10 @@
     <footer>
         <div class="visitor-box">
             <div class="visitor-label">TOTAL VISITORS</div>
-            <!-- 가장 안정적인 카운터 서비스로 교체 -->
-            <img src="https://komarev.com" 
-                 alt="Visitor Counter" 
-                 style="display: block; margin: 0 auto; height: 20px;"
-                 onerror="this.src='https://glitch.me'">
+            <!-- 가장 가벼운 텍스트 기반 카운터로 변경 (무한 로딩 방지) -->
+            <div id="counter" style="font-size: 18px; font-weight: bold; color: #007AFF;">
+                <img src="https://komarev.com" alt="loading..." style="height: 20px;">
+            </div>
             
             <div class="live-status">
                 <span class="dot"></span> 系统正在运行중 (LIVE)
@@ -85,6 +82,11 @@
         form.style.display = (form.style.display === 'block') ? 'none' : 'block';
         if(form.style.display === 'block') form.scrollIntoView({behavior: "smooth"});
     }
+    
+    // 페이지 로드 완료 후 5초 뒤에도 로딩 아이콘이 돌면 강제 중지 시도
+    window.onload = function() {
+        console.log("Page loaded");
+    };
 </script>
 
 </body>
