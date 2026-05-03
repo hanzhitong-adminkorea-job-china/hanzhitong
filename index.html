@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>한직통 HanZhiTong</title>
     <style>
-        :root { --primary-blue: #007bff; --accent-orange: #ff9800; --bg-gray: #f8f9fa; }
+        :root { --primary-blue: #007bff; --accent-yellow: #fffde7; --bg-gray: #f8f9fa; }
         body { font-family: 'Noto Sans KR', sans-serif; background-color: var(--bg-gray); margin: 0; padding: 0; color: #333; }
         .container { max-width: 600px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
         
@@ -15,30 +15,29 @@
 
         .content { padding: 20px; }
 
-        /* 검색 섹션 스타일 */
+        /* 搜索框：明确标注为外部搜索工具 */
         .search-section { margin-bottom: 25px; }
         .search-box { display: flex; border: 2px solid var(--primary-blue); border-radius: 12px; overflow: hidden; background: #fff; }
         .search-box input { flex: 1; border: none; padding: 15px; outline: none; font-size: 16px; }
         .search-box button { background: var(--primary-blue); color: white; border: none; padding: 0 20px; font-weight: bold; cursor: pointer; }
 
-        /* [추가] 재미있는 콘텐츠 영역 (운세/꿀팁) */
+        /* 内部娱乐模块：点击跳转外部工具 */
         .fun-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
-        .fun-item { background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 12px; text-align: center; text-decoration: none; color: #333; transition: 0.2s; }
-        .fun-item:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .fun-item { background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 12px; text-align: center; text-decoration: none; color: #333; }
         .fun-icon { font-size: 24px; display: block; margin-bottom: 8px; }
         .fun-text { font-size: 13px; font-weight: bold; }
 
-        /* 게시글 카드 스타일 */
-        .card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 20px; margin-bottom: 20px; position: relative; overflow: hidden; }
-        .card-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #222; display: flex; align-items: center; gap: 8px; }
-        
-        /* [홍보 강조] 골드 배너 스타일 */
+        /* 置顶宣传 banner：纯展示，留在本站 */
         .promo-banner { background: linear-gradient(135deg, #fff9c4 0%, #fff176 100%); border: 1px solid #fdd835; padding: 15px; border-radius: 12px; margin-bottom: 25px; color: #827717; }
 
-        /* 리스트 아이템 */
-        .info-item { display: flex; align-items: center; gap: 12px; padding: 15px 0; border-bottom: 1px solid #f1f1f1; text-decoration: none; color: #444; font-size: 14px; cursor: pointer; }
-        .badge { background: #e7f3ff; color: var(--primary-blue); padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; }
+        /* 列表项：内部功能不跳转，外部资讯才跳转 */
+        .card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 20px; margin-bottom: 20px; }
+        .card-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #222; }
+        .info-item { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f1f1f1; text-decoration: none; color: #444; font-size: 14px; }
+        .info-item:last-child { border-bottom: none; }
+        .badge { background: #e7f3ff; color: var(--primary-blue); padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; margin-right: 10px; }
 
+        /* 发布招聘表单 */
         #postForm { display: none; background: #fff; border: 2px solid var(--primary-blue); border-radius: 15px; padding: 20px; margin-bottom: 25px; }
         .stats { text-align: center; margin-top: 40px; padding: 25px; background: #fafafa; border-radius: 15px; }
         footer { text-align: center; padding: 50px 20px; color: #bbb; font-size: 12px; }
@@ -49,75 +48,75 @@
 <div class="container">
     <header>
         <a href="/" class="logo">韩职通 HanZhiTong</a>
+        <!-- 【本站功能】展开表单，不跳转 -->
         <button class="post-btn" onclick="toggleForm()">+ 发布招聘</button>
     </header>
 
     <div class="content">
-        <!-- 검색창 -->
+        <!-- 【工具】外部搜索 -->
         <div class="search-section">
             <form action="https://naver.com" method="get" target="_blank" class="search-box">
-                <input type="text" name="query" placeholder="오늘 날씨, 환율, 비자 등을 검색하세요">
+                <input type="text" name="query" placeholder="在NAVER中搜索实时信息">
                 <button type="submit">搜索</button>
             </form>
         </div>
 
-        <!-- [신규] 사람들이 즐겨 찾는 콘텐츠 영역 -->
+        <!-- 【娱乐链接】明确标记会前往外部 -->
         <div class="fun-grid">
             <a href="https://naver.com?query=오늘의+운세" target="_blank" class="fun-item">
                 <span class="fun-icon">🍀</span>
-                <span class="fun-text">오늘의 운세</span>
+                <span class="fun-text">今日运势 ↗</span>
             </a>
             <a href="https://youtube.com" target="_blank" class="fun-item">
                 <span class="fun-icon">📽️</span>
-                <span class="fun-text">생활 꿀팁 영상</span>
-            </a>
-            <a href="https://naver.com?query=한국+실시간+맛집" target="_blank" class="fun-item">
-                <span class="fun-icon">🍱</span>
-                <span class="fun-text">주변 맛집 찾기</span>
-            </a>
-            <a href="https://naver.com?query=한국어+공부" target="_blank" class="fun-item">
-                <span class="fun-icon">📚</span>
-                <span class="fun-text">한국어 한마디</span>
+                <span class="fun-text">生活视频 ↗</span>
             </a>
         </div>
 
-        <!-- 홍보 강조 배너 -->
+        <!-- 【本站活动】纯展示，不跳转 -->
         <div class="promo-banner">
-            <div style="font-weight: bold; font-size: 15px; margin-bottom: 5px;">🔥 商家专属优惠 (업체 전용 혜택)</div>
-            <div style="font-size: 13px;">限时活动：商家发布招聘帖，免费提供 <strong>30天 首页置顶</strong> 服务！</div>
+            <div style="font-weight: bold; font-size: 15px; margin-bottom: 5px;">🔥 商家专属优惠</div>
+            <div style="font-size: 13px;">商家发布招聘帖，免费提供 <strong>30天 首页置顶</strong>！</div>
         </div>
 
-        <!--发布表单 (davidguksung@gmail.com 연동) -->
+        <!-- 【本站表单】投稿到您的邮箱，不跳转 -->
         <div id="postForm">
-            <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 提交招聘信息 (审核后发布)</h3>
+            <h3 style="margin-top:0; font-size:17px; color:var(--primary-blue);">📝 提交招聘信息</h3>
             <form action="https://formspree.io" method="POST">
-                <input type="text" name="联系方式" required placeholder="联系电话 / 微信" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;">
-                <textarea name="详情" rows="5" required placeholder="招聘详情：工作地点、薪资、内容" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;"></textarea>
-                <button type="submit" class="post-btn" style="width:100%; border-radius:8px; height:45px;">确认提交</button>
+                <input type="text" name="联系方式" required placeholder="您的联系电话 / 微信" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;">
+                <textarea name="详情" rows="5" required placeholder="招聘职位、工作地点、薪资等详情" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;"></textarea>
+                <button type="submit" class="post-btn" style="width:100%; border-radius:8px; height:45px;">确认提交审核</button>
             </form>
         </div>
 
-        <!-- 최신 뉴스 -->
+        <!-- 【本站贴士】 -->
         <div class="card">
-            <div class="card-title">🔔 最新资讯 (최신 소식)</div>
-            <div class="info-item" onclick="window.open('https://naver.com?query=2026년+비자+정책', '_blank')">
-                <span class="badge">签证</span> 2026年最新签证政策及 F-4 解读
-            </div>
-            <div class="info-item" onclick="window.open('https://naver.com?query=원위안+환율', '_blank')">
-                <span class="badge">汇率</span> 查看NAVER实时汇率详细图表
-            </div>
+            <div class="card-title">💡 每日生活小贴士</div>
+            <p style="font-size: 14px; color: #555; margin: 0; line-height: 1.6;">建议通过正规银行APP换钱，避免账号被冻结风险。</p>
         </div>
 
-        <!-- 채용 공고 -->
+        <!-- 【资讯】跳转到外部查看详情 -->
         <div class="card">
-            <div class="card-title">💼 最新职位公告 (오늘 업데이트)</div>
+            <div class="card-title">🔔 最新资讯</div>
+            <a href="https://naver.com?query=2026年最新签证政策" target="_blank" class="info-item">
+                <span><span class="badge">签证</span> 2026年最新签证政策及 F-4 解读</span>
+                <span style="color:#ccc;">↗</span>
+            </a>
+            <a href="https://naver.com?query=实时汇率" target="_blank" class="info-item">
+                <span><span class="badge">汇率</span> 查看实时汇率详细图表</span>
+                <span style="color:#ccc;">↗</span>
+            </a>
+        </div>
+
+        <!-- 【本站公告】职位展示区 -->
+        <div class="card">
+            <div class="card-title">💼 最新职位公告</div>
             <div style="text-align: center; padding: 40px 0; color: #aaa; font-size: 14px;">
                 目前还没有发布的公告<br>
                 <span style="font-size: 12px; margin-top: 10px; display: block; color:#ccc;">点击上方“发布招聘”提交申请，审核后在此显示</span>
             </div>
         </div>
 
-        <!-- 하단 통계 -->
         <div class="stats">
             <div style="font-size: 11px; color: #999;">TOTAL VISITORS</div>
             <div style="font-size: 38px; font-weight: bold; color: var(--primary-blue);">923</div>
